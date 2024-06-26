@@ -15,7 +15,8 @@ script = ExtResource("1_lfknh")
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_ab1a4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_xvb2g")
 
 [node name="CheckHoles" type="Area2D" parent="."]
@@ -24,4 +25,20 @@ shape = SubResource("RectangleShape2D_xvb2g")
 position = Vector2(11, 8)
 shape = SubResource("CircleShape2D_y8ipe")
 
+[node name="CheckHolesUp" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHolesUp"]
+position = Vector2(11, 8)
+shape = SubResource("CircleShape2D_y8ipe")
+
+[node name="CheckHolesDown" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHolesDown"]
+position = Vector2(11, 8)
+shape = SubResource("CircleShape2D_y8ipe")
+
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
+[connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]
+[connection signal="area_exited" from="CheckHolesDown" to="." method="_on_check_holes_area_exited"]
