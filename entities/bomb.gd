@@ -1,5 +1,6 @@
 class_name Bomb extends Area2D
 
+@onready var explosion: AnimatedSprite2D = $Explosion
 
 signal _physics_process_signal
 
@@ -22,5 +23,7 @@ func explode(targets: Array[BombEffect.Target]) -> void:
 				BombEffect.Target.Witch:
 					if entity is Witch:
 						Game.witch.lose_life()
-	
+
+	explosion.play()
+	await explosion.animation_finished
 	queue_free()

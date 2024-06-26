@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://clkdw6j2unffi"]
+
+[ext_resource type="Script" path="res://level/level_generator.gd" id="1_q0e0o"]
+[ext_resource type="Script" path="res://level/Background.gd" id="2_dmka4"]
+
+[node name="Platforms" type="Node2D"]
+script = ExtResource("1_q0e0o")
+platform_density = 0.6
+grid_y_offset = 48
+
+[node name="Background" type="Node2D" parent="."]
+script = ExtResource("2_dmka4")
+
+[node name="Background2" type="Node2D" parent="."]
+script = ExtResource("2_dmka4")
+
+[node name="Background3" type="Node2D" parent="."]
+script = ExtResource("2_dmka4")
+
+[node name="Background4" type="Node2D" parent="."]
+script = ExtResource("2_dmka4")

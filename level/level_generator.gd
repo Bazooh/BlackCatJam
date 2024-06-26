@@ -24,6 +24,7 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
+@onready var background: Node2D = $Background
 
 var item_nodes: Array = []
 var platforms: Array = []
@@ -114,7 +115,6 @@ func get_random_item() -> Item:
 func generate_chunk(idx: int) -> void:
 	var chunk_grid: Array = generate_chunk_grid()
 	
-
 	for x in range(chunk_length):
 		for y in range(height):
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
@@ -127,6 +127,8 @@ func generate_chunk(idx: int) -> void:
 				add_child(item)
 	
 	chunk_number += 1
+	background.generate_decor((idx*chunk_length * platform_size), self)
+	
 
 func move_grid() -> void:
 	for y in range(height):

@@ -1,18 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpb4yfso6j18e"]
+[gd_scene load_steps=12 format=3 uid="uid://bpb4yfso6j18e"]
 
 [ext_resource type="Script" path="res://entities/bomb.gd" id="1_fl0yf"]
-[ext_resource type="Texture2D" uid="uid://u3baaex6yseh" path="res://icon.svg" id="2_ytqd5"]
+[ext_resource type="Texture2D" uid="uid://drvr3cvwe7il8" path="res://art/items/Explosion.png" id="3_lf5ey"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pr2vy"]
-radius = 40.0125
+radius = 22.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qdo2"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xynne"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk5w7"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebu07"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqsc2"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q86tc"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbg5f"]
+atlas = ExtResource("3_lf5ey")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_espj7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qdo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xynne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk5w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebu07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqsc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q86tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbg5f")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="Bomb" type="Area2D"]
 script = ExtResource("1_fl0yf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_pr2vy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.5, 2)
-scale = Vector2(0.460938, 0.421875)
-texture = ExtResource("2_ytqd5")
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_espj7")
+frame = 6
+frame_progress = 1.0

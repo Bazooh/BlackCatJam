@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck02d6sghcclj"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_lupmp"]
+[ext_resource type="Texture2D" uid="uid://dgqhr6gq4cs3e" path="res://art/decor/decor_broom.png" id="2_56uld"]
+
+[node name="Decor" instance=ExtResource("1_lupmp")]
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -29)
+texture = ExtResource("2_56uld")

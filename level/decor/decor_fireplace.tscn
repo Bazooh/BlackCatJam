@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bibqhaby3xol4"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_46q2o"]
+[ext_resource type="Texture2D" uid="uid://d2ku1mh870sfa" path="res://art/decor/decor_fireplace.png" id="2_l4a3u"]
+
+[node name="Decor" instance=ExtResource("1_46q2o")]
+can_flip = true
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -19)
+texture = ExtResource("2_l4a3u")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7g2ikfswpllw"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_7074t"]
+[ext_resource type="Texture2D" uid="uid://58u77k3n0wha" path="res://art/decor/decor_window_round.png" id="2_5frbk"]
+
+[node name="Window" instance=ExtResource("1_7074t")]
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -41)
+texture = ExtResource("2_5frbk")

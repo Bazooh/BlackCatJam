@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cifypfwiwy2jm"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_nt4jr"]
+
+[node name="Table" instance=ExtResource("1_nt4jr")]
+can_flip = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxw6vwd4o2ukp"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_us2gn"]
+[ext_resource type="Texture2D" uid="uid://fvotljtjmya1" path="res://art/decor/decor_wallshelf.png" id="2_6ey3m"]
+
+[node name="Decor" instance=ExtResource("1_us2gn")]
+can_flip = true
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -40)
+texture = ExtResource("2_6ey3m")

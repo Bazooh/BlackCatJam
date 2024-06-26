@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba4io7pyqy5ad"]
+
+[ext_resource type="PackedScene" uid="uid://b3xiwobkvriq6" path="res://level/decor.tscn" id="1_mb1ke"]
+[ext_resource type="Texture2D" uid="uid://dd6d1nq6l3y6m" path="res://art/decor/decor_chair.png" id="2_tpb87"]
+
+[node name="Decor" instance=ExtResource("1_mb1ke")]
+can_flip = true
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -8)
+texture = ExtResource("2_tpb87")

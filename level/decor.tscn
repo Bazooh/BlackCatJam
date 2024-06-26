@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3xiwobkvriq6"]
+
+[ext_resource type="Script" path="res://level/decor.gd" id="1_jfnnw"]
+[ext_resource type="Texture2D" uid="uid://dh57ubmh3qwk6" path="res://art/decor/decor_table.png" id="2_ykihq"]
+
+[node name="Decor" type="Node2D"]
+z_index = -1
+script = ExtResource("1_jfnnw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("2_ykihq")
