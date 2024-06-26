@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://7vqh7xmpflq7"]
+
+[ext_resource type="Texture2D" uid="uid://bb0wtwggmjbsc" path="res://art/ui/Needed.png" id="1_dubag"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_3idwu"]
+[ext_resource type="Script" path="res://ui/recipe.gd" id="2_cmdqx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s1jq"]
+atlas = ExtResource("2_3idwu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkev3"]
+atlas = ExtResource("2_3idwu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yo3m"]
+atlas = ExtResource("2_3idwu")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Recipe" type="TextureRect"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.0
+offset_right = 45.0
+offset_bottom = 20.0
+grow_horizontal = 2
+texture = ExtResource("1_dubag")
+stretch_mode = 2
+script = ExtResource("2_cmdqx")
+
+[node name="Ingredients" type="HBoxContainer" parent="."]
+layout_direction = 2
+layout_mode = 0
+offset_left = 39.0
+offset_right = 85.0
+offset_bottom = 17.0
+theme_override_constants/separation = -1
+
+[node name="Ingredient1" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6s1jq")
+stretch_mode = 2
+
+[node name="Ingredient2" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_pkev3")
+stretch_mode = 2
+
+[node name="Ingredient3" type="TextureRect" parent="Ingredients"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4yo3m")
+stretch_mode = 2
