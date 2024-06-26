@@ -2,6 +2,7 @@ class_name Witch extends Area2D
 
 signal on_recipe_update(recipe, collected)
 signal on_lives_update(lives)
+signal on_game_over()
 
 @export var speed : float = 100
 @export var max_lives := 3
@@ -65,3 +66,11 @@ func check_potion():
 func lose_life():
 	lives -= 1
 	on_lives_update.emit(lives)
+	if lives <= 0:
+		game_over()
+
+func game_over():
+	on_game_over.emit()
+	
+func _on_cat_no_platform() -> void:
+	game_over()
