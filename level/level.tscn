@@ -18,11 +18,11 @@ position = Vector2(42, 40)
 speed = 100.0
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
-possible_ingredients = Array[int]([0, 1, 2])
 
-[node name="Platforms" type="Node2D" parent="."]
+[node name="Platforms" type="Node2D" parent="." node_paths=PackedStringArray("witch")]
 script = ExtResource("4_dyxyi")
 platform_density = 0.6
+witch = NodePath("../Witch")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

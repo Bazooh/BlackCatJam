@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmjvmc6ltdaiu"]
+[gd_scene load_steps=6 format=3 uid="uid://dmjvmc6ltdaiu"]
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_yea6j"]
 [ext_resource type="Script" path="res://entities/items/cat_effects/drop.gd" id="3_kghsp"]
-[ext_resource type="Script" path="res://entities/items/witch_effects/ingredient.gd" id="4_7tkg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s7eb"]
 atlas = ExtResource("2_yea6j")
@@ -31,8 +30,5 @@ script = ExtResource("3_kghsp")
 
 [node name="WitchEffects" type="Node" parent="."]
 unique_name_in_owner = true
-
-[node name="Ingredient" type="Node" parent="WitchEffects"]
-script = ExtResource("4_7tkg1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

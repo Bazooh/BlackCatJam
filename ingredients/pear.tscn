@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d35b68j76br4u"]
+
+[ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_6fi74"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_dk8uo"]
+
+[node name="Pear" instance=ExtResource("1_6fi74")]
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_dk8uo")
+hframes = 2
+vframes = 3

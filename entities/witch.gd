@@ -4,8 +4,9 @@ signal on_recipe_update(recipe, collected)
 
 @export var speed : float = 100
 
-@export var possible_ingredients : Array[Ingredient.IngredientType] = []
-var recipe : Array[Ingredient.IngredientType] = []
+var ingredients_scene := {}
+var ingredient_types : Array[Ingredient.Type]
+var recipe : Array[Ingredient.Type] = []
 
 var collected = 0
 
@@ -15,10 +16,22 @@ const edge_x : float = 256
 var min_x : float
 var max_x : float
 
+
+func init_ingredients():
+	for file in DirAccess.get_files_at("res://ingredients"):
+		var ingredient: PackedScene = load("res://ingredients/" + file)
+		var type: Ingredient.Type = ingredient.instantiate().type
+		ingredient_types.append(type)
+		ingredients_scene[type] = ingredient
+	
+	print(ingredient_types)
+
+
 func _ready():
 	min_x = size / 2
 	max_x = edge_x - size / 2
 	
+	init_ingredients()
 	create_recipe()
 
 func _process(delta):
@@ -29,13 +42,13 @@ func _process(delta):
 func create_recipe():
 	recipe = []
 	for i in range(3):
-		var random_ingredient = possible_ingredients.pick_random()
+		var random_ingredient: Ingredient.Type = ingredient_types.pick_random()
 		recipe.append(random_ingredient)
 	collected = 0
 	on_recipe_update.emit(recipe, collected)
 	
 	
-func collect_ingredient(type: Ingredient.IngredientType):
+func collect_ingredient(type: Ingredient.Type):
 	if not recipe:
 		return
 	

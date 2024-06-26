@@ -13,20 +13,13 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 
 @export var grid_y_offset: int = 32
 
+@export var witch: Witch
+
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
 
-@onready var ingredients: Array = init_ingredients()
-
 var ingredient_nodes: Array = []
 var platforms: Array = []
-
-
-func init_ingredients() -> Array:
-	var _ingredients := []
-	for file in DirAccess.get_files_at("res://item_instances"):
-		_ingredients.append(load("res://item_instances/" + file))
-	return _ingredients
 
 
 func init_grid() -> Array:
@@ -95,6 +88,20 @@ func generate_chunk_grid() -> Array:
 	return chunk_grid
 
 
+func get_random_ingredient() -> Ingredient:
+	for recipe_ingredient: Ingredient.Type in witch.recipe:
+		var is_in_screen: bool = false
+		for ingredient: Item in ingredient_nodes:
+			if ingredient is Ingredient and ingredient.type == recipe_ingredient:
+				is_in_screen = true
+				break
+		
+		if not is_in_screen:
+			return witch.ingredients_scene[recipe_ingredient].instantiate()
+	
+	return witch.ingredients_scene.values().pick_random().instantiate()
+
+
 func generate_chunk(idx: int) -> void:
 	var chunk_grid: Array = generate_chunk_grid()
 
@@ -103,11 +110,10 @@ func generate_chunk(idx: int) -> void:
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
 
 			if chunk_grid[x][y] and randf() < ingredient_density:
-				var ingredient = ingredients[randi() % ingredients.size()]
-				var instance = ingredient.instantiate()
-				instance.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
-				ingredient_nodes.append(instance)
-				add_child(instance)
+				var ingredient = get_random_ingredient()
+				ingredient.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
+				ingredient_nodes.append(ingredient)
+				add_child(ingredient)
 
 
 func move_grid() -> void:
@@ -146,11 +152,16 @@ func _physics_process(delta: float) -> void:
 
 	if position.x < -chunk_length * platform_size:
 		move_grid()
-		for ingredient_node in ingredient_nodes:
+
+		for ingredient_node in ingredient_nodes.duplicate():
 			if is_instance_valid(ingredient_node):
 				ingredient_node.position.x -= chunk_length * platform_size
-			else:
+				if ingredient_node.position.x < -platform_size:
+					ingredient_node.queue_free()
+
+			if not is_instance_valid(ingredient_node):
 				ingredient_nodes.erase(ingredient_nodes.find(ingredient_node))
+		
 		generate_chunk(n_chunks - 1)
 		grid_to_node()
 		position.x += chunk_length * platform_size

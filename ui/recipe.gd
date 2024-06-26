@@ -11,7 +11,7 @@ func _ready():
 		if child is TextureRect:
 			ingredients.append(child as TextureRect)
 
-func update_ui(recipe: Array[Ingredient.IngredientType], collected: int):
+func update_ui(recipe: Array[Ingredient.Type], collected: int):
 	if not is_node_ready():
 		await ready
 		
@@ -29,5 +29,5 @@ func update_ui(recipe: Array[Ingredient.IngredientType], collected: int):
 		
 
 
-func _on_witch_on_recipe_update(recipe: Array[Ingredient.IngredientType], collected: int):
+func _on_witch_on_recipe_update(recipe: Array[Ingredient.Type], collected: int):
 	update_ui(recipe, collected)
