@@ -1,13 +1,11 @@
 class_name Item extends Area2D
 
 
-@export var gravity_scale: float = 1000.0
-
-var is_dropping := false
+@onready 
 
 
-func drop() -> void:
-	is_dropping = true
+func get_effects() -> Array:
+	return 
 
 
 func is_out_of_bounds() -> bool:
@@ -23,7 +21,7 @@ func _process(delta) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if not area is Cat or is_dropping:
+	if not area is Cat:
 		return
 
-	drop()
+	
