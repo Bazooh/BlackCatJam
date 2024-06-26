@@ -46,13 +46,6 @@ offset_top = 0.0
 offset_right = 54.0
 offset_bottom = 14.0
 
-[node name="GameOver" parent="UI" instance=ExtResource("7_nc0dy")]
-visible = false
-layout_mode = 1
-
-[node name="Pause" parent="UI" instance=ExtResource("8_xqhhv")]
-layout_mode = 1
-
 [node name="Score" parent="UI" instance=ExtResource("9_pk0c4")]
 layout_mode = 1
 anchors_preset = 1
@@ -63,6 +56,13 @@ offset_right = 0.0
 grow_horizontal = 0
 script = ExtResource("10_ijkxw")
 digits = 3
+
+[node name="GameOver" parent="UI" instance=ExtResource("7_nc0dy")]
+visible = false
+layout_mode = 1
+
+[node name="Pause" parent="UI" instance=ExtResource("8_xqhhv")]
+layout_mode = 1
 
 [connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
 [connection signal="on_game_over" from="Witch" to="UI/GameOver" method="_on_witch_on_game_over"]
