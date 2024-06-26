@@ -1,14 +1,19 @@
 class_name Recipe extends TextureRect
 
+@export var show_next := true
 
 @onready var ingredientBox: HBoxContainer = $Ingredients
 @onready var nextIngredientBox: HBoxContainer = $NextIngredients
+@onready var next: TextureRect = $Next
 
 var ingredients: Array[TextureRect] = []
 var next_ingredients: Array[TextureRect] = []
 
 
 func _ready():
+	next.visible = show_next;
+	nextIngredientBox.visible = show_next;
+	
 	for child in ingredientBox.get_children():
 		if child is TextureRect:
 			ingredients.append(child as TextureRect)
@@ -37,7 +42,7 @@ func update_ui(recipe: Array[Ingredient.Type], collected: Array[bool], next_reci
 		var next_recipe_texture = next_ingredients[i].texture as AtlasTexture
 		if i < next_recipe.size():
 			next_recipe_texture.region.position.y = next_recipe_texture.region.size.y * int(next_recipe[i])
-			next_recipe_texture.region.position.x = 0
+			next_recipe_texture.region.position.x = next_recipe_texture.region.size.x * 2
 
 
 func _on_witch_on_recipe_update(recipe: Array[Ingredient.Type], collected: Array[bool], next_recipe: Array[Ingredient.Type]):
