@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=3 format=3 uid="uid://nalu1nrl7o5b"]
+
+[ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp_BG.png" id="2_3ca08"]
+[ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="BG" type="Sprite2D" parent="."]
+z_index = -5
+texture = ExtResource("2_3ca08")
+centered = false
+
+[node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
