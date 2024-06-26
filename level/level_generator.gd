@@ -5,6 +5,7 @@ const platform_node = preload("res://level/Platform.tscn")
 const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)]
 
 @export var platform_density: float = 0.4
+@export var ingredient_density: float = 1.0
 @export var chunk_length: int = 10
 @export var n_chunks: int = 2
 @export var height: int = 3
@@ -15,7 +16,17 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
 
+@onready var ingredients: Array = init_ingredients()
+
+var ingredient_nodes: Array = []
 var platforms: Array = []
+
+
+func init_ingredients() -> Array:
+	var _ingredients := []
+	for file in DirAccess.get_files_at("res://item_instances"):
+		_ingredients.append(load("res://item_instances/" + file))
+	return _ingredients
 
 
 func init_grid() -> Array:
@@ -29,7 +40,6 @@ func init_grid() -> Array:
 
 
 func generate_platform(x_start: int, x_end: int, y: int) -> Node2D:
-	print("Generating platform from ", x_start, " to ", x_end, " at height ", y)
 	var platform: Node2D = platform_node.instantiate()
 	platform.position.x = (x_start + float(x_end - x_start) / 2) * platform_size
 	platform.position.y = y * 16 + grid_y_offset
@@ -92,6 +102,13 @@ func generate_chunk(idx: int) -> void:
 		for y in range(height):
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
 
+			if chunk_grid[x][y] and randf() < ingredient_density:
+				var ingredient = ingredients[randi() % ingredients.size()]
+				var instance = ingredient.instantiate()
+				instance.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
+				ingredient_nodes.append(instance)
+				add_child(instance)
+
 
 func move_grid() -> void:
 	for y in range(height):
@@ -129,6 +146,11 @@ func _physics_process(delta: float) -> void:
 
 	if position.x < -chunk_length * platform_size:
 		move_grid()
+		for ingredient_node in ingredient_nodes:
+			if is_instance_valid(ingredient_node):
+				ingredient_node.position.x -= chunk_length * platform_size
+			else:
+				ingredient_nodes.erase(ingredient_nodes.find(ingredient_node))
 		generate_chunk(n_chunks - 1)
 		grid_to_node()
 		position.x += chunk_length * platform_size

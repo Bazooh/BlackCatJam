@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
-[ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
+[ext_resource type="PackedScene" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="Script" path="res://level/level_generator.gd" id="4_dyxyi"]
 
