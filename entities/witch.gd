@@ -1,24 +1,25 @@
 class_name Witch extends Area2D
 
-signal on_recipe_update(recipe, collected)
-signal on_lives_update(lives)
+signal on_recipe_update(recipe: Array[Ingredient.Type], collected: Array[bool], next_recipe: Array[Ingredient.Type])
+signal on_lives_update(lives: int)
 signal on_game_over()
 
-@export var speed : float = 100
+@export var speed: float = 100.0
 
-@export var max_lives := 3
+@export var max_lives: int = 3
 var ingredients_scene := {}
-var ingredient_types : Array[Ingredient.Type]
-var recipe : Array[Ingredient.Type] = []
+var ingredient_types: Array[Ingredient.Type]
+var recipe: Array[Ingredient.Type] = []
+var next_recipe: Array[Ingredient.Type] = []
 
-var lives = 3
-var collected : Array[bool] = []
+var lives: int = 3
+var collected: Array[bool] = []
 
-const size : float = 30
-const edge_x : float = 256
+const size: float = 30.0
+const edge_x: float = 256.0
 
-var min_x : float
-var max_x : float
+const min_x: float = size / 2
+const max_x: float = edge_x - size / 2
 
 
 func init_ingredients():
@@ -32,26 +33,34 @@ func init_ingredients():
 
 
 func _ready():
-	min_x = size / 2
-	max_x = edge_x - size / 2
-	
 	init_ingredients()
-	create_recipe()
+	next_recipe = create_recipe()
+	update_recipe()
 	on_lives_update.emit(lives)
+
 
 func _process(delta):
 	var input : int = (int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")))
 	position.x += speed * delta * input
 	position.x = clamp(position.x, min_x, max_x)
 
-func create_recipe():
-	recipe = []
+
+func create_recipe() -> Array[Ingredient.Type]:
+	var _recipe: Array[Ingredient.Type] = []
 	for i in range(3):
 		var random_ingredient: Ingredient.Type = ingredient_types.pick_random()
-		recipe.append(random_ingredient)
+		_recipe.append(random_ingredient)
+	return _recipe
+
+
+func update_recipe():
+	recipe = next_recipe
+	next_recipe = create_recipe()
 	collected = [false, false, false]
-	on_recipe_update.emit(recipe, collected)
-	
+	print("Recipe: ", recipe, " Next Recipe: ", next_recipe)
+
+	on_recipe_update.emit(recipe, collected, next_recipe)
+
 	
 func collect_ingredient(type: Ingredient.Type):
 	if not recipe:
@@ -71,10 +80,10 @@ func collect_ingredient(type: Ingredient.Type):
 func check_potion():
 	for check in collected:
 		if not check:
-			on_recipe_update.emit(recipe, collected)
+			on_recipe_update.emit(recipe, collected, next_recipe)
 			return
 		
-	create_recipe()
+	update_recipe()
 			
 	
 func lose_life():
