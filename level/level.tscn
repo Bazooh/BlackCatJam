@@ -17,6 +17,7 @@ centered = false
 
 [node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
 position = Vector2(42, 39)
+speed = 100.0
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
 recipe = Array[int]([0, 1, 2])
