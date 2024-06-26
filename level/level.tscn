@@ -14,7 +14,7 @@ texture = ExtResource("2_3ca08")
 centered = false
 
 [node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
-position = Vector2(42, 56)
+position = Vector2(42, 40)
 speed = 100.0
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
@@ -23,7 +23,6 @@ possible_ingredients = Array[int]([0, 1, 2])
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource("4_dyxyi")
 platform_density = 0.6
-grid_y_offset = 48
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

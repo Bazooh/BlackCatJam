@@ -61,3 +61,8 @@ func _physics_process(delta):
 	
 	if not has_platform_below() or check_holes.global_position.x < 0 or check_holes.global_position.x > get_viewport_rect().size.x:
 		change_direction()
+
+		await get_tree().create_timer(2 * delta).timeout
+		if not has_platform_below():
+			print("Game Over")
+			queue_free()
