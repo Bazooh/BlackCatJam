@@ -1,20 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmjvmc6ltdaiu"]
+[gd_scene load_steps=7 format=3 uid="uid://dmjvmc6ltdaiu"]
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
-[ext_resource type="Texture2D" uid="uid://jkh4m7kpj6em" path="res://art/temp_item0.png" id="2_l16qc"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_yea6j"]
 [ext_resource type="Script" path="res://entities/items/cat_effects/drop.gd" id="3_kghsp"]
 [ext_resource type="Script" path="res://entities/items/witch_effects/ingredient.gd" id="4_7tkg1"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s7eb"]
+atlas = ExtResource("2_yea6j")
+region = Rect2(0, 0, 16, 16)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4cnn"]
-size = Vector2(10, 10)
+size = Vector2(14, 16)
 
 [node name="Item" type="Area2D"]
 script = ExtResource("1_ul5h1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_l16qc")
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_4s7eb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_q4cnn")
 
 [node name="CatEffects" type="Node" parent="."]

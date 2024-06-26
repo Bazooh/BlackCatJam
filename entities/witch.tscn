@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://nx2ety4mvf61"]
 
 [ext_resource type="Script" path="res://entities/witch.gd" id="1_83sfl"]
-[ext_resource type="Texture2D" uid="uid://bcg1ywk378rb2" path="res://art/temp_cauldron.png" id="1_u5y5o"]
+[ext_resource type="Texture2D" uid="uid://2m8kef8xeuub" path="res://art/Cauldron.png" id="2_w3gvh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bffv"]
 size = Vector2(32, 9)
@@ -11,7 +11,7 @@ position = Vector2(20, 129)
 script = ExtResource("1_83sfl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u5y5o")
+texture = ExtResource("2_w3gvh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8.5)

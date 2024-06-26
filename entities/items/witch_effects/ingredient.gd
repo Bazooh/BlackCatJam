@@ -1,6 +1,6 @@
 class_name Ingredient extends Effect
 
-enum IngredientType {Temp1, Temp2, Temp3}
+enum IngredientType {Pear, Bottle, Mushroom}
 @export var ingredient : IngredientType
 
 func _activate() -> void:
