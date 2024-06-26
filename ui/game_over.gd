@@ -1,7 +1,22 @@
 extends TextureRect
 
-func open_game_over_screen():
+@onready var scores: Label = $Scores
+@onready var new_high: Label = $NewHigh
+
+func open_game_over_screen(score: int):
 	show()
+	
+	var data : SaveData = SaveData.load_or_create()
+	
+	if score > data.high_score:
+		data.high_score = score
+		data.save()
+		new_high.show()
+	
+	var number = "%03d"
+	var format_string = "Score: %s\nHigh: %s"
+	scores.text = format_string % [number % score, number % data.high_score]
+	
 	get_tree().paused = true
 
 func restart():
@@ -18,5 +33,5 @@ func _on_restart_pressed() -> void:
 func _on_menu_pressed() -> void:
 	return_to_menu()
 
-func _on_witch_on_game_over() -> void:
-	open_game_over_screen()
+func _on_witch_on_game_over(score: int) -> void:
+	open_game_over_screen(score)

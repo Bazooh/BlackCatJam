@@ -2,7 +2,8 @@ class_name Witch extends Area2D
 
 signal on_recipe_update(recipe, collected)
 signal on_lives_update(lives)
-signal on_game_over()
+signal on_score_update(score)
+signal on_game_over(score)
 
 @export var speed : float = 100
 
@@ -14,12 +15,13 @@ var recipe : Array[Ingredient.Type] = []
 var lives = 3
 var collected : Array[bool] = []
 
+var score := 0
+
 const size : float = 30
 const edge_x : float = 256
 
 var min_x : float
 var max_x : float
-
 
 func init_ingredients():
 	for file in DirAccess.get_files_at("res://ingredients"):
@@ -27,8 +29,6 @@ func init_ingredients():
 		var type: Ingredient.Type = ingredient.instantiate().type
 		ingredient_types.append(type)
 		ingredients_scene[type] = ingredient
-	
-	print(ingredient_types)
 
 
 func _ready():
@@ -38,6 +38,7 @@ func _ready():
 	init_ingredients()
 	create_recipe()
 	on_lives_update.emit(lives)
+	on_score_update.emit(score)
 
 func _process(delta):
 	var input : int = (int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")))
@@ -73,7 +74,9 @@ func check_potion():
 		if not check:
 			on_recipe_update.emit(recipe, collected)
 			return
-		
+	
+	score += 1
+	on_score_update.emit(score)
 	create_recipe()
 			
 	
@@ -84,7 +87,7 @@ func lose_life():
 		game_over()
 
 func game_over():
-	on_game_over.emit()
+	on_game_over.emit(score)
 	
 func _on_cat_no_platform() -> void:
 	game_over()
