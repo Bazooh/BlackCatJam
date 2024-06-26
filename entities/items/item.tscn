@@ -22,14 +22,11 @@ texture = SubResource("AtlasTexture_4s7eb")
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_q4cnn")
 
-[node name="CatEffects" type="Node" parent="."]
+[node name="Effects" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Drop" type="Node" parent="CatEffects"]
+[node name="Drop" type="Node" parent="Effects"]
 script = ExtResource("3_kghsp")
 drop_speed = 200.0
-
-[node name="WitchEffects" type="Node" parent="."]
-unique_name_in_owner = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

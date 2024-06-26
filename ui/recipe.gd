@@ -16,8 +16,6 @@ func _ready():
 	for child in nextIngredientBox.get_children():
 		if child is TextureRect:
 			next_ingredients.append(child as TextureRect)
-	
-	print(ingredients == next_ingredients)
 
 
 func update_ui(recipe: Array[Ingredient.Type], collected: Array[bool], next_recipe: Array[Ingredient.Type]):

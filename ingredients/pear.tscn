@@ -5,7 +5,14 @@
 
 [node name="Pear" instance=ExtResource("1_6fi74")]
 
-[node name="Sprite" parent="." index="0"]
+[node name="WitchEffects#IngredientEffect" parent="." index="0"]
+once = null
+trigger = null
+
+[node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_dk8uo")
 hframes = 2
 vframes = 3
+
+[node name="IngredientEffect" parent="Effects" index="1"]
+once = null

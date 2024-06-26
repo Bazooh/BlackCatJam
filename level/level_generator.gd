@@ -120,7 +120,7 @@ func generate_chunk(idx: int) -> void:
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
 
 			if chunk_grid[x][y] and randf() < get_ingredient_density():
-				var ingredient = get_random_ingredient()
+				var ingredient: Ingredient = get_random_ingredient()
 				ingredient.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
 				ingredient.position.x += randf_range(-1, 1) * ingredient_offset
 				ingredient_nodes.append(ingredient)

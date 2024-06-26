@@ -59,8 +59,6 @@ func update_recipe():
 	recipe = next_recipe
 	next_recipe = create_recipe()
 	collected = [false, false, false]
-	print("Recipe: ", recipe, " Next Recipe: ", next_recipe)
-
 	on_recipe_update.emit(recipe, collected, next_recipe)
 
 	

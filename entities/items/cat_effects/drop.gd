@@ -8,7 +8,7 @@ const floor_y : int = 143
 var is_dropping := false
 
 
-func _activate() -> void:
+func _activate(_cat) -> void:
 	is_dropping = true
 
 

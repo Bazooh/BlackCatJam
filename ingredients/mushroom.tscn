@@ -6,8 +6,15 @@
 [node name="Mushroom" instance=ExtResource("1_01lf5")]
 type = 2
 
-[node name="Sprite" parent="." index="0"]
+[node name="WitchEffects#IngredientEffect" parent="." index="0"]
+once = null
+trigger = null
+
+[node name="Sprite" parent="." index="1"]
 texture = ExtResource("2_bsoye")
 hframes = 2
 vframes = 3
 frame = 4
+
+[node name="IngredientEffect" parent="Effects" index="1"]
+once = null
