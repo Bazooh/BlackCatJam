@@ -27,6 +27,7 @@ unique_name_in_owner = true
 
 [node name="Drop" type="Node" parent="CatEffects"]
 script = ExtResource("3_kghsp")
+drop_speed = 200.0
 
 [node name="WitchEffects" type="Node" parent="."]
 unique_name_in_owner = true

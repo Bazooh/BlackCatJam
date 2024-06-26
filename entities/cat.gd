@@ -11,6 +11,15 @@ var moving: bool = true
 @onready var check_holes: Area2D = $CheckHoles
 @onready var rect: Rect2 = $CollisionShape.shape.get_rect()
 
+var min_x : float
+var max_x : float
+
+const size : float = 16
+const edge_x : float = 256
+
+func _ready():
+	min_x = size / 2
+	max_x = edge_x - size / 2
 
 func change_direction():
 	direction *= -1
@@ -59,7 +68,7 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("down") and can_go_down():
 		position.y += PLATFORM_MARGIN
 	
-	if not has_platform_below() or check_holes.global_position.x < 0 or check_holes.global_position.x > get_viewport_rect().size.x:
+	if not has_platform_below() or check_holes.global_position.x < min_x or check_holes.global_position.x > max_x:
 		change_direction()
 
 		await get_tree().create_timer(2 * delta).timeout

@@ -4,12 +4,19 @@ class_name LevelGenerator extends Node2D
 const platform_node = preload("res://level/Platform.tscn")
 const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)]
 
+@export_group("Intro Settings")
+@export var intro_platform_density: float = 1
+@export var intro_ingredient_density: float = 0
+@export var intro_length: int = 1
+
+@export_group("Main Settings")
 @export var platform_density: float = 0.4
 @export var ingredient_density: float = 1.0
 @export var chunk_length: int = 5
 @export var n_chunks: int = 2
 @export var height: int = 3
 @export var speed: float = 20.0
+@export var ingredient_offset: float = 20
 
 @export var grid_y_offset: int = 32
 
@@ -20,6 +27,8 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 
 var ingredient_nodes: Array = []
 var platforms: Array = []
+
+var chunk_number := 0
 
 
 func init_grid() -> Array:
@@ -74,13 +83,13 @@ func have_path(chunk: Array, start: Vector2i, end: Vector2i) -> bool:
 
 func generate_chunk_grid() -> Array:
 	var chunk_grid := []
-	
+		
 	while not have_path(chunk_grid, Vector2i(0, 1), Vector2i(chunk_length - 1, 1)):
 		chunk_grid.clear()
 		for x in range(chunk_length):
 			chunk_grid.append([])
 			for y in range(height):
-				chunk_grid[x].append(randf() < platform_density)
+				chunk_grid[x].append(randf() < get_platform_density())
 		
 		chunk_grid[0][1] = true
 		chunk_grid[chunk_length - 1][1] = true
@@ -91,7 +100,7 @@ func generate_chunk_grid() -> Array:
 func get_random_ingredient() -> Ingredient:
 	for recipe_ingredient: Ingredient.Type in witch.recipe:
 		var is_in_screen: bool = false
-		for ingredient: Item in ingredient_nodes:
+		for ingredient in ingredient_nodes:
 			if is_instance_valid(ingredient) and ingredient is Ingredient and ingredient.type == recipe_ingredient:
 				is_in_screen = true
 				break
@@ -104,17 +113,20 @@ func get_random_ingredient() -> Ingredient:
 
 func generate_chunk(idx: int) -> void:
 	var chunk_grid: Array = generate_chunk_grid()
+	
 
 	for x in range(chunk_length):
 		for y in range(height):
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
 
-			if chunk_grid[x][y] and randf() < ingredient_density:
+			if chunk_grid[x][y] and randf() < get_ingredient_density():
 				var ingredient = get_random_ingredient()
 				ingredient.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
+				ingredient.position.x += randf_range(-1, 1) * ingredient_offset
 				ingredient_nodes.append(ingredient)
 				add_child(ingredient)
-
+	
+	chunk_number += 1
 
 func move_grid() -> void:
 	for y in range(height):
@@ -166,3 +178,12 @@ func _physics_process(delta: float) -> void:
 		grid_to_node()
 		position.x += chunk_length * platform_size
 
+func get_platform_density() -> float:
+	if chunk_number < intro_length:
+		return intro_platform_density
+	return platform_density
+
+func get_ingredient_density() -> float:
+	if chunk_number < intro_length:
+		return intro_ingredient_density
+	return ingredient_density

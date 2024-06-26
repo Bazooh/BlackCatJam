@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
-[ext_resource type="PackedScene" path="res://entities/witch.tscn" id="2_b1rdj"]
+[ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="Script" path="res://level/level_generator.gd" id="4_dyxyi"]
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
-[ext_resource type="PackedScene" path="res://ui/lives.tscn" id="6_4f633"]
-[ext_resource type="PackedScene" path="res://ui/game_over.tscn" id="7_nc0dy"]
-[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" uid="uid://0bxbcjlv0e2t" path="res://ui/lives.tscn" id="6_4f633"]
+[ext_resource type="PackedScene" uid="uid://clggs6ymegb8h" path="res://ui/game_over.tscn" id="7_nc0dy"]
+[ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
 
 [node name="Game" type="Node2D"]
 
@@ -25,6 +25,7 @@ speed = 100.0
 [node name="Platforms" type="Node2D" parent="." node_paths=PackedStringArray("witch")]
 script = ExtResource("4_dyxyi")
 platform_density = 0.6
+ingredient_density = 0.9
 grid_y_offset = 48
 witch = NodePath("../Witch")
 

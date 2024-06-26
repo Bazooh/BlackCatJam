@@ -3,7 +3,7 @@ class_name Drop extends Effect
 
 @export var drop_speed: float = 300.0
 
-const floor_y : int = 130
+const floor_y : int = 143
 
 var is_dropping := false
 
