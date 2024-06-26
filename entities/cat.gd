@@ -2,13 +2,11 @@ class_name Cat extends Area2D
 
 
 const PLATFORM_MARGIN = 16
-const N_PLATFORMS = 3
 
 
 var moving: bool = true
 @export var speed: float = 50
 @export var direction: int = 1
-@export var platform_idx: int = 1
 
 @onready var check_holes: Area2D = $CheckHoles
 
@@ -35,9 +33,6 @@ func can_cat_be_on_platform(platform: Area2D) -> bool:
 
 
 func can_go_up() -> bool:
-	if platform_idx >= N_PLATFORMS - 1:
-		return false
-	
 	var areas: Array = $CheckHolesUp.get_overlapping_areas()
 	for platform: Area2D in areas:
 		if platform.is_in_group("Platform") and can_cat_be_on_platform(platform):
@@ -47,9 +42,6 @@ func can_go_up() -> bool:
 
 
 func can_go_down() -> bool:
-	if platform_idx <= 0:
-		return false
-	
 	var areas: Array = $CheckHolesDown.get_overlapping_areas()
 	for platform: Area2D in areas:
 		if platform.is_in_group("Platform") and can_cat_be_on_platform(platform):
@@ -63,10 +55,8 @@ func _physics_process(delta):
 		position.x += speed * direction * delta
 	
 	if Input.is_action_just_pressed("up") and can_go_up():
-		platform_idx += 1
 		position.y -= PLATFORM_MARGIN
 	elif Input.is_action_just_pressed("down") and can_go_down():
-		platform_idx -= 1
 		position.y += PLATFORM_MARGIN
 	
 	if not has_platform_below():
