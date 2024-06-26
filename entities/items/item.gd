@@ -34,8 +34,9 @@ func is_out_of_bounds() -> bool:
 
 
 func _ready() -> void:
-	for effect: Effect in get_effects():
-		effect.item = self
+	for effect: Node in get_effects():
+		if effect is Effect:
+			(effect as Effect).item = self
 
 
 func _process(_delta) -> void:
@@ -50,3 +51,6 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Witch:
 		activate_witch_effects(area as Witch)
 		queue_free()
+
+func destroy():
+	queue_free()
