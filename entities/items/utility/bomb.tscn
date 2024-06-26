@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyt4b0nca25os"]
+
+[ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_wewcm"]
+[ext_resource type="Texture2D" uid="uid://u3baaex6yseh" path="res://icon.svg" id="2_2cync"]
+[ext_resource type="Script" path="res://entities/items/effects/bomb.gd" id="2_ub6yp"]
+
+[node name="Bomb" instance=ExtResource("1_wewcm")]
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_2cync")
+
+[node name="Bomb" type="Node" parent="Effects" index="1"]
+script = ExtResource("2_ub6yp")
+trigger = 2

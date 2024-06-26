@@ -12,7 +12,7 @@ func is_out_of_bounds() -> bool:
 
 func _process(_delta) -> void:
 	if is_out_of_bounds():
-		destroy()
+		touch_ground.emit()
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -21,7 +21,6 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	elif area is Witch:
 		touch_witch.emit(area as Witch)
-		destroy()
 
 
 func destroy():

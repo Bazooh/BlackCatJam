@@ -6,17 +6,17 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 
 @export_group("Intro Settings")
 @export var intro_platform_density: float = 1
-@export var intro_ingredient_density: float = 0
+@export var intro_item_density: float = 0
 @export var intro_length: int = 1
 
 @export_group("Main Settings")
 @export var platform_density: float = 0.4
-@export var ingredient_density: float = 1.0
+@export var item_density: float = 1.0
 @export var chunk_length: int = 5
 @export var n_chunks: int = 2
 @export var height: int = 3
 @export var speed: float = 20.0
-@export var ingredient_offset: float = 20
+@export var item_offset: float = 20
 
 @export var grid_y_offset: int = 32
 
@@ -25,7 +25,7 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
 
-var ingredient_nodes: Array = []
+var item_nodes: Array = []
 var platforms: Array = []
 
 var chunk_number := 0
@@ -97,18 +97,18 @@ func generate_chunk_grid() -> Array:
 	return chunk_grid
 
 
-func get_random_ingredient() -> Ingredient:
+func get_random_item() -> Item:
 	for recipe_ingredient: Ingredient.Type in witch.recipe:
 		var is_in_screen: bool = false
-		for ingredient in ingredient_nodes:
-			if is_instance_valid(ingredient) and ingredient is Ingredient and ingredient.type == recipe_ingredient:
+		for item in item_nodes:
+			if is_instance_valid(item) and item is Ingredient and item.type == recipe_ingredient:
 				is_in_screen = true
 				break
 		
 		if not is_in_screen:
 			return witch.ingredients_scene[recipe_ingredient].instantiate()
 	
-	return witch.ingredients_scene.values().pick_random().instantiate()
+	return witch.all_items_scene.pick_random().instantiate()
 
 
 func generate_chunk(idx: int) -> void:
@@ -119,12 +119,12 @@ func generate_chunk(idx: int) -> void:
 		for y in range(height):
 			grid[idx*chunk_length + x][y] = chunk_grid[x][y]
 
-			if chunk_grid[x][y] and randf() < get_ingredient_density():
-				var ingredient: Ingredient = get_random_ingredient()
-				ingredient.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
-				ingredient.position.x += randf_range(-1, 1) * ingredient_offset
-				ingredient_nodes.append(ingredient)
-				add_child(ingredient)
+			if chunk_grid[x][y] and randf() < get_item_density():
+				var item: Item = get_random_item()
+				item.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
+				item.position.x += randf_range(-1, 1) * item_offset
+				item_nodes.append(item)
+				add_child(item)
 	
 	chunk_number += 1
 
@@ -165,14 +165,14 @@ func _physics_process(delta: float) -> void:
 	if position.x < -chunk_length * platform_size:
 		move_grid()
 
-		for ingredient_node in ingredient_nodes.duplicate():
-			if is_instance_valid(ingredient_node):
-				ingredient_node.position.x -= chunk_length * platform_size
-				if ingredient_node.position.x < -platform_size:
-					ingredient_node.queue_free()
+		for item_node in item_nodes.duplicate():
+			if is_instance_valid(item_node):
+				item_node.position.x -= chunk_length * platform_size
+				if item_node.position.x < -platform_size:
+					item_node.queue_free()
 
-			if not is_instance_valid(ingredient_node):
-				ingredient_nodes.erase(ingredient_nodes.find(ingredient_node))
+			if not is_instance_valid(item_node):
+				item_nodes.erase(item_nodes.find(item_node))
 		
 		generate_chunk(n_chunks - 1)
 		grid_to_node()
@@ -183,7 +183,7 @@ func get_platform_density() -> float:
 		return intro_platform_density
 	return platform_density
 
-func get_ingredient_density() -> float:
+func get_item_density() -> float:
 	if chunk_number < intro_length:
-		return intro_ingredient_density
-	return ingredient_density
+		return intro_item_density
+	return item_density

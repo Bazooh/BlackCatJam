@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_yea6j"]
-[ext_resource type="Script" path="res://entities/items/cat_effects/drop.gd" id="3_kghsp"]
+[ext_resource type="Script" path="res://entities/items/effects/drop.gd" id="3_kghsp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s7eb"]
 atlas = ExtResource("2_yea6j")

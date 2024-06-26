@@ -10,13 +10,14 @@ signal on_game_over(score: int)
 @export var max_lives: int = 3
 var ingredients_scene := {}
 var ingredient_types: Array[Ingredient.Type]
+var all_items_scene := []
 var recipe: Array[Ingredient.Type] = []
 var next_recipe: Array[Ingredient.Type] = []
 
 var lives: int = 3
 var collected: Array[bool] = []
 
-var score: int= 0
+var score: int = 0
 
 const size: float = 30.0
 const edge_x: float = 256.0
@@ -25,16 +26,22 @@ const min_x: float = size / 2
 const max_x: float = edge_x - size / 2
 
 
-func init_ingredients():
-	for file in DirAccess.get_files_at("res://ingredients"):
-		var ingredient: PackedScene = load("res://ingredients/" + file)
+func init_items():
+	for file in DirAccess.get_files_at("res://entities/items/ingredients"):
+		var ingredient: PackedScene = load("res://entities/items/ingredients/" + file)
 		var type: Ingredient.Type = ingredient.instantiate().type
 		ingredient_types.append(type)
 		ingredients_scene[type] = ingredient
+		all_items_scene.append(ingredient)
+	
+	for file in DirAccess.get_files_at("res://entities/items/utility"):
+		var item: PackedScene = load("res://entities/items/utility/" + file)
+		all_items_scene.append(item)
 
 
 func _ready():
-	init_ingredients()
+	Game.witch = self
+	init_items()
 	next_recipe = create_recipe()
 	update_recipe()
 	on_lives_update.emit(lives)
