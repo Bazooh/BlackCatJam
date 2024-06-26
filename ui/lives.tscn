@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://0bxbcjlv0e2t"]
+
+[ext_resource type="Texture2D" uid="uid://xmps0frv8x51" path="res://art/ui/Heart.png" id="1_smnvi"]
+[ext_resource type="Script" path="res://ui/lives.gd" id="1_w86ks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24ic6"]
+atlas = ExtResource("1_smnvi")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkpl7"]
+atlas = ExtResource("1_smnvi")
+region = Rect2(0, 0, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl7b7"]
+atlas = ExtResource("1_smnvi")
+region = Rect2(0, 0, 14, 14)
+
+[node name="Lives" type="HBoxContainer"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 55.0
+offset_bottom = 15.0
+theme_override_constants/separation = 1
+script = ExtResource("1_w86ks")
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_24ic6")
+stretch_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_jkpl7")
+stretch_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("AtlasTexture_rl7b7")
+stretch_mode = 2

@@ -1,8 +1,8 @@
 class_name Cat extends Area2D
 
+signal no_platform
 
 const PLATFORM_MARGIN = 16
-
 
 var moving: bool = true
 @export var speed: float = 50
@@ -64,5 +64,5 @@ func _physics_process(delta):
 
 		await get_tree().create_timer(2 * delta).timeout
 		if not has_platform_below():
-			print("Game Over")
+			no_platform.emit()
 			queue_free()

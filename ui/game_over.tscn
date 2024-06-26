@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://clggs6ymegb8h"]
+
+[ext_resource type="Script" path="res://ui/game_over.gd" id="1_g6vib"]
+[ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="2_dwwyd"]
+
+[sub_resource type="Gradient" id="Gradient_4esr0"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.133333, 0.12549, 0.203922, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g35k6"]
+gradient = SubResource("Gradient_4esr0")
+width = 1
+
+[node name="GameOver" type="TextureRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_g35k6")
+script = ExtResource("1_g6vib")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 25.0
+offset_right = 183.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("2_dwwyd")
+theme_override_font_sizes/font_size = 22
+text = "GAME OVER"
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 64.0
+offset_right = 158.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("2_dwwyd")
+text = "Retry"
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 102.0
+offset_right = 158.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("2_dwwyd")
+text = "Menu"
+
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

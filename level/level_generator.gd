@@ -6,7 +6,7 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 
 @export var platform_density: float = 0.4
 @export var ingredient_density: float = 1.0
-@export var chunk_length: int = 10
+@export var chunk_length: int = 5
 @export var n_chunks: int = 2
 @export var height: int = 3
 @export var speed: float = 20.0
@@ -92,7 +92,7 @@ func get_random_ingredient() -> Ingredient:
 	for recipe_ingredient: Ingredient.Type in witch.recipe:
 		var is_in_screen: bool = false
 		for ingredient: Item in ingredient_nodes:
-			if ingredient is Ingredient and ingredient.type == recipe_ingredient:
+			if is_instance_valid(ingredient) and ingredient is Ingredient and ingredient.type == recipe_ingredient:
 				is_in_screen = true
 				break
 		
