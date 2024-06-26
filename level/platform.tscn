@@ -5,7 +5,8 @@ a = Vector2(-5, 2.08165e-12)
 b = Vector2(5, 2.08165e-12)
 
 [sub_resource type="Gradient" id="Gradient_jlb0o"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.133333, 0.12549, 0.203922, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hoy8y"]
 gradient = SubResource("Gradient_jlb0o")

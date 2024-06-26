@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=8 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp_BG.png" id="2_3ca08"]
-[ext_resource type="PackedScene" path="res://entities/witch.tscn" id="2_b1rdj"]
+[ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="PackedScene" uid="uid://csldkyurs58iy" path="res://level/platform.tscn" id="3_p1400"]
+[ext_resource type="PackedScene" uid="uid://be2iflssak3lv" path="res://item_instances/test_ingredient1.tscn" id="5_02w6h"]
+[ext_resource type="PackedScene" uid="uid://duet7eucqqlxu" path="res://item_instances/test_ingredient2.tscn" id="6_nvba0"]
+[ext_resource type="PackedScene" uid="uid://cflxxx5gs3ww2" path="res://item_instances/test_ingredient3.tscn" id="7_5aplc"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,6 +19,7 @@ centered = false
 position = Vector2(42, 39)
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
+recipe = Array[int]([0, 1, 2])
 
 [node name="Platforms" type="Node" parent="."]
 
@@ -38,3 +42,12 @@ scale = Vector2(9.52, 1)
 [node name="Platform5" parent="Platforms" instance=ExtResource("3_p1400")]
 position = Vector2(226, 63)
 scale = Vector2(6.28, 1)
+
+[node name="TestIngredient" parent="." instance=ExtResource("5_02w6h")]
+position = Vector2(175, 41)
+
+[node name="TestIngredient2" parent="." instance=ExtResource("6_nvba0")]
+position = Vector2(72, 25)
+
+[node name="TestIngredient3" parent="." instance=ExtResource("7_5aplc")]
+position = Vector2(17, 56)
