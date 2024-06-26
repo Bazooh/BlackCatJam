@@ -1,7 +1,11 @@
 class_name Effect extends Node
 
 
-@onready var item: Item =  %Item
+var item: Item
+
+
+func activate():
+    _activate()
 
 
 func _activate():
