@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=5 format=3 uid="uid://ddybujrdaso0e"]
 
 [ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
 [ext_resource type="Texture2D" uid="uid://df5q2k0k8heum" path="res://art/temp_cat.png" id="2_ab1a4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
 size = Vector2(18, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y8ipe"]
+radius = 2.0
 
 [node name="Cat" type="Area2D"]
 script = ExtResource("1_lfknh")
@@ -14,3 +17,11 @@ texture = ExtResource("2_ab1a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xvb2g")
+
+[node name="CheckHoles" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHoles"]
+position = Vector2(11, 8)
+shape = SubResource("CircleShape2D_y8ipe")
+
+[connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]

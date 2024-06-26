@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=5 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp_BG.png" id="2_3ca08"]
 [ext_resource type="PackedScene" path="res://entities/witch.tscn" id="2_b1rdj"]
+[ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="PackedScene" uid="uid://csldkyurs58iy" path="res://level/platform.tscn" id="3_p1400"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -5
-position = Vector2(1, 0)
 texture = ExtResource("2_3ca08")
 centered = false
+
+[node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
+position = Vector2(42, 39)
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
 
@@ -29,9 +32,9 @@ position = Vector2(129, 47)
 scale = Vector2(25.68, 1)
 
 [node name="Platform4" parent="Platforms" instance=ExtResource("3_p1400")]
-position = Vector2(49, 65)
+position = Vector2(49, 63)
 scale = Vector2(9.52, 1)
 
 [node name="Platform5" parent="Platforms" instance=ExtResource("3_p1400")]
-position = Vector2(226, 65)
+position = Vector2(226, 63)
 scale = Vector2(6.28, 1)
