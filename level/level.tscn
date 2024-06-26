@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=6 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
 [ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="Script" path="res://level/level_generator.gd" id="4_dyxyi"]
+[ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -13,12 +14,24 @@ texture = ExtResource("2_3ca08")
 centered = false
 
 [node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
-position = Vector2(42, 39)
+position = Vector2(42, 56)
 speed = 100.0
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
-recipe = Array[int]([0, 1, 2])
+possible_ingredients = Array[int]([0, 1, 2])
 
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource("4_dyxyi")
 platform_density = 0.6
+grid_y_offset = 48
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 144.0
+
+[node name="Recipe" parent="UI" instance=ExtResource("5_pieq3")]
+layout_mode = 1
+
+[connection signal="on_recipe_update" from="Witch" to="UI/Recipe" method="_on_witch_on_recipe_update"]
