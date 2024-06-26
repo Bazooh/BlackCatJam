@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=4 format=3 uid="uid://ddybujrdaso0e"]
 
-[node name="Cat" type="Node2D"]
+[ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
+[ext_resource type="Texture2D" uid="uid://u3baaex6yseh" path="res://icon.svg" id="2_lyaun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
+size = Vector2(128, 128)
+
+[node name="Cat" type="Area2D"]
+script = ExtResource("1_lfknh")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_lyaun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xvb2g")
