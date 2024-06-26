@@ -1,7 +1,7 @@
 class_name Drop extends Effect
 
 
-@export var drop_speed: float = 1000.0
+@export var drop_speed: float = 300.0
 
 const floor_y : int = 130
 

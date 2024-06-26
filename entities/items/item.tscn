@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
 [ext_resource type="Texture2D" uid="uid://jkh4m7kpj6em" path="res://art/temp_item0.png" id="2_l16qc"]
-[ext_resource type="Script" path="res://entities/items/effects/drop.gd" id="3_ij3cw"]
+[ext_resource type="Script" path="res://entities/items/cat_effects/drop.gd" id="3_kghsp"]
 [ext_resource type="Script" path="res://entities/items/witch_effects/ingredient.gd" id="4_7tkg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4cnn"]
@@ -21,7 +21,7 @@ shape = SubResource("RectangleShape2D_q4cnn")
 unique_name_in_owner = true
 
 [node name="Drop" type="Node" parent="CatEffects"]
-script = ExtResource("3_ij3cw")
+script = ExtResource("3_kghsp")
 
 [node name="WitchEffects" type="Node" parent="."]
 unique_name_in_owner = true

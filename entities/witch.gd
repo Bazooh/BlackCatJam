@@ -25,12 +25,14 @@ func collect_ingredient(type: Ingredient.IngredientType):
 	if not recipe:
 		return
 	
-	if recipe.size() >= next_ingredient:
+	if recipe.size() <= next_ingredient:
 		return
 		
 	if type == recipe[next_ingredient]:
 		next_ingredient += 1
 		if next_ingredient == recipe.size():
-			print("Win!")
+			print("Win :D")
+		else:
+			print("Correct :)")
 	else:
-		print("Lose!")
+		print("Incorrect :(")

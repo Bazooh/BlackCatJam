@@ -6,17 +6,25 @@ class_name Item extends Area2D
 
 
 func get_cat_effects() -> Array:
-	return cat_effects_node.get_children()
+	var effects = []
+	for child in cat_effects_node.get_children():
+		if child is Effect:
+			effects.append(child as Effect)
+	return effects
 
 
 func activate_cat_effects(cat : Cat) -> void:
-	for effect: Effect in get_cat_effects():
+	for effect : Effect in get_cat_effects():
 		effect.cat = cat
 		effect.activate()
 
 
 func get_witch_effects() -> Array:
-	return witch_effects_node.get_children()
+	var effects = []
+	for child in witch_effects_node.get_children():
+		if child is Effect:
+			effects.append(child as Effect)
+	return effects
 
 
 func activate_witch_effects(witch : Witch) -> void:
@@ -34,9 +42,8 @@ func is_out_of_bounds() -> bool:
 
 
 func _ready() -> void:
-	for effect: Node in get_effects():
-		if effect is Effect:
-			(effect as Effect).item = self
+	for effect: Effect in get_effects():
+		effect.item = self
 
 
 func _process(_delta) -> void:
