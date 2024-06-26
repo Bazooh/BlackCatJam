@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=11 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
 [ext_resource type="PackedScene" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="Script" path="res://level/level_generator.gd" id="4_dyxyi"]
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
-[ext_resource type="PackedScene" uid="uid://bidto5x2w5glf" path="res://ui/lives.tscn" id="6_4f633"]
-[ext_resource type="PackedScene" uid="uid://djhaialn62we6" path="res://ui/game_over.tscn" id="7_nc0dy"]
-[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" uid="uid://0bxbcjlv0e2t" path="res://ui/lives.tscn" id="6_4f633"]
+[ext_resource type="PackedScene" uid="uid://clggs6ymegb8h" path="res://ui/game_over.tscn" id="7_nc0dy"]
+[ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
+[ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
 
 [node name="Game" type="Node2D"]
 
@@ -51,7 +53,19 @@ layout_mode = 1
 [node name="Pause" parent="UI" instance=ExtResource("8_xqhhv")]
 layout_mode = 1
 
+[node name="Score" parent="UI" instance=ExtResource("9_pk0c4")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -58.0
+offset_right = 0.0
+grow_horizontal = 0
+script = ExtResource("10_ijkxw")
+digits = 3
+
 [connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
 [connection signal="on_game_over" from="Witch" to="UI/GameOver" method="_on_witch_on_game_over"]
 [connection signal="on_lives_update" from="Witch" to="UI/Lives" method="_on_witch_on_lives_update"]
 [connection signal="on_recipe_update" from="Witch" to="UI/Recipe" method="_on_witch_on_recipe_update"]
+[connection signal="on_score_update" from="Witch" to="UI/Score" method="_on_witch_on_score_update"]
