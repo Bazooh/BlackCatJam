@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=6 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
 [ext_resource type="PackedScene" uid="uid://nx2ety4mvf61" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="Script" path="res://level/level_generator.gd" id="4_dyxyi"]
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
-[ext_resource type="PackedScene" uid="uid://0bxbcjlv0e2t" path="res://ui/lives.tscn" id="6_4f633"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -35,8 +34,4 @@ offset_bottom = 144.0
 [node name="Recipe" parent="UI" instance=ExtResource("5_pieq3")]
 layout_mode = 1
 
-[node name="Lives" parent="UI" instance=ExtResource("6_4f633")]
-layout_mode = 0
-
-[connection signal="on_lives_update" from="Witch" to="UI/Lives" method="_on_witch_on_lives_update"]
 [connection signal="on_recipe_update" from="Witch" to="UI/Recipe" method="_on_witch_on_recipe_update"]
