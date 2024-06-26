@@ -9,6 +9,7 @@ var moving: bool = true
 @export var direction: int = 1
 
 @onready var check_holes: Area2D = $CheckHoles
+@onready var rect: Rect2 = $CollisionShape.shape.get_rect()
 
 
 func change_direction():
@@ -25,11 +26,10 @@ func has_platform_below() -> bool:
 
 func can_cat_be_on_platform(platform: Area2D) -> bool:
 	var platform_rect: Rect2 = platform.get_child(0).shape.get_rect()
-	var cat_rect: Rect2 = $CollisionShape.shape.get_rect()
 
 	return \
-		platform.global_position.x + platform_rect.position.x * abs(platform.scale.x) <= global_position.x + cat_rect.position.x * abs(scale.x) and \
-		platform.global_position.x + platform_rect.end.x * abs(platform.scale.x) >= global_position.x + cat_rect.end.x * abs(scale.x)
+		platform.global_position.x + platform_rect.position.x * abs(platform.scale.x) <= global_position.x + rect.position.x * abs(scale.x) and \
+		platform.global_position.x + platform_rect.end.x * abs(platform.scale.x) >= global_position.x + rect.end.x * abs(scale.x)
 
 
 func can_go_up() -> bool:
@@ -59,5 +59,5 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("down") and can_go_down():
 		position.y += PLATFORM_MARGIN
 	
-	if not has_platform_below():
+	if not has_platform_below() or check_holes.global_position.x < 0 or check_holes.global_position.x > get_viewport_rect().size.x:
 		change_direction()

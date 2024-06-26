@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://csldkyurs58iy"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dg8r8"]
-a = Vector2(-5, 2.08165e-12)
-b = Vector2(5, 2.08165e-12)
+a = Vector2(-20, 2.08165e-12)
+b = Vector2(20, 2.08165e-12)
 
 [sub_resource type="Gradient" id="Gradient_jlb0o"]
 offsets = PackedFloat32Array(0)
@@ -10,7 +10,7 @@ colors = PackedColorArray(0.133333, 0.12549, 0.203922, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_hoy8y"]
 gradient = SubResource("Gradient_jlb0o")
-width = 10
+width = 40
 
 [node name="Platform" type="Area2D" groups=["Platform"]]
 
