@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://nx2ety4mvf61"]
+
+[ext_resource type="Texture2D" uid="uid://bcg1ywk378rb2" path="res://art/temp_cauldron.png" id="1_u5y5o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bffv"]
+size = Vector2(32, 9)
+
+[node name="Witch" type="Area2D"]
+position = Vector2(19, 129)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u5y5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_6bffv")
