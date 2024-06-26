@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmjvmc6ltdaiu"]
+[gd_scene load_steps=6 format=3 uid="uid://dmjvmc6ltdaiu"]
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
-[ext_resource type="Texture2D" uid="uid://u3baaex6yseh" path="res://icon.svg" id="2_40c04"]
+[ext_resource type="Texture2D" uid="uid://jkh4m7kpj6em" path="res://art/temp_item0.png" id="2_l16qc"]
 [ext_resource type="Script" path="res://entities/items/effects/drop.gd" id="3_ij3cw"]
+[ext_resource type="Script" path="res://entities/items/witch_effects/ingredient.gd" id="4_7tkg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q4cnn"]
-size = Vector2(128, 128)
+size = Vector2(10, 10)
 
 [node name="Item" type="Area2D"]
 script = ExtResource("1_ul5h1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_40c04")
+texture = ExtResource("2_l16qc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q4cnn")
@@ -24,5 +25,8 @@ script = ExtResource("3_ij3cw")
 
 [node name="WitchEffects" type="Node" parent="."]
 unique_name_in_owner = true
+
+[node name="Ingredient" type="Node" parent="WitchEffects"]
+script = ExtResource("4_7tkg1")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
