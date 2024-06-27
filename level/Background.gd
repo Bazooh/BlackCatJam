@@ -1,18 +1,18 @@
 class_name Background extends Node2D
 
-@export var decor_density = 0.9
+@export var decor_density: float = 0.9
 @export var decor_folder: String = "ground"
 
-var possible_decor : Array[PackedScene] = []
-@export var decor_offset : float = 10
-@export var floor_y = 140
+var possible_decor: Array[PackedScene] = []
+@export var decor_offset: float = 10.0
+@export var floor_y: float = 140.0
 
-@export var decor_gap = 30
+@export var decor_gap: float = 30.0
 
-var current_pos = 0
-var chunk_length = 600
+var current_pos: float = 0.0
+var chunk_length: float = 600.0
 
-var spawn_x := 0
+var spawn_x: float = 0.0
 
 
 func _ready():
@@ -20,17 +20,19 @@ func _ready():
 	for file in DirAccess.get_files_at(folder):
 		var decor: PackedScene = load(folder + file)
 		possible_decor.append(decor)
-		
-	generate_decor(0)
+	
+	generate_decor(0.0)
+
 
 func get_random_decor() -> PackedScene:
 	return possible_decor.pick_random()
-	
+
+
 func _process(delta: float) -> void:
 	current_pos -= delta * Game.level_generator.speed
-	if current_pos <= -chunk_length / 2:
-		generate_decor(chunk_length / 2)
-		current_pos = chunk_length / 2
+	if current_pos <= -chunk_length / 2.0:
+		generate_decor(chunk_length / 2.0)
+		current_pos = chunk_length / 2.0
 
 
 func generate_decor(x_pos: float):
@@ -53,7 +55,6 @@ func generate_decor(x_pos: float):
 			decor.z_index += self.z_index
 			spawn_x += decor.get_sprite().get_rect().size.x 
 			
-		
 		spawn_x += decor_gap + randf_range(0, 1) * decor_offset
 	
 	spawn_x -= chunk_length

@@ -34,6 +34,8 @@ var speed: float:
 
 @export var witch: Witch
 
+var chunk_path_end_height: Array[int] = []
+
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
 
@@ -67,7 +69,7 @@ func is_inside_chunk(chunk: Array, pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.x < chunk.size() and pos.y >= 0 and pos.y < chunk[0].size()
 
 
-func have_path(chunk: Array, start: Vector2i, end: Vector2i) -> bool:
+func have_path(chunk: Array, start: Vector2i, end_height_wanted: int) -> bool:
 	if chunk.size() == 0:
 		return false
 	
@@ -80,7 +82,7 @@ func have_path(chunk: Array, start: Vector2i, end: Vector2i) -> bool:
 	while queue.size() > 0:
 		var current = queue.pop_front()
 		
-		if current == end:
+		if current.x == chunk.size() - 1 and current.y == end_height_wanted:
 			return true
 		
 		for direction in directions:
@@ -93,18 +95,20 @@ func have_path(chunk: Array, start: Vector2i, end: Vector2i) -> bool:
 	return false
 
 
-func generate_chunk_grid() -> Array:
+func generate_chunk_grid(path_start_height: int) -> Array:
 	var chunk_grid := []
-		
-	while not have_path(chunk_grid, Vector2i(0, 1), Vector2i(chunk_length - 1, 1)):
+	var path_end_height_wanted: int = randi_range(0, height - 1)
+	
+	while not have_path(chunk_grid, Vector2i(0, path_start_height), path_end_height_wanted):
 		chunk_grid.clear()
 		for x in range(chunk_length):
 			chunk_grid.append([])
 			for y in range(height):
 				chunk_grid[x].append(randf() < get_platform_density())
 		
-		chunk_grid[0][1] = true
-		chunk_grid[chunk_length - 1][1] = true
+		chunk_grid[0][path_start_height] = true
+	
+	chunk_path_end_height.append(path_end_height_wanted)
 	
 	return chunk_grid
 
@@ -124,7 +128,7 @@ func get_random_item() -> Item:
 
 
 func generate_chunk(idx: int) -> void:
-	var chunk_grid: Array = generate_chunk_grid()
+	var chunk_grid: Array = generate_chunk_grid(1 if idx == 0 else chunk_path_end_height[idx - 1])
 	
 	for x in range(chunk_length):
 		for y in range(height):
@@ -148,6 +152,8 @@ func move_grid() -> void:
 	for y in range(height):
 		for x in range(chunk_length * (n_chunks - 1)):
 			grid[x][y] = grid[x + chunk_length][y]
+
+	chunk_path_end_height.remove_at(0)
 
 
 func grid_to_node() -> void:

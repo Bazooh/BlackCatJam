@@ -28,17 +28,6 @@ speed = 100.0
 max_lives = 3
 
 [node name="Platforms" parent="." node_paths=PackedStringArray("witch") instance=ExtResource("4_3e6vs")]
-intro_platform_density = null
-intro_item_density = null
-intro_length = null
-item_density = null
-chunk_length = null
-n_chunks = null
-start_height = null
-max_height = null
-start_speed = null
-speed_increase_per_difficulty = null
-item_offset = null
 witch = NodePath("../Witch")
 
 [node name="UI" type="Control" parent="."]
