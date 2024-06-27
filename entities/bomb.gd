@@ -1,4 +1,4 @@
-class_name Bomb extends Area2D
+class_name Bomb extends Entity
 
 @onready var explosion: AnimatedSprite2D = $Explosion
 
