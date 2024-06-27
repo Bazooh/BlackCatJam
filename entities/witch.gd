@@ -17,7 +17,7 @@ var difficulty: float:
 
 var ingredients_scene := {}
 var ingredient_types: Array[Ingredient.Type]
-var all_items_scene := []
+var utility_items_scene: Array[PackedScene] = []
 var recipe: Array[Ingredient.Type] = []
 var next_recipe: Array[Ingredient.Type] = []
 
@@ -39,11 +39,10 @@ func init_items():
 		var type: Ingredient.Type = ingredient.instantiate().type
 		ingredient_types.append(type)
 		ingredients_scene[type] = ingredient
-		all_items_scene.append(ingredient)
 	
 	for file in DirAccess.get_files_at("res://entities/items/utility"):
 		var item: PackedScene = load("res://entities/items/utility/" + file)
-		all_items_scene.append(item)
+		utility_items_scene.append(item)
 
 
 func get_usable_ingredients() -> Array[PackedScene]:
@@ -51,6 +50,10 @@ func get_usable_ingredients() -> Array[PackedScene]:
 	for type in ingredient_types.slice(0, 3 + int(difficulty)):
 		usable_ingredients.append(ingredients_scene[type])
 	return usable_ingredients
+
+
+func get_usable_items() -> Array[PackedScene]:
+	return get_usable_ingredients() + utility_items_scene
 
 
 func _ready():

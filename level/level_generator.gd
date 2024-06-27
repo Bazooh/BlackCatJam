@@ -36,7 +36,7 @@ var speed: float:
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
 @onready var background: Node2D = $Background
 
-var item_nodes: Array = []
+var items_node: Array = []
 var platforms: Array = []
 
 var chunk_number: int = 0
@@ -111,7 +111,7 @@ func generate_chunk_grid() -> Array:
 func get_random_item() -> Item:
 	for recipe_ingredient: Ingredient.Type in witch.recipe:
 		var is_in_screen: bool = false
-		for item in item_nodes:
+		for item in items_node:
 			if is_instance_valid(item) and item is Ingredient and item.type == recipe_ingredient:
 				is_in_screen = true
 				break
@@ -119,7 +119,7 @@ func get_random_item() -> Item:
 		if not is_in_screen:
 			return witch.ingredients_scene[recipe_ingredient].instantiate()
 	
-	return witch.all_items_scene.pick_random().instantiate()
+	return witch.get_usable_items().pick_random().instantiate()
 
 
 func generate_chunk(idx: int) -> void:
@@ -133,7 +133,7 @@ func generate_chunk(idx: int) -> void:
 				var item: Item = get_random_item()
 				item.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
 				item.position.x += randf_range(-1, 1) * item_offset
-				item_nodes.append(item)
+				items_node.append(item)
 				add_child(item)
 	
 	chunk_number += 1
@@ -170,6 +170,8 @@ func grid_to_node() -> void:
 
 
 func _ready() -> void:
+	Game.level_generator = self
+
 	for i in range(n_chunks):
 		generate_chunk(i)
 	grid_to_node()
@@ -181,14 +183,14 @@ func _physics_process(delta: float) -> void:
 	if position.x < -chunk_length * platform_size:
 		move_grid()
 
-		for item_node in item_nodes.duplicate():
+		for item_node in items_node.duplicate():
 			if is_instance_valid(item_node):
 				item_node.position.x -= chunk_length * platform_size
 				if item_node.position.x < -platform_size:
 					item_node.queue_free()
 
 			if not is_instance_valid(item_node):
-				item_nodes.erase(item_nodes.find(item_node))
+				items_node.erase(items_node.find(item_node))
 		
 		generate_chunk(n_chunks - 1)
 		grid_to_node()
