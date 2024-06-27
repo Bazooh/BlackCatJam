@@ -10,6 +10,8 @@ size = Vector2(32, 9)
 [node name="Witch" type="Area2D"]
 position = Vector2(20, 129)
 script = ExtResource("1_83sfl")
+speed = null
+max_lives = null
 
 [node name="Cauldron" type="Sprite2D" parent="."]
 z_index = 2
@@ -22,7 +24,7 @@ shape = SubResource("RectangleShape2D_6bffv")
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 20.0
+wait_time = 10.0
 autostart = true
 
 [node name="Witch" type="Sprite2D" parent="."]

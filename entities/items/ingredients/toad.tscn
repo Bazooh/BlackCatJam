@@ -8,7 +8,9 @@
 atlas = ExtResource("2_5twaa")
 region = Rect2(2.08165e-12, 64, 16, 16)
 
-[node name="Pear" instance=ExtResource("1_a6kjo")]
+[node name="Toad" instance=ExtResource("1_a6kjo")]
+item_name = "Toad"
+difficulty = 2
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")

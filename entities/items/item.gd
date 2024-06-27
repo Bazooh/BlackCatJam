@@ -5,6 +5,10 @@ signal touch_cat(cat: Cat)
 signal touch_witch(witch: Witch)
 signal touch_ground()
 
+
+@export var item_name: String
+@export_range(0, 10) var difficulty: int = 0
+
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 

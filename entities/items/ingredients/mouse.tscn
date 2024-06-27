@@ -11,7 +11,9 @@ region = Rect2(2.08165e-12, 80, 16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_pldlf"]
 radius = 2.0
 
-[node name="Pear" instance=ExtResource("1_i1hv1")]
+[node name="Mouse" instance=ExtResource("1_i1hv1")]
+item_name = "Mouse"
+difficulty = 5
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
@@ -26,3 +28,4 @@ shape = SubResource("CircleShape2D_pldlf")
 [node name="BackAndForthEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_04c8r")
 random_direction = true
+trigger = 3

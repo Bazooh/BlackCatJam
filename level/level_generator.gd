@@ -14,8 +14,8 @@ const item_y_offset = -8
 @export_group("Main Settings")
 @export var platform_density: float = 0.4
 @export var item_density: float = 1.0
-@export var chunk_length: int = 5
-@export var n_chunks: int = 2
+@export var chunk_length: int = 1
+@export var n_chunks: int = 6
 @export var start_height: int = 3
 @export var max_height: int = 5
 var height: int:
@@ -111,17 +111,17 @@ func generate_chunk_grid() -> Array:
 
 
 func get_random_item() -> Item:
-	for recipe_ingredient: Ingredient.Type in witch.recipe:
+	for ingredient_name: String in witch.recipe:
 		var is_in_screen: bool = false
 		for item in items_node:
-			if is_instance_valid(item) and item is Ingredient and item.type == recipe_ingredient:
+			if is_instance_valid(item) and item is Ingredient and item.item_name == ingredient_name:
 				is_in_screen = true
 				break
 		
 		if not is_in_screen:
-			return witch.ingredients_scene[recipe_ingredient].instantiate()
+			return witch.name_to_item[ingredient_name].duplicate()
 	
-	return witch.get_usable_items().pick_random().instantiate()
+	return witch.get_usable_items().pick_random().duplicate()
 
 
 func generate_chunk(idx: int) -> void:

@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://lfk8g4q0kwfo" path="res://art/items/Wand.png" id="2_uleue"]
 [ext_resource type="Script" path="res://entities/items/effects/change_items.gd" id="3_mosji"]
 
-[node name="Bomb" instance=ExtResource("1_4x0k0")]
+[node name="Wand" instance=ExtResource("1_4x0k0")]
+item_name = "Wand"
+difficulty = 1
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(2.08165e-12, -0.5)

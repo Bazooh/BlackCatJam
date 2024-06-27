@@ -23,7 +23,7 @@ func _ready():
 			next_ingredients.append(child as TextureRect)
 
 
-func update_ui(recipe: Array[Ingredient.Type], collected: Array[bool], next_recipe: Array[Ingredient.Type]):
+func update_ui(recipe: Array[String], collected: Array[bool], next_recipe: Array[String]):
 	if not is_node_ready():
 		await ready
 	
@@ -31,19 +31,27 @@ func update_ui(recipe: Array[Ingredient.Type], collected: Array[bool], next_reci
 		return
 	
 	for i in range(ingredients.size()):
-		var recipe_texture = ingredients[i].texture as AtlasTexture
-		if i < recipe.size():
-			recipe_texture.region.position.y = recipe_texture.region.size.y * int(recipe[i])
-			if collected[i]:
-				recipe_texture.region.position.x = recipe_texture.region.size.x
-			else:
-				recipe_texture.region.position.x = 0
+		ingredients[i].texture.region = Game.witch.name_to_item[recipe[i]].get_node("Sprite").texture.region
+
+		if collected[i]:
+			ingredients[i].texture.region.position.x = ingredients[i].texture.region.size.x
 		
-		var next_recipe_texture = next_ingredients[i].texture as AtlasTexture
-		if i < next_recipe.size():
-			next_recipe_texture.region.position.y = next_recipe_texture.region.size.y * int(next_recipe[i])
-			next_recipe_texture.region.position.x = next_recipe_texture.region.size.x * 2
+		next_ingredients[i].texture.region = Game.witch.name_to_item[next_recipe[i]].get_node("Sprite").texture.region
+		next_ingredients[i].texture.region.position.x = next_ingredients[i].texture.region.size.x * 2
+
+		# var recipe_texture = ingredients[i].texture as AtlasTexture
+		# if i < recipe.size():
+		# 	recipe_texture.region.position.y = recipe_texture.region.size.y * int(recipe[i])
+		# 	if collected[i]:
+		# 		recipe_texture.region.position.x = recipe_texture.region.size.x
+		# 	else:
+		# 		recipe_texture.region.position.x = 0
+		
+		# var next_recipe_texture = next_ingredients[i].texture as AtlasTexture
+		# if i < next_recipe.size():
+		# 	next_recipe_texture.region.position.y = next_recipe_texture.region.size.y * int(next_recipe[i])
+		# 	next_recipe_texture.region.position.x = next_recipe_texture.region.size.x * 2
 
 
-func _on_witch_on_recipe_update(recipe: Array[Ingredient.Type], collected: Array[bool], next_recipe: Array[Ingredient.Type]):
+func _on_witch_on_recipe_update(recipe: Array[String], collected: Array[bool], next_recipe: Array[String]):
 	update_ui(recipe, collected, next_recipe)
