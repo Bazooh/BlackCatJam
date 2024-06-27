@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg7k5ovs5oen6"]
+
+[ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_bbk4m"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_m03ad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
+atlas = ExtResource("2_m03ad")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Pear" instance=ExtResource("1_bbk4m")]
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource("AtlasTexture_i0cjt")
+
+[node name="IngredientEffect" parent="Effects" index="1"]
+once = true

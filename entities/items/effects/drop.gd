@@ -1,7 +1,8 @@
 class_name Drop extends Effect
 
 
-@export var drop_speed: float = 300.0
+@export var speed := Vector2(0.0, 0.0)
+@export var gravity: float = 500.0
 
 # const floor_y: int = 143
 
@@ -19,5 +20,6 @@ func _activate(_cat) -> void:
 
 func _process(delta) -> void:
 	if is_dropping:
-		item.position.y += drop_speed * delta
+		speed += Vector2(0.0, gravity * delta)
+		item.position += speed * delta
 	

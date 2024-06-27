@@ -65,7 +65,6 @@ unique_name_in_owner = true
 
 [node name="Drop" type="Node" parent="Effects"]
 script = ExtResource("3_kghsp")
-drop_speed = 200.0
 
 [node name="Animation" type="Node" parent="Effects"]
 script = ExtResource("4_38l55")
