@@ -9,11 +9,20 @@ signal on_game_over(score: int)
 
 @export var max_lives: int = 3
 
-@onready var difficulty_timer: Timer = %DifficultyTimer
-var _difficulty: int = 0
-var difficulty: float:
-	get: return _difficulty + (difficulty_timer.wait_time - difficulty_timer.time_left) / difficulty_timer.wait_time
-	set(_x): push_warning("difficulty is read-only (use _difficulty instead)")
+@export_group("Difficulty")	
+@export var starting_ingredient_pool_size := 3
+@export var ingredient_pool_increase_interval := 10
+@export var ingredient_pool_increase_offset := 5
+@export var ingredient_swap_rate := 1
+@export var starting_utility_pool_size := 0
+@export var utility_pool_increase_interval := 10
+@export var utility_swap_rate := 4
+@export var utility_pool_increase_offset := 0
+
+var difficulty: int = 0
+#var difficulty: float:
+	#get: return _difficulty + (difficulty_timer.wait_time - difficulty_timer.time_left) / difficulty_timer.wait_time
+	#set(_x): push_warning("difficulty is read-only (use _difficulty instead)")
 
 var name_to_item := {}
 
@@ -37,6 +46,9 @@ const edge_x: float = 256.0
 const min_x: float = size / 2
 const max_x: float = edge_x - size / 2
 
+var ingredient_pool_size := 0
+var utility_pool_size := 0
+
 
 func init_items():
 	for file in DirAccess.get_files_at("res://entities/items/ingredients"):
@@ -51,47 +63,85 @@ func init_items():
 		utility_items.append(item)
 		name_to_item[item.item_name] = item
 	
-	update_usable_ingredients()
-	update_utility_items()
+	for i in range(starting_ingredient_pool_size):
+		add_usable_ingredient()
+	
+	for i in range(starting_utility_pool_size):
+		add_usable_utility()
 
 
 func get_item_based_on_difficulty(_ingredients: Array) -> Item:
-	var probabilities: Array = []
-	for ingredient: Item in _ingredients:
-		probabilities.append(exp(abs(difficulty - ingredient.difficulty)))
-	
-	var sum: float = probabilities.reduce(func(acc, x): return acc + x)
-	probabilities = probabilities.map(func(x): return x / sum)
+	var possible_items: Array = []
+	for item: Item in _ingredients:
+		if difficulty >= item.difficulty:
+			possible_items.append(item)
+	if possible_items.size() == 0:
+		return null
+	return possible_items.pick_random()
+		
+	#var probabilities: Array = []
+	#for ingredient: Item in _ingredients:
+		#probabilities.append(exp(abs(difficulty - ingredient.difficulty)))
+	#
+	#var sum: float = probabilities.reduce(func(acc, x): return acc + x)
+	#probabilities = probabilities.map(func(x): return x / sum)
+#
+	#var random: float = randf()
+	#var idx: int = 0
+	#while random > probabilities[idx]:
+		#random -= probabilities[idx]
+		#idx += 1
+	#
+	#return _ingredients[idx]
 
-	var random: float = randf()
-	var idx: int = 0
-	while random > probabilities[idx]:
-		random -= probabilities[idx]
-		idx += 1
-	
-	return _ingredients[idx]
+func add_usable_ingredient():
+	var item : Ingredient = random_unused_ingredient()
+	if item:
+		usable_ingredients.append(item)
+		ingredient_pool_size += 1
 
-
-func update_usable_ingredients() -> void:
-	usable_ingredients.clear()
-
-	var temp_ingredients: Array[Ingredient] = ingredients.duplicate()
-	for i in range(3):
-		var ingredient: Ingredient = get_item_based_on_difficulty(temp_ingredients)
-		usable_ingredients.append(ingredient)
-		temp_ingredients.erase(ingredient)
-
-
-func update_utility_items() -> void:
-	usable_utility_items.clear()
-	
-	var items: Array[Item] = utility_items.duplicate()
-	for i in range(2):
-		var item: Item = get_item_based_on_difficulty(items)
+func add_usable_utility():
+	var item : Item = random_unused_utility()
+	if item:
 		usable_utility_items.append(item)
-		items.erase(item)
+		utility_pool_size += 1
+	
+func swap_usable_ingredient() -> void:
+	if usable_ingredients.size() == 0:
+		return
+	var swap_index : int = randi_range(0, usable_ingredients.size() - 1)
+	var item : Ingredient = random_unused_ingredient()
+	if item:
+		usable_ingredients[swap_index] = item
+				
+func swap_utility_item() -> void:
+	if usable_utility_items.size() == 0:
+		return
+	var swap_index : int = randi_range(0, usable_utility_items.size())
+	var item : Item = random_unused_utility()
+	if item:
+		usable_utility_items[swap_index] = item
 
+func random_unused_ingredient() -> Ingredient:
+	var possible : Array = get_unused_items(usable_ingredients, ingredients)
+	if possible.size() == 0:
+		return null
+	return get_item_based_on_difficulty(possible)
 
+func random_unused_utility() -> Item:
+	var possible : Array = get_unused_items(usable_utility_items, utility_items)
+	if possible.size() == 0:
+		return null
+	return get_item_based_on_difficulty(possible)
+	
+func get_unused_items(usable: Array, all: Array) -> Array:
+	var unused : Array = []
+	for item in all:
+		if not usable.has(item):
+			unused.append(item)
+	return unused
+	
+#return usable items AND any that are needed for recipes
 func get_usable_items() -> Array:
 	return usable_ingredients + usable_utility_items
 
@@ -149,6 +199,7 @@ func check_potion():
 	
 	score += 1
 	on_score_update.emit(score)
+	increase_difficulty()
 	update_recipe()
 			
 
@@ -162,12 +213,24 @@ func lose_life():
 func game_over():
 	on_game_over.emit(score)
 
-
 func _on_cat_no_platform() -> void:
 	game_over()
 
+func increase_difficulty():
+	difficulty += 1
+	
+	if get_ingredient_pool_size() > ingredient_pool_size:
+		add_usable_ingredient()
+	elif difficulty % ingredient_swap_rate == 0:
+		swap_usable_ingredient()
+	
+	if get_utility_pool_size() > utility_pool_size:
+		add_usable_utility()
+	elif difficulty % utility_swap_rate == 0:
+		swap_utility_item()
 
-func _on_difficulty_timer_timeout() -> void:
-	_difficulty += 1
-	update_usable_ingredients()
-	update_utility_items()
+func get_ingredient_pool_size() -> int:
+	return min(ingredients.size(), starting_ingredient_pool_size + floor((difficulty + ingredient_pool_increase_offset) / ingredient_pool_increase_interval))
+
+func get_utility_pool_size() -> int:
+	return min(utility_items.size(), starting_utility_pool_size + floor((difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))
