@@ -9,7 +9,7 @@ func _ready():
 	if can_flip and randf() < 0.5:
 		sprite.flip_h = true
 
-func _process(delta):
+func _physics_process(delta: float):
 	if not is_instance_valid(level_generator):
 		queue_free()
 		return

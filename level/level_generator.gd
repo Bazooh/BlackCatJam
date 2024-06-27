@@ -34,14 +34,14 @@ var speed: float:
 
 @onready var grid: Array = init_grid()
 @onready var platform_size: float = platform_node.instantiate().get_node("CollisionShape2D").shape.get_rect().size.x
-@onready var background: Node2D = $Background
+var backgrounds: Array[Background] = []
 
 var items_node: Array = []
 var platforms: Array = []
 
 var chunk_number: int = 0
 
-
+			
 func init_grid() -> Array:
 	var _grid := []
 	for x in range(chunk_length * n_chunks):
@@ -137,7 +137,12 @@ func generate_chunk(idx: int) -> void:
 				add_child(item)
 	
 	chunk_number += 1
-	background.generate_decor((idx*chunk_length * platform_size), self)
+	
+	if backgrounds.size() == 0:
+		load_backgrounds()
+		
+	for background in backgrounds:
+		background.generate_decor((idx*chunk_length * platform_size), self)
 	
 
 func move_grid() -> void:
@@ -175,8 +180,14 @@ func _ready() -> void:
 	for i in range(n_chunks):
 		generate_chunk(i)
 	grid_to_node()
+	
+	
 
-
+func load_backgrounds():
+	for child in get_children():
+		if child is Background:
+			backgrounds.append(child as Background)
+	
 func _physics_process(delta: float) -> void:
 	position.x -= speed * delta
 
