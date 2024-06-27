@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtocw5prxlpai" path="res://art/decor/decor_window_rectangle.png" id="2_t4jsa"]
 
 [node name="Window" instance=ExtResource("1_yx2qy")]
+z_index = -4
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(0, -41)

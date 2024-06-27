@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://fvotljtjmya1" path="res://art/decor/decor_wallshelf.png" id="2_6ey3m"]
 
 [node name="Decor" instance=ExtResource("1_us2gn")]
+z_index = -2
 can_flip = true
 
 [node name="Sprite" parent="." index="0"]
