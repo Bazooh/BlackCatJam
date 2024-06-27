@@ -15,7 +15,12 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 @export var chunk_length: int = 5
 @export var n_chunks: int = 2
 @export var height: int = 3
-@export var speed: float = 20.0
+@export var start_speed: float = 20.0
+@export var speed_increase_per_difficulty: float = 5.0
+var speed: float:
+	get: return start_speed + speed_increase_per_difficulty * witch.difficulty
+	set(_x): push_warning("speed is read-only")
+
 @export var item_offset: float = 20
 
 @export var grid_y_offset: int = 32
@@ -29,7 +34,7 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 var item_nodes: Array = []
 var platforms: Array = []
 
-var chunk_number := 0
+var chunk_number: int = 0
 
 
 func init_grid() -> Array:
@@ -180,10 +185,12 @@ func _physics_process(delta: float) -> void:
 		grid_to_node()
 		position.x += chunk_length * platform_size
 
+
 func get_platform_density() -> float:
 	if chunk_number < intro_length:
 		return intro_platform_density
 	return platform_density
+
 
 func get_item_density() -> float:
 	if chunk_number < intro_length:

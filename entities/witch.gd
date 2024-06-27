@@ -8,6 +8,13 @@ signal on_game_over(score: int)
 @export var speed: float = 100.0
 
 @export var max_lives: int = 3
+
+@onready var difficulty_timer: Timer = %DifficultyTimer
+var _difficulty: int = 0
+var difficulty: float:
+	get: return _difficulty + difficulty_timer.time_left / difficulty_timer.wait_time
+	set(_x): push_warning("difficulty is read-only (use _difficulty instead)")
+
 var ingredients_scene := {}
 var ingredient_types: Array[Ingredient.Type]
 var all_items_scene := []
@@ -39,6 +46,13 @@ func init_items():
 		all_items_scene.append(item)
 
 
+func get_usable_ingredients() -> Array[PackedScene]:
+	var usable_ingredients: Array[PackedScene] = []
+	for type in ingredient_types.slice(0, 3 + int(difficulty)):
+		usable_ingredients.append(ingredients_scene[type])
+	return usable_ingredients
+
+
 func _ready():
 	Game.witch = self
 	init_items()
@@ -49,8 +63,7 @@ func _ready():
 
 
 func _process(delta):
-	var input : int = (int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left")))
-	position.x += speed * delta * input
+	position.x += speed * delta * Input.get_axis("left", "right")
 	position.x = clamp(position.x, min_x, max_x)
 
 
@@ -84,6 +97,7 @@ func collect_ingredient(type: Ingredient.Type):
 	
 	lose_life()
 
+
 func check_potion():
 	for check in collected:
 		if not check:
@@ -94,15 +108,21 @@ func check_potion():
 	on_score_update.emit(score)
 	update_recipe()
 			
-	
+
 func lose_life():
 	lives -= 1
 	on_lives_update.emit(lives)
 	if lives <= 0:
 		game_over()
 
+
 func game_over():
 	on_game_over.emit(score)
-	
+
+
 func _on_cat_no_platform() -> void:
 	game_over()
+
+
+func _on_difficulty_timer_timeout() -> void:
+	_difficulty += 1

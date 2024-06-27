@@ -14,8 +14,10 @@ func _ready():
 		var decor: PackedScene = load("res://level/decor/" + file)
 		possible_decor.append(decor)
 
+
 func get_random_decor() -> PackedScene:
 	return possible_decor.pick_random()
+
 
 func generate_decor(x_pos: float, level_generator: LevelGenerator):
 	if not is_node_ready():
@@ -24,18 +26,17 @@ func generate_decor(x_pos: float, level_generator: LevelGenerator):
 	if possible_decor.size() == 0:
 		return
 	
-	
 	if decor_density == 0:
 		return
-		
-	var current_x : float = 0
+	
+	var current_x: float = 0.0
 	
 	while current_x < level_generator.chunk_length * level_generator.platform_size:
 		if randf() < decor_density:
-			var decor : Decor = get_random_decor().instantiate() as Decor
+			var decor: Decor = get_random_decor().instantiate() as Decor
 			decor.position.x = x_pos + current_x
 			decor.position.y = floor_y
-			decor.speed = level_generator.speed
+			decor.level_generator = level_generator
 			get_tree().root.add_child(decor)
 			current_x += decor.sprite.get_rect().size.x 
 		current_x += decor_gap + randf_range(0, 1) * decor_offset
