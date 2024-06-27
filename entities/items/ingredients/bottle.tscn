@@ -12,6 +12,3 @@ type = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p4w1m")
-
-[node name="IngredientEffect" parent="Effects" index="1"]
-once = true

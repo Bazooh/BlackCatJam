@@ -6,7 +6,7 @@ func _activate(_entity) -> void:
 	Game.level_generator.items_node.clear()
 
 	for _item in items_node:
-		if not is_instance_valid(_item) or _item == item:
+		if not is_instance_valid(_item) or _item == entity:
 			continue
 
 		var new_item: Item = Game.witch.get_usable_items().pick_random().instantiate()
@@ -28,4 +28,4 @@ func _activate(_entity) -> void:
 		_item.get_parent().add_child.call_deferred(new_item)
 		_item.queue_free()
 	
-	item.queue_free()
+	entity.queue_free()

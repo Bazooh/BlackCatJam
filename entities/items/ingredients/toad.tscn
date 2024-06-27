@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cejwcsg6c1cvd"]
+[gd_scene load_steps=5 format=3 uid="uid://cejwcsg6c1cvd"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_a6kjo"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_5twaa"]
+[ext_resource type="Script" path="res://entities/items/effects/random_flip.gd" id="3_cfkmd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_5twaa")
@@ -12,5 +13,9 @@ region = Rect2(0, 0, 16, 16)
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
 
-[node name="IngredientEffect" parent="Effects" index="1"]
-once = true
+[node name="Drop" parent="Effects" index="0"]
+speed = Vector2(100, 2.08165e-12)
+
+[node name="RandomFlipEffect" type="Node" parent="Effects" index="3"]
+script = ExtResource("3_cfkmd")
+trigger = 3

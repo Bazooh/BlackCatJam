@@ -1,16 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://f6hr3fewlrnb"]
+[gd_scene load_steps=6 format=3 uid="uid://f6hr3fewlrnb"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_i1hv1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_1csoh"]
+[ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_04c8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_1csoh")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pldlf"]
+radius = 2.0
 
 [node name="Pear" instance=ExtResource("1_i1hv1")]
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
 
-[node name="IngredientEffect" parent="Effects" index="1"]
-once = true
+[node name="CheckHoles" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHoles" index="0"]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_pldlf")
+
+[node name="BackAndForthEffect" type="Node" parent="Effects" index="3"]
+script = ExtResource("3_04c8r")
+direction = 1
+random_direction = true

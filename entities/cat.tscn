@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=6 format=3 uid="uid://ddybujrdaso0e"]
 
 [ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
 [ext_resource type="Texture2D" uid="uid://df5q2k0k8heum" path="res://art/temp/temp_cat.png" id="2_ab1a4"]
+[ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_c6352"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
 size = Vector2(18, 10)
@@ -39,6 +40,14 @@ position = Vector2(2.08165e-12, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHolesDown"]
 position = Vector2(11, 8)
 shape = SubResource("CircleShape2D_y8ipe")
+
+[node name="Effects" type="Node" parent="."]
+
+[node name="BackAndForthEffect" type="Node" parent="Effects"]
+script = ExtResource("3_c6352")
+direction = 1
+random_direction = null
+trigger = 3
 
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]

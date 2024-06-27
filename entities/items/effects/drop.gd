@@ -11,7 +11,7 @@ var is_dropping := false
 
 func _ready() -> void:
 	super._ready()
-	item.touch_ground.connect(item.destroy)
+	entity.touch_ground.connect(entity.destroy)
 
 
 func _activate(_cat) -> void:
@@ -21,5 +21,5 @@ func _activate(_cat) -> void:
 func _process(delta) -> void:
 	if is_dropping:
 		speed += Vector2(0.0, gravity * delta)
-		item.position += speed * delta
+		entity.position += speed * delta
 	

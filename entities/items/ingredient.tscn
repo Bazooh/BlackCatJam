@@ -10,5 +10,4 @@ type = 0
 
 [node name="IngredientEffect" type="Node" parent="Effects" index="1"]
 script = ExtResource("2_lj002")
-once = null
 trigger = 1

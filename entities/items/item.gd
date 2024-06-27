@@ -1,4 +1,4 @@
-class_name Item extends Area2D
+class_name Item extends Entity
 
 
 signal touch_cat(cat: Cat)
