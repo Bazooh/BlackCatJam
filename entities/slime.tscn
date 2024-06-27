@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxjfxxf20kd5t"]
+
+[ext_resource type="Script" path="res://entities/slime.gd" id="1_h80q7"]
+[ext_resource type="Texture2D" uid="uid://u3baaex6yseh" path="res://icon.svg" id="2_w2jhe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pr2vy"]
+radius = 35.0
+
+[node name="Slime" type="Area2D"]
+script = ExtResource("1_h80q7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_pr2vy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.53125, 0.046875)
+texture = ExtResource("2_w2jhe")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
