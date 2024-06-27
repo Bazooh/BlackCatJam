@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://i36uyv2bg3jf" path="res://art/decor/decor_ladder.png" id="2_ax7wy"]
 
 [node name="Decor" instance=ExtResource("1_71uay")]
+z_index = -2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(0, -26)
