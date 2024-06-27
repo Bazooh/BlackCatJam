@@ -8,6 +8,7 @@ atlas = ExtResource("2_gkapk")
 region = Rect2(0, 32, 16, 16)
 
 [node name="Mushroom" instance=ExtResource("1_imses")]
+shuffle_difficulty = false
 item_name = "Mushroom"
 
 [node name="Sprite" parent="." index="0"]

@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
 [ext_resource type="PackedScene" uid="uid://bidto5x2w5glf" path="res://ui/lives.tscn" id="6_4f633"]
 [ext_resource type="PackedScene" uid="uid://clggs6ymegb8h" path="res://ui/game_over.tscn" id="7_nc0dy"]
-[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="8_xqhhv"]
-[ext_resource type="PackedScene" path="res://ui/score.tscn" id="9_pk0c4"]
+[ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
 [ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
 [ext_resource type="Script" path="res://level/Background.gd" id="12_dk6bs"]
 
@@ -24,10 +24,10 @@ position = Vector2(42, 56)
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
 position = Vector2(106, 129)
-speed = 100.0
-max_lives = 3
 
 [node name="Platforms" parent="." node_paths=PackedStringArray("witch") instance=ExtResource("4_3e6vs")]
+intro_length = 5
+speed_increase_per_difficulty = 3.0
 witch = NodePath("../Witch")
 
 [node name="UI" type="Control" parent="."]
