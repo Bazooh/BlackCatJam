@@ -1,7 +1,7 @@
 class_name ChangeItemsEffect extends Effect
 
 
-func _activate(_entity) -> void:
+func _activate(_triggerer) -> void:
 	var items_node = Game.level_generator.items_node.duplicate()
 	Game.level_generator.items_node.clear()
 

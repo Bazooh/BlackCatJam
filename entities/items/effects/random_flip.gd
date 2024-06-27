@@ -1,7 +1,7 @@
 class_name RandomFlipEffect extends Effect
 
 
-func _activate(_entity) -> void:
+func _activate(_triggerer) -> void:
 	var flip: bool = randi() % 2 == 0
 	var direction: int = -1 if flip else 1
 

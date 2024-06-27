@@ -11,6 +11,3 @@ region = Rect2(0, 0, 16, 16)
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
-
-[node name="IngredientEffect" parent="Effects" index="1"]
-once = true

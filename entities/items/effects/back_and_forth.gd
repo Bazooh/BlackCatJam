@@ -44,7 +44,7 @@ func is_hitting_edge() -> bool:
 
 
 func _activate(_triggerer) -> void:
-	await get_tree().create_timer(0.01).timeout
+	await get_tree().create_timer(0.1).timeout
 
 	is_moving = true
 	if random_direction and randi() % 2 == 0:

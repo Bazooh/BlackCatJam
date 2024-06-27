@@ -1,12 +1,7 @@
-class_name BombEffect extends Effect
-
-
-enum Target { Cat, Witch }
+class_name SlimeEffect extends Effect
 
 
 const bomb_scene = preload("res://entities/bomb.tscn")
-
-@export var target := Target.Witch
 
 
 func _activate(_triggerer) -> void:

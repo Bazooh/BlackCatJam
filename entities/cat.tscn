@@ -11,6 +11,7 @@ size = Vector2(18, 10)
 radius = 2.0
 
 [node name="Cat" type="Area2D"]
+position = Vector2(1.66667, 0)
 script = ExtResource("1_lfknh")
 
 [node name="Icon" type="Sprite2D" parent="."]
