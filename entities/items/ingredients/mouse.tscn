@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_1csoh")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(2.08165e-12, 80, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pldlf"]
 radius = 2.0
@@ -15,6 +15,7 @@ radius = 2.0
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
+flip_h = true
 
 [node name="CheckHoles" type="Area2D" parent="." index="2"]
 
@@ -24,5 +25,4 @@ shape = SubResource("CircleShape2D_pldlf")
 
 [node name="BackAndForthEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_04c8r")
-direction = 1
 random_direction = true

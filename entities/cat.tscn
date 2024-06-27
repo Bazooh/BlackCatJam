@@ -45,8 +45,6 @@ shape = SubResource("CircleShape2D_y8ipe")
 
 [node name="BackAndForthEffect" type="Node" parent="Effects"]
 script = ExtResource("3_c6352")
-direction = 1
-random_direction = null
 trigger = 3
 
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]

@@ -5,12 +5,9 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_m03ad")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(2.08165e-12, 48, 16, 16)
 
 [node name="Pear" instance=ExtResource("1_bbk4m")]
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
-
-[node name="IngredientEffect" parent="Effects" index="1"]
-once = true
