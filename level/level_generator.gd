@@ -14,7 +14,11 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 @export var item_density: float = 1.0
 @export var chunk_length: int = 5
 @export var n_chunks: int = 2
-@export var height: int = 3
+@export var start_height: int = 3
+var height: int:
+	get: return start_height + int(witch.difficulty / 3)
+	set(_x): push_warning("height is read-only")
+
 @export var start_speed: float = 20.0
 @export var speed_increase_per_difficulty: float = 5.0
 var speed: float:
