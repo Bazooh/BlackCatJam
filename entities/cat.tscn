@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=7 format=3 uid="uid://ddybujrdaso0e"]
 
 [ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
 [ext_resource type="Texture2D" uid="uid://df5q2k0k8heum" path="res://art/temp/temp_cat.png" id="2_ab1a4"]
 [ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_c6352"]
+[ext_resource type="SpriteFrames" uid="uid://n7rkr6t3u3bq" path="res://art/cat/cat_frames.tres" id="4_bxmye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
 size = Vector2(18, 10)
@@ -15,6 +16,7 @@ position = Vector2(1.66667, 0)
 script = ExtResource("1_lfknh")
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 texture = ExtResource("2_ab1a4")
 
@@ -47,6 +49,10 @@ shape = SubResource("CircleShape2D_y8ipe")
 [node name="BackAndForthEffect" type="Node" parent="Effects"]
 script = ExtResource("3_c6352")
 trigger = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_bxmye")
+autoplay = "default"
 
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]
