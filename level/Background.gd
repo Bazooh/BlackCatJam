@@ -1,6 +1,7 @@
-extends Node2D
+class_name Background extends Node2D
 
 @export var decor_density = 0.9
+@export var decor_folder: String = "ground"
 
 var possible_decor : Array[PackedScene] = []
 @export var decor_offset : float = 10
@@ -10,9 +11,11 @@ var possible_decor : Array[PackedScene] = []
 
 
 func _ready():
-	for file in DirAccess.get_files_at("res://level/decor/"):
-		var decor: PackedScene = load("res://level/decor/" + file)
+	var folder := "res://level/decor/" + decor_folder + "/"
+	for file in DirAccess.get_files_at(folder):
+		var decor: PackedScene = load(folder + file)
 		possible_decor.append(decor)
+		
 
 
 func get_random_decor() -> PackedScene:
@@ -37,6 +40,7 @@ func generate_decor(x_pos: float, level_generator: LevelGenerator):
 			decor.position.x = x_pos + current_x
 			decor.position.y = floor_y
 			decor.level_generator = level_generator
+			decor.z_index += self.z_index
 			get_tree().root.add_child(decor)
 			current_x += decor.sprite.get_rect().size.x 
 		current_x += decor_gap + randf_range(0, 1) * decor_offset
