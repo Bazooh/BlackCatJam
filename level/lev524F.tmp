@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=13 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
 [ext_resource type="PackedScene" uid="uid://cb2hdwexp722o" path="res://entities/witch.tscn" id="2_b1rdj"]
@@ -10,12 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
 [ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
 [ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
+[ext_resource type="Script" path="res://level/decor.gd" id="11_gshrb"]
 [ext_resource type="Script" path="res://level/Background.gd" id="12_dk6bs"]
 
 [node name="Level" type="Node2D"]
 
 [node name="BG" type="Sprite2D" parent="."]
-z_index = -50
+z_index = -10
 texture = ExtResource("2_3ca08")
 centered = false
 
@@ -63,14 +64,13 @@ layout_mode = 1
 [node name="Pause" parent="UI" instance=ExtResource("8_xqhhv")]
 layout_mode = 1
 
-[node name="DecorGenerator" type="Node2D" parent="."]
+[node name="Decor" type="Node2D" parent="."]
+script = ExtResource("11_gshrb")
 
-[node name="GroundDecor" type="Node2D" parent="DecorGenerator"]
-z_index = -3
+[node name="GroundBackground" type="Node2D" parent="Decor"]
 script = ExtResource("12_dk6bs")
 
-[node name="WallDecor" type="Node2D" parent="DecorGenerator"]
-z_index = -10
+[node name="WallBackground" type="Node2D" parent="Decor"]
 script = ExtResource("12_dk6bs")
 decor_folder = "wall"
 

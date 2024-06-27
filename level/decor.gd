@@ -1,21 +1,21 @@
 class_name Decor extends Node2D
 
-@onready var sprite: Sprite2D = $Sprite
 @export var can_flip: bool = false
-
-var level_generator: LevelGenerator
 
 func _ready():
 	if can_flip and randf() < 0.5:
-		sprite.flip_h = true
+		get_sprite().flip_h = true
 
 func _physics_process(delta: float):
-	if not is_instance_valid(level_generator):
+	if not is_instance_valid(Game.level_generator):
 		queue_free()
 		return
 
-	position.x -= level_generator.speed * delta
+	position.x -= Game.level_generator.speed * delta
 	
-	if global_position.x < -sprite.get_rect().size.x / 2:
+	if global_position.x < -(get_sprite().get_rect().size.x / 2):
 		queue_free()
-	
+
+func get_sprite() -> Sprite2D:
+	return $Sprite
+

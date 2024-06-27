@@ -1,5 +1,6 @@
 class_name Cat extends Entity
 
+signal no_platform
 
 const PLATFORM_MARGIN = 16
 
@@ -37,3 +38,8 @@ func _input(event: InputEvent) -> void:
 		position.y -= PLATFORM_MARGIN
 	elif event.is_action_pressed("down") and can_go_down():
 		position.y += PLATFORM_MARGIN
+
+
+
+func _on_back_and_forth_effect_no_platform() -> void:
+	no_platform.emit()
