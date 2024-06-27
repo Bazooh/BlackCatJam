@@ -57,3 +57,4 @@ autoplay = "default"
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesDown" to="." method="_on_check_holes_area_exited"]
+[connection signal="no_platform" from="Effects/BackAndForthEffect" to="." method="_on_back_and_forth_effect_no_platform"]
