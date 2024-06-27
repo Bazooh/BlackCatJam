@@ -113,7 +113,7 @@ func _process(delta):
 func create_recipe() -> Array[String]:
 	var _recipe: Array[String] = []
 	for i in range(3):
-		var random_ingredient: String = ingredients.pick_random().item_name
+		var random_ingredient: String = usable_ingredients.pick_random().item_name
 		_recipe.append(random_ingredient)
 	return _recipe
 
