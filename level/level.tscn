@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
 [ext_resource type="PackedScene" uid="uid://bidto5x2w5glf" path="res://ui/lives.tscn" id="6_4f633"]
 [ext_resource type="PackedScene" uid="uid://clggs6ymegb8h" path="res://ui/game_over.tscn" id="7_nc0dy"]
-[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="8_xqhhv"]
-[ext_resource type="PackedScene" path="res://ui/score.tscn" id="9_pk0c4"]
+[ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
 [ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
 
 [node name="Level" type="Node2D"]
 
 [node name="BG" type="Sprite2D" parent="."]
-z_index = -5
+z_index = -10
 texture = ExtResource("2_3ca08")
 centered = false
 
