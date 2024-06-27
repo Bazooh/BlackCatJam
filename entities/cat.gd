@@ -42,4 +42,5 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_back_and_forth_effect_no_platform() -> void:
+	print("no platform!")
 	no_platform.emit()

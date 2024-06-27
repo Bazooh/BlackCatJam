@@ -19,7 +19,7 @@ const item_y_offset = -8
 @export var start_height: int = 3
 @export var max_height: int = 4
 var height: int:
-	get: return min(start_height + floori(witch.difficulty / 8), max_height)
+	get: return min(start_height + floori(float(witch.difficulty) / 8), max_height)
 	set(_x): push_warning("height is read-only")
 
 @export var start_speed: float = 20.0

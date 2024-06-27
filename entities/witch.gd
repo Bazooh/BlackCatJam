@@ -69,9 +69,9 @@ func init_items():
 		possible_difficulties.append(item.difficulty)
 	
 	for item in to_shuffle:
-		var difficulty : int = possible_difficulties.pick_random()
-		item.difficulty = difficulty
-		possible_difficulties.erase(difficulty)
+		var _difficulty : int = possible_difficulties.pick_random()
+		item.difficulty = _difficulty
+		possible_difficulties.erase(_difficulty)
 		
 	
 	for file in DirAccess.get_files_at("res://entities/items/utility"):
