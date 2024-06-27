@@ -24,7 +24,7 @@ func _activate(_triggerer) -> void:
 		if not is_instance_valid(_item) or _item == entity:
 			continue
 
-		var new_item: Item = Game.witch.get_usable_items().pick_random().duplicate()
+		var new_item: Item = Game.witch.get_random_usable_item_weighted().duplicate()
 
 		new_item.position = _item.position
 		new_item.rotation = _item.rotation

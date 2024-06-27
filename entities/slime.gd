@@ -1,6 +1,5 @@
 class_name Slime extends Entity
 
-
 func _on_area_entered(area: Area2D) -> void:
 	if not area is Witch:
 		return

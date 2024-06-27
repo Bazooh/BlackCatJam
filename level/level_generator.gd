@@ -19,7 +19,7 @@ const item_y_offset = -8
 @export var start_height: int = 3
 @export var max_height: int = 4
 var height: int:
-	get: return min(start_height + int(witch.difficulty / 15.0), max_height)
+	get: return min(start_height + floori(witch.difficulty / 8), max_height)
 	set(_x): push_warning("height is read-only")
 
 @export var start_speed: float = 20.0
@@ -120,7 +120,7 @@ func get_random_item() -> Item:
 		if not is_in_screen:
 			return witch.name_to_item[ingredient_name].duplicate()
 	
-	return witch.get_usable_items().pick_random().duplicate()
+	return witch.get_random_usable_item_weighted().duplicate()
 
 
 func generate_chunk(idx: int) -> void:

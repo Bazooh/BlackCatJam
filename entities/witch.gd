@@ -11,13 +11,14 @@ signal on_game_over(score: int)
 
 @export_group("Difficulty")	
 @export var starting_ingredient_pool_size := 3
-@export var ingredient_pool_increase_interval := 10
-@export var ingredient_pool_increase_offset := 5
+@export var ingredient_pool_increase_interval := 8
+@export var ingredient_pool_increase_offset := 6
 @export var ingredient_swap_rate := 1
 @export var starting_utility_pool_size := 0
-@export var utility_pool_increase_interval := 10
-@export var utility_swap_rate := 4
-@export var utility_pool_increase_offset := 0
+@export var utility_pool_increase_interval := 7
+@export var utility_swap_rate := 2
+@export var utility_pool_increase_offset := 3
+@export var utility_chance := 0.33
 
 var difficulty: int = 0
 #var difficulty: float:
@@ -51,11 +52,27 @@ var utility_pool_size := 0
 
 
 func init_items():
+	
+	var to_shuffle: Array[Item] = []
+	
 	for file in DirAccess.get_files_at("res://entities/items/ingredients"):
 		var ingredient_scene: PackedScene = load("res://entities/items/ingredients/" + file)
 		var ingredient: Ingredient = ingredient_scene.instantiate()
 		ingredients.append(ingredient)
+		if ingredient.shuffle_difficulty:
+			to_shuffle.append(ingredient)
 		name_to_item[ingredient.item_name] = ingredient
+	
+	#shuffle difficulties
+	var possible_difficulties : Array[int] = []
+	for item in to_shuffle:
+		possible_difficulties.append(item.difficulty)
+	
+	for item in to_shuffle:
+		var difficulty : int = possible_difficulties.pick_random()
+		item.difficulty = difficulty
+		possible_difficulties.erase(difficulty)
+		
 	
 	for file in DirAccess.get_files_at("res://entities/items/utility"):
 		var item_scene: PackedScene = load("res://entities/items/utility/" + file)
@@ -117,7 +134,7 @@ func swap_usable_ingredient() -> void:
 func swap_utility_item() -> void:
 	if usable_utility_items.size() == 0:
 		return
-	var swap_index : int = randi_range(0, usable_utility_items.size())
+	var swap_index : int = randi_range(0, usable_utility_items.size() - 1)
 	var item : Item = random_unused_utility()
 	if item:
 		usable_utility_items[swap_index] = item
@@ -141,10 +158,18 @@ func get_unused_items(usable: Array, all: Array) -> Array:
 			unused.append(item)
 	return unused
 	
-#return usable items AND any that are needed for recipes
+
 func get_usable_items() -> Array:
 	return usable_ingredients + usable_utility_items
 
+#higher chance of returning ingredient
+func get_random_usable_item_weighted() -> Item:
+		
+	if randf() >= utility_chance or usable_utility_items.size() == 0:
+		return usable_ingredients.pick_random()
+	else:
+		return usable_utility_items.pick_random()
+	
 
 func _ready():
 	Game.witch = self

@@ -27,7 +27,7 @@ position = Vector2(106, 129)
 
 [node name="Platforms" parent="." node_paths=PackedStringArray("witch") instance=ExtResource("4_3e6vs")]
 intro_length = 5
-speed_increase_per_difficulty = 1.0
+speed_increase_per_difficulty = 3.0
 witch = NodePath("../Witch")
 
 [node name="UI" type="Control" parent="."]
