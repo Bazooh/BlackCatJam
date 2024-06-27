@@ -230,7 +230,7 @@ func increase_difficulty():
 		swap_utility_item()
 
 func get_ingredient_pool_size() -> int:
-	return min(ingredients.size(), starting_ingredient_pool_size + floor((difficulty + ingredient_pool_increase_offset) / ingredient_pool_increase_interval))
+	return min(ingredients.size(), starting_ingredient_pool_size + floor(float(difficulty + ingredient_pool_increase_offset) / ingredient_pool_increase_interval))
 
 func get_utility_pool_size() -> int:
-	return min(utility_items.size(), starting_utility_pool_size + floor((difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))
+	return min(utility_items.size(), starting_utility_pool_size + floor(float(difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))
