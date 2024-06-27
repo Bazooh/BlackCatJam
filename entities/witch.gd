@@ -12,7 +12,7 @@ signal on_game_over(score: int)
 @onready var difficulty_timer: Timer = %DifficultyTimer
 var _difficulty: int = 0
 var difficulty: float:
-	get: return _difficulty + difficulty_timer.time_left / difficulty_timer.wait_time
+	get: return _difficulty + (0.0 if difficulty_timer.time_left == difficulty_timer.wait_time else difficulty_timer.time_left / difficulty_timer.wait_time)
 	set(_x): push_warning("difficulty is read-only (use _difficulty instead)")
 
 var ingredients_scene := {}

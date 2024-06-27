@@ -15,8 +15,9 @@ const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1
 @export var chunk_length: int = 5
 @export var n_chunks: int = 2
 @export var start_height: int = 3
+@export var max_height: int = 5
 var height: int:
-	get: return start_height + int(witch.difficulty / 3)
+	get: return min(start_height + int(witch.difficulty / 3), max_height)
 	set(_x): push_warning("height is read-only")
 
 @export var start_speed: float = 20.0
@@ -47,7 +48,7 @@ func init_grid() -> Array:
 		_grid.append([])
 		for y in range(height):
 			_grid[x].append(false)
-	
+
 	return _grid
 
 
@@ -140,6 +141,10 @@ func generate_chunk(idx: int) -> void:
 	
 
 func move_grid() -> void:
+	if grid[0].size() < height:
+		for x in range(chunk_length * n_chunks):
+			grid[x].append(false)
+
 	for y in range(height):
 		for x in range(chunk_length * (n_chunks - 1)):
 			grid[x][y] = grid[x + chunk_length][y]
