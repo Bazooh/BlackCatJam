@@ -53,11 +53,9 @@ _data = {
 script = ExtResource("1_ul5h1")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_4s7eb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_q4cnn")
 
 [node name="Effects" type="Node" parent="."]

@@ -20,7 +20,7 @@ flip_h = true
 [node name="CheckHoles" type="Area2D" parent="." index="2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHoles" index="0"]
-position = Vector2(10, 0)
+position = Vector2(10, 8)
 shape = SubResource("CircleShape2D_pldlf")
 
 [node name="BackAndForthEffect" type="Node" parent="Effects" index="3"]

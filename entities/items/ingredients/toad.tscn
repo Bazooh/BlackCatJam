@@ -15,7 +15,7 @@ texture = SubResource("AtlasTexture_i0cjt")
 flip_h = true
 
 [node name="Drop" parent="Effects" index="0"]
-speed = Vector2(100, 2.08165e-12)
+speed = Vector2(70, -200)
 
 [node name="RandomFlipEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_cfkmd")

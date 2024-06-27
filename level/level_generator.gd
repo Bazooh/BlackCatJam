@@ -4,6 +4,8 @@ class_name LevelGenerator extends Node2D
 const platform_node = preload("res://level/Platform.tscn")
 const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)]
 
+const item_y_offset = -8
+
 @export_group("Intro Settings")
 @export var intro_platform_density: float = 1
 @export var intro_item_density: float = 0
@@ -131,7 +133,7 @@ func generate_chunk(idx: int) -> void:
 
 			if chunk_grid[x][y] and randf() < get_item_density():
 				var item: Item = get_random_item()
-				item.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset)
+				item.position = Vector2((idx*chunk_length + x) * platform_size, y * 16 + grid_y_offset + item_y_offset)
 				item.position.x += randf_range(-1, 1) * item_offset
 				items_node.append(item)
 				add_child(item)
