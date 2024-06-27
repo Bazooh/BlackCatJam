@@ -5,6 +5,8 @@ signal touch_cat(cat: Cat)
 signal touch_witch(witch: Witch)
 signal touch_ground()
 
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
 
 func is_out_of_bounds() -> bool:
 	return position.y > get_viewport_rect().size.y
