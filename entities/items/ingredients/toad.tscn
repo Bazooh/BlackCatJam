@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cejwcsg6c1cvd"]
+[gd_scene load_steps=8 format=3 uid="uid://cejwcsg6c1cvd"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_a6kjo"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_5twaa"]
 [ext_resource type="Script" path="res://entities/items/effects/random_flip.gd" id="3_cfkmd"]
+[ext_resource type="AudioStream" uid="uid://b3ltmhqaqkw2v" path="res://audio/Toad_Jump.wav" id="4_qqg51"]
+[ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="5_7v1ov"]
+[ext_resource type="AudioStream" uid="uid://ckm2em764jh4j" path="res://audio/Toad_Hit.wav" id="6_n84uu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_5twaa")
@@ -23,3 +26,15 @@ speed = Vector2(70, -200)
 [node name="RandomFlipEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_cfkmd")
 trigger = 3
+
+[node name="AnimationPlayer" parent="." index="3"]
+active = false
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("4_qqg51")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("5_7v1ov")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("6_n84uu")

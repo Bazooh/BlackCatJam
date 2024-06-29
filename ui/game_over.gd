@@ -21,11 +21,13 @@ func open_game_over_screen(score: int) -> void:
 
 
 func restart() -> void:
+	ButtonSound.play_sound()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func return_to_menu() -> void:
+	ButtonSound.play_sound()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://ui/menu.tscn")
 

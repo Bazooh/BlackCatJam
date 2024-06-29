@@ -19,6 +19,7 @@ config/icon="res://art/ui/Icon.svg"
 [autoload]
 
 Game="*res://game.gd"
+ButtonSound="*res://ui/button_sound.tscn"
 
 [display]
 

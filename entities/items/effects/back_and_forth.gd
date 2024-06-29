@@ -1,6 +1,6 @@
 class_name BackAndForthEffect extends Effect
 
-
+signal turn
 signal no_platform
 
 
@@ -27,6 +27,7 @@ func _ready() -> void:
 func change_direction():
 	direction *= -1
 	entity.scale.x = direction
+	turn.emit()
 
 
 func has_platform_below() -> bool:

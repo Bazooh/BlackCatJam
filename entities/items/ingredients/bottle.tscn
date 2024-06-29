@@ -1,15 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dia2iuqo4bthw"]
+[gd_scene load_steps=7 format=3 uid="uid://dia2iuqo4bthw"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_kf5bj"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_306ef"]
+[ext_resource type="AudioStream" uid="uid://hcshket606ey" path="res://audio/Hard_Knock.wav" id="3_3joxx"]
+[ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="4_g5r60"]
+[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="5_t6ir8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p4w1m"]
 atlas = ExtResource("2_306ef")
 region = Rect2(0, 16, 16, 16)
 
 [node name="Bottle" instance=ExtResource("1_kf5bj")]
-shuffle_difficulty = false
 item_name = "Bottle"
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p4w1m")
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("3_3joxx")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("4_g5r60")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("5_t6ir8")

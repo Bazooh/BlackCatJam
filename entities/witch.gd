@@ -21,6 +21,12 @@ signal on_game_over(score: int)
 @export var utility_chance := 0.33
 
 @onready var sprite: AnimatedSprite2D = %Sprite
+@onready var correct_sound: AudioStreamPlayer = $CorrectSound
+@onready var wrong_sound: AudioStreamPlayer = $WrongSound
+@onready var complete_sound: AudioStreamPlayer = $CompleteSound
+@onready var hurt_sound: AudioStreamPlayer = $HurtSound
+@onready var lose_sound: AudioStreamPlayer = $LoseSound
+
 
 var difficulty: int = 0
 #var difficulty: float:
@@ -223,11 +229,14 @@ func collect_ingredient(ingredient_name: String) -> void:
 		
 		if ingredient_name == recipe[i]:
 			collected[i] = true
+			correct_sound.play()
 			check_potion()
 			return
 	
 	sprite.animation = "Smoke"
+	wrong_sound.play()
 	lose_life()
+	
 
 
 func check_potion():
@@ -237,6 +246,7 @@ func check_potion():
 			return
 	
 	score += 1
+	complete_sound.play()
 	on_score_update.emit(score)
 	increase_difficulty()
 	update_recipe()
@@ -245,6 +255,7 @@ func check_potion():
 func lose_life():
 	lives -= 1
 	on_lives_update.emit(lives)
+	hurt_sound.play()
 	if lives <= 0:
 		game_over()
 
@@ -252,6 +263,7 @@ func lose_life():
 func game_over():
 	if sprite.animation != "Idle":
 		await sprite.animation_looped
+	lose_sound.play()
 
 	on_game_over.emit(score)
 

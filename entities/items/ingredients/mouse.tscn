@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://f6hr3fewlrnb"]
+[gd_scene load_steps=9 format=3 uid="uid://f6hr3fewlrnb"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_i1hv1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_1csoh"]
 [ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_04c8r"]
+[ext_resource type="AudioStream" uid="uid://c2y32dkk7423d" path="res://audio/Mouse_Fall.wav" id="4_o7rv4"]
+[ext_resource type="AudioStream" uid="uid://d4kl53pq788jv" path="res://audio/Mouse_Splash.wav" id="5_cdhuw"]
+[ext_resource type="AudioStream" uid="uid://g45cemtvi64s" path="res://audio/Soft_Hit.wav" id="6_jbnfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_1csoh")
@@ -30,3 +33,12 @@ shape = SubResource("CircleShape2D_pldlf")
 script = ExtResource("3_04c8r")
 random_direction = true
 trigger = 3
+
+[node name="TouchCatSound" parent="." index="5"]
+stream = ExtResource("4_o7rv4")
+
+[node name="TouchWitchSound" parent="." index="6"]
+stream = ExtResource("5_cdhuw")
+
+[node name="TouchGroundSound" parent="." index="7"]
+stream = ExtResource("6_jbnfl")

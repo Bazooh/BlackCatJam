@@ -29,14 +29,10 @@ func _activate(_triggerer) -> void:
 
 		new_item.position = _item.position
 		new_item.rotation = _item.rotation
-
-		if _item.has_node("Effects/BackAndForthEffect"):
-			var back_and_forth: BackAndForthEffect = _item.get_node("Effects/BackAndForthEffect")
-			new_item.get_node("Effects/BackAndForthEffect").direction = back_and_forth.direction
 		
 		Game.level_generator.items_node.append(new_item)
 		
 		_item.get_parent().add_child.call_deferred(new_item)
 		_item.queue_free()
 	
-	entity.queue_free()
+	(entity as Item).destroy()

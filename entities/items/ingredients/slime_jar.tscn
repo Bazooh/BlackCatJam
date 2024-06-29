@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg7k5ovs5oen6"]
+[gd_scene load_steps=8 format=3 uid="uid://bg7k5ovs5oen6"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_bbk4m"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_m03ad"]
 [ext_resource type="Script" path="res://entities/items/effects/slime.gd" id="3_e8hk3"]
+[ext_resource type="AudioStream" uid="uid://ceyjh51iskn0" path="res://audio/Hard_Knock2.wav" id="4_yxaat"]
+[ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="5_at0en"]
+[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="6_sd6ih"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_m03ad")
@@ -19,3 +22,12 @@ texture = SubResource("AtlasTexture_i0cjt")
 [node name="SlimeEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_e8hk3")
 trigger = 2
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("4_yxaat")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("5_at0en")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("6_sd6ih")

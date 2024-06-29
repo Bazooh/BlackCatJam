@@ -5,6 +5,8 @@ signal no_platform
 const PLATFORM_MARGIN = 16
 
 @onready var rect: Rect2 = $CollisionShape.shape.get_rect()
+@onready var jump_sound: AudioStreamPlayer = $JumpSound
+@onready var turn_sound: AudioStreamPlayer = $TurnSound
 
 
 func can_cat_be_on_platform(platform: Area2D) -> bool:
@@ -36,11 +38,18 @@ func can_go_down() -> bool:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("up") and can_go_up():
 		position.y -= PLATFORM_MARGIN
+		jump_sound.play()
 	elif event.is_action_pressed("down") and can_go_down():
 		position.y += PLATFORM_MARGIN
+		jump_sound.play()
 
 
 
 func _on_back_and_forth_effect_no_platform() -> void:
 	print("no platform!")
 	no_platform.emit()
+
+
+func _on_back_and_forth_effect_turn() -> void:
+	if not turn_sound.playing:
+		turn_sound.play()

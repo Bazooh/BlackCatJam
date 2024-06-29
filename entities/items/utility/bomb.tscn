@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyt4b0nca25os"]
+[gd_scene load_steps=6 format=3 uid="uid://dyt4b0nca25os"]
 
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_wewcm"]
 [ext_resource type="Texture2D" uid="uid://b30u6q0ce4kx3" path="res://art/items/Bomb.png" id="2_d34mo"]
 [ext_resource type="Script" path="res://entities/items/effects/bomb.gd" id="2_ub6yp"]
+[ext_resource type="AudioStream" uid="uid://dl3mk5d5uqu04" path="res://audio/Bomb_Knock.wav" id="4_aqjmi"]
+[ext_resource type="AudioStream" uid="uid://1ihhde2mx8py" path="res://audio/Bomb_Explode.wav" id="5_wqmyc"]
 
 [node name="Bomb" instance=ExtResource("1_wewcm")]
 item_name = "Bomb"
@@ -14,3 +16,9 @@ texture = ExtResource("2_d34mo")
 [node name="Bomb" type="Node" parent="Effects" index="1"]
 script = ExtResource("2_ub6yp")
 trigger = 2
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("4_aqjmi")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("5_wqmyc")

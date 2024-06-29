@@ -1,15 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://qip1sys6vkfu"]
+[gd_scene load_steps=7 format=3 uid="uid://qip1sys6vkfu"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_imses"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_gkapk"]
+[ext_resource type="AudioStream" uid="uid://cfow47md34ccw" path="res://audio/Light_Knock.wav" id="3_q16i3"]
+[ext_resource type="AudioStream" uid="uid://dua2wwoxhwi4v" path="res://audio/Light_Splash.wav" id="4_48b25"]
+[ext_resource type="AudioStream" uid="uid://bud6f5w6q1auj" path="res://audio/Light_Hit.wav" id="5_prt5p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13cu5"]
 atlas = ExtResource("2_gkapk")
 region = Rect2(0, 32, 16, 16)
 
 [node name="Mushroom" instance=ExtResource("1_imses")]
-shuffle_difficulty = false
 item_name = "Mushroom"
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_13cu5")
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("3_q16i3")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("4_48b25")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("5_prt5p")

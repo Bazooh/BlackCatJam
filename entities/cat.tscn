@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=9 format=3 uid="uid://ddybujrdaso0e"]
 
 [ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
 [ext_resource type="Texture2D" uid="uid://df5q2k0k8heum" path="res://art/temp/temp_cat.png" id="2_ab1a4"]
 [ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_c6352"]
 [ext_resource type="SpriteFrames" uid="uid://n7rkr6t3u3bq" path="res://art/cat/cat_frames.tres" id="4_bxmye"]
+[ext_resource type="AudioStream" uid="uid://bl8kb7o3wjfk1" path="res://audio/Jump.wav" id="5_vv5b5"]
+[ext_resource type="AudioStream" uid="uid://ut8s5fdpyq2j" path="res://audio/Turn.wav" id="6_i14y0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
 size = Vector2(18, 10)
@@ -54,7 +56,14 @@ trigger = 3
 sprite_frames = ExtResource("4_bxmye")
 autoplay = "default"
 
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_vv5b5")
+
+[node name="TurnSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_i14y0")
+
 [connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]
 [connection signal="area_exited" from="CheckHolesDown" to="." method="_on_check_holes_area_exited"]
 [connection signal="no_platform" from="Effects/BackAndForthEffect" to="." method="_on_back_and_forth_effect_no_platform"]
+[connection signal="turn" from="Effects/BackAndForthEffect" to="." method="_on_back_and_forth_effect_turn"]

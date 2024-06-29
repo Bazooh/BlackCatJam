@@ -7,4 +7,5 @@ func start():
 
 
 func _on_button_pressed() -> void:
+	ButtonSound.play_sound()
 	start()
