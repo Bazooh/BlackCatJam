@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cyy2tdqan7yl6"]
+[gd_scene load_steps=5 format=3 uid="uid://cyy2tdqan7yl6"]
 
 [ext_resource type="Script" path="res://entities/slime.gd" id="1_h80q7"]
 [ext_resource type="Texture2D" uid="uid://cbvws2oplhx5v" path="res://art/items/Slime.png" id="2_y8i7o"]
+[ext_resource type="AudioStream" uid="uid://2qo8yd3hu2q1" path="res://audio/Stick.wav" id="3_eiru2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhr0g"]
 size = Vector2(38, 33)
@@ -22,6 +23,9 @@ texture = ExtResource("2_y8i7o")
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="StickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_eiru2")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

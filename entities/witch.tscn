@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb2hdwexp722o"]
+[gd_scene load_steps=14 format=3 uid="uid://cb2hdwexp722o"]
 
 [ext_resource type="Script" path="res://entities/witch.gd" id="1_83sfl"]
 [ext_resource type="AudioStream" uid="uid://bcrur4of47ubv" path="res://audio/Correct.wav" id="3_57vas"]
 [ext_resource type="Texture2D" uid="uid://cqun6r3tjxp1n" path="res://art/Witch.png" id="3_m2did"]
+[ext_resource type="AudioStream" uid="uid://oas5f676mpdb" path="res://audio/Wrong.wav" id="4_lv86a"]
 [ext_resource type="AudioStream" uid="uid://b56dmghqpetjg" path="res://audio/Complete.wav" id="5_a4ij6"]
 [ext_resource type="AudioStream" uid="uid://bwu8i8k5hu652" path="res://audio/Hurt.wav" id="6_pm615"]
 [ext_resource type="AudioStream" uid="uid://bbebnpomqlmd7" path="res://audio/Lose.wav" id="7_33774"]
@@ -73,7 +74,7 @@ stream = ExtResource("3_57vas")
 
 [node name="WrongSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("7_33774")
+stream = ExtResource("4_lv86a")
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3

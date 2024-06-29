@@ -34,6 +34,9 @@ func _process(_delta) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+	if not enabled:
+		return
+		
 	if area is Cat:
 		touch_cat.emit(area as Cat)
 		if touch_cat_sound.stream:
@@ -47,7 +50,6 @@ func _on_area_entered(area: Area2D) -> void:
 
 func destroy():
 	sprite.hide()
-	collision_shape_2d.disabled = true
 	enabled = false
 	if touch_cat_sound.playing:
 		await touch_cat_sound.finished
