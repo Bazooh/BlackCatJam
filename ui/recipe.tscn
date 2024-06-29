@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://7vqh7xmpflq7"]
 
 [ext_resource type="Texture2D" uid="uid://bb0wtwggmjbsc" path="res://art/ui/Needed.png" id="1_dubag"]
-[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_3idwu"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_3idwu"]
 [ext_resource type="Script" path="res://ui/recipe.gd" id="2_cmdqx"]
 [ext_resource type="Texture2D" uid="uid://bk71bwpfcau3x" path="res://art/ui/Next.png" id="3_8cn6h"]
 

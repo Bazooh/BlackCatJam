@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://dmjvmc6ltdaiu"]
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
-[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/Ingredients.png" id="2_yea6j"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_yea6j"]
 [ext_resource type="Script" path="res://entities/items/effects/drop.gd" id="3_kghsp"]
 [ext_resource type="Script" path="res://entities/items/effects/animation.gd" id="4_38l55"]
 

@@ -6,6 +6,7 @@ signal on_score_update(score: int)
 signal on_game_over(score: int)
 
 @export var speed: float = 100.0
+@export var stuck_speed: float = 25.0
 
 @export var max_lives: int = 3
 
@@ -21,6 +22,8 @@ signal on_game_over(score: int)
 @export var utility_chance := 0.33
 
 @onready var sprite: AnimatedSprite2D = %Sprite
+@onready var effect_sprite: AnimatedSprite2D = %EffectSprite
+
 @onready var correct_sound: AudioStreamPlayer = $CorrectSound
 @onready var wrong_sound: AudioStreamPlayer = $WrongSound
 @onready var complete_sound: AudioStreamPlayer = $CompleteSound
@@ -58,7 +61,7 @@ const max_x: float = edge_x - size / 2
 var ingredient_pool_size := 0
 var utility_pool_size := 0
 
-
+var stuck := false
 
 func init_items():
 	
@@ -190,6 +193,10 @@ func get_random_usable_item_weighted() -> Item:
 		return usable_utility_items.pick_random()
 	
 
+func set_stuck(value: bool) -> void:
+	stuck = value
+	sprite.animation = "Stuck" if stuck else "Move"
+	
 func _ready():
 	Game.witch = self
 	init_items()
@@ -200,7 +207,8 @@ func _ready():
 
 
 func _process(delta):
-	position.x += speed * delta * Input.get_axis("left", "right")
+	var move_speed := stuck_speed if stuck else speed
+	position.x += move_speed * delta * Input.get_axis("left", "right")
 	position.x = clamp(position.x, min_x, max_x)
 
 
@@ -229,11 +237,16 @@ func collect_ingredient(ingredient_name: String) -> void:
 		
 		if ingredient_name == recipe[i]:
 			collected[i] = true
+			effect_sprite.stop()
+			effect_sprite.animation = "Splash"
+			effect_sprite.play()
 			correct_sound.play()
 			check_potion()
 			return
 	
-	sprite.animation = "Smoke"
+	effect_sprite.stop()
+	effect_sprite.animation = "Smoke"
+	effect_sprite.play()
 	wrong_sound.play()
 	lose_life()
 	
@@ -261,10 +274,8 @@ func lose_life():
 
 
 func game_over():
-	if sprite.animation != "Idle":
-		await sprite.animation_looped
-	lose_sound.play()
 
+	lose_sound.play()
 	on_game_over.emit(score)
 
 
@@ -290,7 +301,3 @@ func get_ingredient_pool_size() -> int:
 
 func get_utility_pool_size() -> int:
 	return min(utility_items.size(), starting_utility_pool_size + floor(float(difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))
-
-
-func _on_sprite_animation_looped() -> void:
-	sprite.animation = "Idle"
