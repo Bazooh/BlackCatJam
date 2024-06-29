@@ -20,6 +20,8 @@ signal on_game_over(score: int)
 @export var utility_pool_increase_offset := 3
 @export var utility_chance := 0.33
 
+@onready var sprite: AnimatedSprite2D = %Sprite
+
 var difficulty: int = 0
 #var difficulty: float:
 	#get: return _difficulty + (difficulty_timer.wait_time - difficulty_timer.time_left) / difficulty_timer.wait_time
@@ -49,6 +51,7 @@ const max_x: float = edge_x - size / 2
 
 var ingredient_pool_size := 0
 var utility_pool_size := 0
+
 
 
 func init_items():
@@ -111,18 +114,21 @@ func get_item_based_on_difficulty(_ingredients: Array) -> Item:
 	#
 	#return _ingredients[idx]
 
+
 func add_usable_ingredient():
 	var item : Ingredient = random_unused_ingredient()
 	if item:
 		usable_ingredients.append(item)
 		ingredient_pool_size += 1
 
+
 func add_usable_utility():
 	var item : Item = random_unused_utility()
 	if item:
 		usable_utility_items.append(item)
 		utility_pool_size += 1
-	
+
+
 func swap_usable_ingredient() -> void:
 	if usable_ingredients.size() == 0:
 		return
@@ -130,7 +136,8 @@ func swap_usable_ingredient() -> void:
 	var item : Ingredient = random_unused_ingredient()
 	if item:
 		usable_ingredients[swap_index] = item
-				
+
+
 func swap_utility_item() -> void:
 	if usable_utility_items.size() == 0:
 		return
@@ -139,34 +146,40 @@ func swap_utility_item() -> void:
 	if item:
 		usable_utility_items[swap_index] = item
 
+
 func random_unused_ingredient() -> Ingredient:
 	var possible : Array = get_unused_items(usable_ingredients, ingredients)
 	if possible.size() == 0:
 		return null
 	return get_item_based_on_difficulty(possible)
 
+
 func random_unused_utility() -> Item:
 	var possible : Array = get_unused_items(usable_utility_items, utility_items)
 	if possible.size() == 0:
 		return null
 	return get_item_based_on_difficulty(possible)
-	
+
+
 func get_unused_items(usable: Array, all: Array) -> Array:
 	var unused : Array = []
 	for item in all:
 		if not usable.has(item):
 			unused.append(item)
 	return unused
-	
 
-func get_usable_items() -> Array:
-	return usable_ingredients + usable_utility_items
 
 #higher chance of returning ingredient
 func get_random_usable_item_weighted() -> Item:
-		
+	var _usable_ingredients: Array[Ingredient] = usable_ingredients.duplicate()
+	var ingredients_name: Array = _usable_ingredients.map(func(x: Ingredient): return x.item_name)
+
+	for ingredient_name: String in recipe:
+		if not ingredients_name.has(ingredient_name):
+			_usable_ingredients.append(name_to_item[ingredient_name])
+
 	if randf() >= utility_chance or usable_utility_items.size() == 0:
-		return usable_ingredients.pick_random()
+		return _usable_ingredients.pick_random()
 	else:
 		return usable_utility_items.pick_random()
 	
@@ -213,6 +226,7 @@ func collect_ingredient(ingredient_name: String) -> void:
 			check_potion()
 			return
 	
+	sprite.animation = "Smoke"
 	lose_life()
 
 
@@ -236,10 +250,15 @@ func lose_life():
 
 
 func game_over():
+	if sprite.animation != "Idle":
+		await sprite.animation_looped
+
 	on_game_over.emit(score)
+
 
 func _on_cat_no_platform() -> void:
 	game_over()
+
 
 func increase_difficulty():
 	difficulty += 1
@@ -259,3 +278,7 @@ func get_ingredient_pool_size() -> int:
 
 func get_utility_pool_size() -> int:
 	return min(utility_items.size(), starting_utility_pool_size + floor(float(difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))
+
+
+func _on_sprite_animation_looped() -> void:
+	sprite.animation = "Idle"
