@@ -4,9 +4,15 @@ signal no_platform
 
 const PLATFORM_MARGIN = 16
 
+@export var tween_time := 0.1
+
 @onready var rect: Rect2 = $CollisionShape.shape.get_rect()
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var turn_sound: AudioStreamPlayer = $TurnSound
+
+@onready var sprite: AnimatedSprite2D = $Sprite
+
+var tween
 
 
 func can_cat_be_on_platform(platform: Area2D) -> bool:
@@ -36,13 +42,36 @@ func can_go_down() -> bool:
 
 
 func _input(event: InputEvent) -> void:
+	if tween:
+		return
+		
 	if event.is_action_pressed("up") and can_go_up():
-		position.y -= PLATFORM_MARGIN
-		jump_sound.play()
+		move_platforms(-1)
 	elif event.is_action_pressed("down") and can_go_down():
-		position.y += PLATFORM_MARGIN
-		jump_sound.play()
+		move_platforms(1)
+		
 
+func move_platforms(direction: int):
+	
+	if direction < 0:
+		position.y -= PLATFORM_MARGIN
+		sprite.position.y += PLATFORM_MARGIN
+		sprite.play("up")
+	else:
+		position.y += PLATFORM_MARGIN
+		sprite.position.y -= PLATFORM_MARGIN
+		sprite.play("down")
+	
+	
+	jump_sound.play()
+	tween = get_tree().create_tween()
+	tween.tween_property(sprite, "global_position:y", global_position.y, tween_time)
+	tween.tween_callback(tween_finished)
+
+func tween_finished():
+	sprite.position = Vector2.ZERO
+	tween = null
+	sprite.play("run")
 
 
 func _on_back_and_forth_effect_no_platform() -> void:
@@ -53,3 +82,4 @@ func _on_back_and_forth_effect_no_platform() -> void:
 func _on_back_and_forth_effect_turn() -> void:
 	if not turn_sound.playing:
 		turn_sound.play()
+

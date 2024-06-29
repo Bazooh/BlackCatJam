@@ -52,9 +52,11 @@ shape = SubResource("CircleShape2D_y8ipe")
 script = ExtResource("3_c6352")
 trigger = 3
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_bxmye")
-autoplay = "default"
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.800614
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_vv5b5")
