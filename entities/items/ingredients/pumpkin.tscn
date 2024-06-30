@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://entities/items/effects/drop_all.gd" id="3_50o6x"]
 [ext_resource type="AudioStream" uid="uid://hcshket606ey" path="res://audio/Hard_Knock.wav" id="3_qf067"]
 [ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="4_6dnxv"]
-[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="5_yr3ia"]
+[ext_resource type="AudioStream" uid="uid://1ihhde2mx8py" path="res://audio/Bomb_Explode.wav" id="6_li6ig"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p4w1m"]
 atlas = ExtResource("2_jfo25")
@@ -31,4 +31,4 @@ stream = ExtResource("3_qf067")
 stream = ExtResource("4_6dnxv")
 
 [node name="TouchGroundSound" parent="." index="6"]
-stream = ExtResource("5_yr3ia")
+stream = ExtResource("6_li6ig")
