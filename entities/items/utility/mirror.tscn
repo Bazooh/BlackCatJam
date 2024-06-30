@@ -7,6 +7,7 @@
 
 [node name="Mirror" instance=ExtResource("1_ryv5l")]
 item_name = "Mirror"
+difficulty = 3
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(2.08165e-12, -0.5)

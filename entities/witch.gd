@@ -1,9 +1,14 @@
 class_name Witch extends Area2D
 
+
 signal on_recipe_update(recipe: Array[Ingredient], collected: Array[bool], next_recipe: Array[Ingredient])
 signal on_lives_update(lives: int)
 signal on_score_update(score: int)
 signal on_game_over(score: int)
+
+
+const n_ingredients: int = 3
+
 
 @export var speed: float = 100.0
 @export var stuck_speed: float = 25.0
@@ -214,7 +219,7 @@ func _process(delta: float) -> void:
 
 func create_recipe() -> Array[String]:
 	var _recipe: Array[String] = []
-	for i in range(3):
+	for i in range(n_ingredients):
 		var random_ingredient: String = usable_ingredients.pick_random().item_name
 		_recipe.append(random_ingredient)
 	return _recipe
@@ -249,7 +254,6 @@ func collect_ingredient(ingredient_name: String) -> void:
 	effect_sprite.play()
 	wrong_sound.play()
 	lose_life()
-	
 
 
 func check_potion() -> void:
@@ -263,7 +267,7 @@ func check_potion() -> void:
 	on_score_update.emit(score)
 	increase_difficulty()
 	update_recipe()
-			
+
 
 func lose_life() -> void:
 	lives -= 1
