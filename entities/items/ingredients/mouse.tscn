@@ -16,6 +16,7 @@ radius = 2.0
 
 [node name="Mouse" instance=ExtResource("1_i1hv1")]
 shuffle_difficulty = true
+ingredient_texture = null
 item_name = "Mouse"
 difficulty = 9
 
@@ -29,16 +30,22 @@ flip_h = true
 position = Vector2(10, 8)
 shape = SubResource("CircleShape2D_pldlf")
 
+[node name="CheckHolesBehind" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHolesBehind" index="0"]
+position = Vector2(-10, 8)
+shape = SubResource("CircleShape2D_pldlf")
+
 [node name="BackAndForthEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_04c8r")
 random_direction = true
 trigger = 3
 
-[node name="TouchCatSound" parent="." index="5"]
+[node name="TouchCatSound" parent="." index="6"]
 stream = ExtResource("4_o7rv4")
 
-[node name="TouchWitchSound" parent="." index="6"]
+[node name="TouchWitchSound" parent="." index="7"]
 stream = ExtResource("5_cdhuw")
 
-[node name="TouchGroundSound" parent="." index="7"]
+[node name="TouchGroundSound" parent="." index="8"]
 stream = ExtResource("6_jbnfl")

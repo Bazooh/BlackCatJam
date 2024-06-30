@@ -23,6 +23,15 @@ func _ready():
 			next_ingredients.append(child as TextureRect)
 
 
+func get_item_texture(item_name: String) -> Texture:
+	var item = Game.witch.name_to_item[item_name]
+
+	if item is Ingredient and item.ingredient_texture != null:
+		return item.ingredient_texture
+	
+	return item.get_node("Sprite").texture
+
+
 func update_ui(recipe: Array[String], collected: Array[bool], next_recipe: Array[String]):
 	if not is_node_ready():
 		await ready
@@ -31,12 +40,12 @@ func update_ui(recipe: Array[String], collected: Array[bool], next_recipe: Array
 		return
 	
 	for i in range(ingredients.size()):
-		ingredients[i].texture.region = Game.witch.name_to_item[recipe[i]].get_node("Sprite").texture.region
+		ingredients[i].texture.region = get_item_texture(recipe[i]).region
 
 		if collected[i]:
 			ingredients[i].texture.region.position.x = ingredients[i].texture.region.size.x
 		
-		next_ingredients[i].texture.region = Game.witch.name_to_item[next_recipe[i]].get_node("Sprite").texture.region
+		next_ingredients[i].texture.region = get_item_texture(next_recipe[i]).region
 		next_ingredients[i].texture.region.position.x = next_ingredients[i].texture.region.size.x * 2
 
 		# var recipe_texture = ingredients[i].texture as AtlasTexture

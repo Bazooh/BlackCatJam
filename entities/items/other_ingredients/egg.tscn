@@ -8,10 +8,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_jf0gt")
-region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+region = Rect2(2.08165e-12, 96, 16, 16)
 
 [node name="Egg" instance=ExtResource("1_5dr38")]
 shuffle_difficulty = true
+ingredient_texture = null
 item_name = "Egg"
 
 [node name="Sprite" parent="." index="0"]

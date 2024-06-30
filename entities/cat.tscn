@@ -32,6 +32,12 @@ shape = SubResource("RectangleShape2D_xvb2g")
 position = Vector2(11, 8)
 shape = SubResource("CircleShape2D_y8ipe")
 
+[node name="CheckHolesBehind" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckHolesBehind"]
+position = Vector2(-11, 8)
+shape = SubResource("CircleShape2D_y8ipe")
+
 [node name="CheckHolesUp" type="Area2D" parent="."]
 position = Vector2(2.08165e-12, -16)
 
@@ -64,8 +70,5 @@ stream = ExtResource("5_vv5b5")
 [node name="TurnSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_i14y0")
 
-[connection signal="area_exited" from="CheckHoles" to="." method="_on_check_holes_area_exited"]
-[connection signal="area_exited" from="CheckHolesUp" to="." method="_on_check_holes_area_exited"]
-[connection signal="area_exited" from="CheckHolesDown" to="." method="_on_check_holes_area_exited"]
 [connection signal="no_platform" from="Effects/BackAndForthEffect" to="." method="_on_back_and_forth_effect_no_platform"]
 [connection signal="turn" from="Effects/BackAndForthEffect" to="." method="_on_back_and_forth_effect_turn"]
