@@ -15,7 +15,7 @@ func _activate(_triggerer) -> void:
 			if drop.is_dropping:
 				invalid_items.append(_item)
 				continue
-
+		
 		items_node.append(_item)
 	
 	Game.level_generator.items_node = invalid_items

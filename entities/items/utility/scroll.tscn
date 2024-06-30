@@ -7,6 +7,7 @@
 
 [node name="Scroll" instance=ExtResource("1_l6263")]
 item_name = "Scroll"
+difficulty = 3
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(2.08165e-12, -0.5)

@@ -1,6 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://nalu1nrl7o5b"]
 
-[ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/temp/temp_BG.png" id="2_3ca08"]
+[ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/BG/BG.png" id="1_lhha4"]
+[ext_resource type="Script" path="res://level/level.gd" id="1_qepe3"]
 [ext_resource type="PackedScene" uid="uid://cb2hdwexp722o" path="res://entities/witch.tscn" id="2_b1rdj"]
 [ext_resource type="PackedScene" uid="uid://ddybujrdaso0e" path="res://entities/cat.tscn" id="2_xf2dh"]
 [ext_resource type="PackedScene" uid="uid://clkdw6j2unffi" path="res://level/level_generator.tscn" id="4_3e6vs"]
@@ -10,23 +11,23 @@
 [ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
 [ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
 [ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
-[ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_35htm"]
 [ext_resource type="Script" path="res://level/Background.gd" id="12_dk6bs"]
 [ext_resource type="AudioStream" uid="uid://cobobw4h561r7" path="res://audio/BGM.mp3" id="13_2201o"]
 [ext_resource type="Script" path="res://level/BGM.gd" id="14_c75go"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_qepe3")
 
 [node name="BG" type="Sprite2D" parent="."]
 z_index = -50
-texture = ExtResource("2_3ca08")
+texture = ExtResource("1_lhha4")
 centered = false
 
 [node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
 position = Vector2(42, 56)
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
-position = Vector2(106, 129)
+position = Vector2(27, 125)
 speed = 150.0
 stuck_speed = 30.0
 utility_pool_increase_interval = 6
@@ -85,12 +86,10 @@ z_index = -10
 script = ExtResource("12_dk6bs")
 decor_folder = "wall"
 
-[node name="BGM Intro" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_35htm")
-autoplay = true
-
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_2201o")
+volume_db = -5.49
+autoplay = true
 script = ExtResource("14_c75go")
 
 [connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
@@ -98,4 +97,3 @@ script = ExtResource("14_c75go")
 [connection signal="on_lives_update" from="Witch" to="UI/Lives" method="_on_witch_on_lives_update"]
 [connection signal="on_recipe_update" from="Witch" to="UI/Recipe" method="_on_witch_on_recipe_update"]
 [connection signal="on_score_update" from="Witch" to="UI/Score" method="_on_witch_on_score_update"]
-[connection signal="finished" from="BGM Intro" to="BGM" method="_on_bgm_intro_finished"]
