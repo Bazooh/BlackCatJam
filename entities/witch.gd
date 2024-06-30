@@ -206,7 +206,7 @@ func _ready():
 	on_score_update.emit(score)
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	var move_speed := stuck_speed if stuck else speed
 	position.x += move_speed * delta * Input.get_axis("left", "right")
 	position.x = clamp(position.x, min_x, max_x)
@@ -220,7 +220,7 @@ func create_recipe() -> Array[String]:
 	return _recipe
 
 
-func update_recipe():
+func update_recipe() -> void:
 	recipe = next_recipe
 	next_recipe = create_recipe()
 	collected = [false, false, false]
@@ -252,7 +252,7 @@ func collect_ingredient(ingredient_name: String) -> void:
 	
 
 
-func check_potion():
+func check_potion() -> void:
 	for check in collected:
 		if not check:
 			on_recipe_update.emit(recipe, collected, next_recipe)
@@ -265,7 +265,7 @@ func check_potion():
 	update_recipe()
 			
 
-func lose_life():
+func lose_life() -> void:
 	lives -= 1
 	on_lives_update.emit(lives)
 	hurt_sound.play()
@@ -273,7 +273,7 @@ func lose_life():
 		game_over()
 
 
-func game_over():
+func game_over() -> void:
 
 	lose_sound.play()
 	on_game_over.emit(score)
@@ -283,7 +283,7 @@ func _on_cat_no_platform() -> void:
 	game_over()
 
 
-func increase_difficulty():
+func increase_difficulty() -> void:
 	difficulty += 1
 	
 	if get_ingredient_pool_size() > ingredient_pool_size:
@@ -296,8 +296,10 @@ func increase_difficulty():
 	elif difficulty % utility_swap_rate == 0:
 		swap_utility_item()
 
+
 func get_ingredient_pool_size() -> int:
 	return min(ingredients.size(), starting_ingredient_pool_size + floor(float(difficulty + ingredient_pool_increase_offset) / ingredient_pool_increase_interval))
+
 
 func get_utility_pool_size() -> int:
 	return min(utility_items.size(), starting_utility_pool_size + floor(float(difficulty + utility_pool_increase_offset) / utility_pool_increase_interval))

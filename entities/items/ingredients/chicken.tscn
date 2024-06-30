@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://1mjdfip73fhq"]
+
+[ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5ymu7"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_35a7h"]
+[ext_resource type="Script" path="res://entities/items/effects/egg.gd" id="3_n1s02"]
+[ext_resource type="AudioStream" uid="uid://b3ltmhqaqkw2v" path="res://audio/Toad_Jump.wav" id="4_f5tmj"]
+[ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="5_0vcdu"]
+[ext_resource type="AudioStream" uid="uid://ckm2em764jh4j" path="res://audio/Toad_Hit.wav" id="6_xx1be"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
+atlas = ExtResource("2_35a7h")
+region = Rect2(2.08165e-12, 64, 16, 16)
+
+[node name="Chicken" instance=ExtResource("1_5ymu7")]
+shuffle_difficulty = true
+item_name = "Egg"
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource("AtlasTexture_i0cjt")
+flip_h = true
+
+[node name="Drop" parent="Effects" index="0"]
+trigger = 4
+
+[node name="IngredientEffect" parent="Effects" index="1"]
+trigger = 4
+
+[node name="Animation" parent="Effects" index="2"]
+trigger = 4
+
+[node name="EggEffect" type="Node" parent="Effects" index="3"]
+script = ExtResource("3_n1s02")
+once = false
+
+[node name="AnimationPlayer" parent="." index="3"]
+active = false
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("4_f5tmj")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("5_0vcdu")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("6_xx1be")

@@ -1,7 +1,7 @@
 class_name Effect extends Node
 
 
-enum Trigger { Cat, Witch, Ground, Start }
+enum Trigger { Cat, Witch, Ground, Start, None }
 
 
 @export var once: bool = true
