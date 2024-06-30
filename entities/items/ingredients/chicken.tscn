@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1mjdfip73fhq"]
+[gd_scene load_steps=9 format=3 uid="uid://cytnid57wfoxx"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5ymu7"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_35a7h"]
@@ -16,6 +16,7 @@ atlas = ExtResource("2_35a7h")
 region = Rect2(2.08165e-12, 112, 16, 16)
 
 [node name="Chicken" instance=ExtResource("1_5ymu7")]
+shuffle_difficulty = true
 ingredient_texture = SubResource("AtlasTexture_q2hq5")
 item_name = "Egg"
 difficulty = 15
@@ -24,6 +25,7 @@ difficulty = 15
 texture = SubResource("AtlasTexture_i0cjt")
 
 [node name="Drop" parent="Effects" index="0"]
+enabled = false
 trigger = 4
 
 [node name="IngredientEffect" parent="Effects" index="1"]

@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://8qk3tqcpc17v"]
+[gd_scene load_steps=6 format=3 uid="uid://8qk3tqcpc17v"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5dr38"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_jf0gt"]
-[ext_resource type="AudioStream" uid="uid://b3ltmhqaqkw2v" path="res://audio/Toad_Jump.wav" id="3_7lb6e"]
+[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="4_g686g"]
 [ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="4_ktkek"]
-[ext_resource type="AudioStream" uid="uid://ckm2em764jh4j" path="res://audio/Toad_Hit.wav" id="5_owfil"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_jf0gt")
-region = Rect2(2.08165e-12, 96, 16, 16)
+region = Rect2(0, 96, 16, 16)
 
 [node name="Egg" instance=ExtResource("1_5dr38")]
-shuffle_difficulty = true
 ingredient_texture = null
 item_name = "Egg"
 
@@ -22,17 +20,11 @@ flip_h = true
 [node name="Drop" parent="Effects" index="0"]
 trigger = 3
 
-[node name="Animation" parent="Effects" index="2"]
-trigger = 4
-
 [node name="AnimationPlayer" parent="." index="3"]
 active = false
-
-[node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("3_7lb6e")
 
 [node name="TouchWitchSound" parent="." index="5"]
 stream = ExtResource("4_ktkek")
 
 [node name="TouchGroundSound" parent="." index="6"]
-stream = ExtResource("5_owfil")
+stream = ExtResource("4_g686g")
