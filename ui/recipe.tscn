@@ -33,22 +33,13 @@ region = Rect2(32, 0, 16, 16)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -45.0
-offset_right = 45.0
+offset_left = -63.0
+offset_right = 27.0
 offset_bottom = 20.0
 grow_horizontal = 2
 texture = ExtResource("1_dubag")
 stretch_mode = 2
 script = ExtResource("2_cmdqx")
-
-[node name="Next" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 54.0
-offset_top = 18.0
-offset_right = 94.0
-offset_bottom = 58.0
-texture = ExtResource("3_8cn6h")
-stretch_mode = 2
 
 [node name="Ingredients" type="HBoxContainer" parent="."]
 layout_direction = 2
@@ -73,13 +64,21 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_4yo3m")
 stretch_mode = 2
 
+[node name="Next" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_right = 129.0
+offset_bottom = 40.0
+texture = ExtResource("3_8cn6h")
+stretch_mode = 2
+
 [node name="NextIngredients" type="HBoxContainer" parent="."]
 layout_direction = 2
 layout_mode = 0
-offset_left = 53.0
-offset_top = 15.0
-offset_right = 87.0
-offset_bottom = 31.0
+offset_left = 87.0
+offset_top = -4.0
+offset_right = 121.0
+offset_bottom = 12.0
 theme_override_constants/separation = -7
 
 [node name="Ingredient1" type="TextureRect" parent="NextIngredients"]

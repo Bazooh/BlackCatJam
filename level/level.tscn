@@ -24,7 +24,7 @@ texture = ExtResource("1_lhha4")
 centered = false
 
 [node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
-position = Vector2(42, 56)
+position = Vector2(42, 48)
 
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
 position = Vector2(27, 125)
@@ -38,6 +38,7 @@ utility_pool_increase_offset = 2
 intro_length = 5
 start_speed = 25.0
 speed_increase_per_difficulty = 2.0
+grid_y_offset = 40
 witch = NodePath("../Witch")
 
 [node name="UI" type="Control" parent="."]

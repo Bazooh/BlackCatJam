@@ -20,9 +20,6 @@ difficulty = 18
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p4w1m")
 
-[node name="Drop" parent="Effects" index="0"]
-gravity = 2000.0
-
 [node name="DropAllEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_50o6x")
 trigger = 2

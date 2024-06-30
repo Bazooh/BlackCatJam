@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ut8s5fdpyq2j" path="res://audio/Turn.wav" id="6_i14y0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
-size = Vector2(18, 10)
+size = Vector2(10.6667, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y8ipe"]
 radius = 2.0
@@ -24,6 +24,7 @@ texture = ExtResource("2_ab1a4")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(3.66667, 0)
 shape = SubResource("RectangleShape2D_xvb2g")
 
 [node name="CheckHoles" type="Area2D" parent="."]
