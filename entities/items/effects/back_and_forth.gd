@@ -12,8 +12,8 @@ const max_x: float = edge_x - size / 2
 
 
 var is_moving: bool = false
+var is_turning: bool = false
 @export var speed: float = 100.0
-@export var direction: int = 1
 @export var random_direction := false
 
 var check_holes: Area2D
@@ -25,22 +25,28 @@ func _ready() -> void:
 
 
 func change_direction():
-	direction *= -1
-	entity.scale.x = direction
+	entity.scale.x = -entity.scale.x
+	is_turning = true
 	turn.emit()
+
+	await get_tree().create_timer(0.1).timeout
+
+	if not has_platform_below():
+		print("signal no platform")
+		no_platform.emit()
+		queue_free()
+
+	is_turning = false
 
 
 func has_platform_below() -> bool:
-	for area: Area2D in check_holes.get_overlapping_areas():
-		if area.is_in_group("Platform"):
-			return true
-	return false
+	return check_holes.get_overlapping_areas().any(func(area: Area2D): return area.is_in_group("Platform"))
 
 
 func is_hitting_edge() -> bool:
 	return \
-		(entity.global_position.x < min_x and direction == -1) or \
-		(entity.global_position.x > max_x and direction == 1)
+		(entity.global_position.x < min_x and entity.scale.x < 0) or \
+		(entity.global_position.x > max_x and entity.scale.x > 0)
 
 
 func _activate(_triggerer) -> void:
@@ -53,15 +59,13 @@ func _activate(_triggerer) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_moving:
-		entity.position.x += speed * delta * direction
+		entity.position.x += speed * delta * sign(entity.scale.x)
+
+		if is_turning:
+			return
 
 		if not has_platform_below() or is_hitting_edge():
 			change_direction()
-
-			await get_tree().create_timer(2 * delta).timeout
-			if not has_platform_below():
-				no_platform.emit()
-				queue_free()
 
 
 func _get_configuration_warnings() -> PackedStringArray:
