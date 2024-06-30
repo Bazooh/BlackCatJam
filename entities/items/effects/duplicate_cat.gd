@@ -23,3 +23,5 @@ func _activate(cat) -> void:
 	
 	new_cat.get_node("Effects/BackAndForthEffect").change_direction()
 	
+	(entity as Item).destroy()
+	

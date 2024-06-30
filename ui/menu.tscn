@@ -30,13 +30,13 @@ texture = SubResource("GradientTexture2D_l8xe2")
 
 [node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 30.0
-offset_right = 181.0
-offset_bottom = 53.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 230.0
+offset_bottom = 55.0
 theme_override_fonts/font = ExtResource("2_38wgt")
 theme_override_font_sizes/font_size = 19
-text = "Title Screen"
+text = "Cauldron Cat-astrophe"
 horizontal_alignment = 1
 vertical_alignment = 1
 

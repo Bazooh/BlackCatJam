@@ -20,9 +20,15 @@ difficulty = 18
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p4w1m")
 
+[node name="Drop" parent="Effects" index="0"]
+gravity = 2000.0
+
 [node name="DropAllEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_50o6x")
 trigger = 2
+
+[node name="AnimationPlayer" parent="." index="3"]
+active = false
 
 [node name="TouchCatSound" parent="." index="4"]
 stream = ExtResource("3_qf067")
