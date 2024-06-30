@@ -17,5 +17,9 @@ func _activate(cat) -> void:
 
 	new_cat.global_position = cat.global_position
 	new_cat.get_node("Sprite").position = Vector2.ZERO
+
+	if new_cat.no_platform.is_connected(Game.witch._on_cat_no_platform):
+		new_cat.no_platform.disconnect(Game.witch._on_cat_no_platform)
+	
 	new_cat.get_node("Effects/BackAndForthEffect").change_direction()
 	
