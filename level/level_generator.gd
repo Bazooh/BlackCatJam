@@ -114,6 +114,8 @@ func generate_chunk_grid(path_start_height: int) -> Array:
 
 
 func get_random_item() -> Item:
+	return witch.utility_items.filter(func(item: Item): return item.item_name == "Mirror")[0].duplicate()
+
 	for ingredient_name: String in witch.recipe:
 		var is_in_screen: bool = false
 		for item in items_node:

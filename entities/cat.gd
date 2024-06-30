@@ -57,14 +57,13 @@ func _input(event: InputEvent) -> void:
 		
 
 func move_platforms(direction: int):
-	
 	position.y += PLATFORM_MARGIN * sign(direction)
 	sprite.position.y -= PLATFORM_MARGIN * sign(direction)
 
 	sprite.play("up" if direction < 0 else "down")
 	
 	jump_sound.play()
-	tween = get_tree().create_tween()
+	tween = create_tween()
 	tween.tween_property(sprite, "global_position:y", global_position.y, tween_time)
 	tween.tween_callback(tween_finished)
 

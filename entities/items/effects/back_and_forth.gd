@@ -27,11 +27,6 @@ func _ready() -> void:
 
 func change_direction():
 	entity.scale.x = -entity.scale.x
-
-	if not has_platform_behind():
-		print("signal no platform")
-		no_platform.emit()
-		queue_free()
 	
 	turn.emit()
 
@@ -64,3 +59,8 @@ func _physics_process(delta: float) -> void:
 
 		if not has_platform_below() or is_hitting_edge():
 			change_direction()
+
+			if not has_platform_behind():
+				print("signal no platform")
+				no_platform.emit()
+				queue_free()
