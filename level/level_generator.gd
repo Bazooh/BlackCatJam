@@ -129,6 +129,16 @@ func get_random_item() -> Item:
 
 func generate_chunk(idx: int) -> void:
 	var chunk_grid: Array = generate_chunk_grid(1 if idx == 0 else chunk_path_end_height[idx - 1])
+
+	if idx != 0:
+		for y in range(height):
+			if grid[idx * chunk_length - 1][y] and not chunk_grid[0][y] and (y == 0 or not grid[idx * chunk_length - 1][y - 1]) and (y == height - 1 or not grid[idx * chunk_length - 1][y + 1]):
+				chunk_grid[0][y] = true
+
+	for y in range(height):
+		for x in range(chunk_length - 1):
+			if chunk_grid[x][y] and not chunk_grid[x + 1][y] and (y == 0 or not chunk_grid[x][y - 1]) and (y == height - 1 or not chunk_grid[x][y + 1]):
+				chunk_grid[x + 1][y] = true
 	
 	for x in range(chunk_length):
 		for y in range(height):
