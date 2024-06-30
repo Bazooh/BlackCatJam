@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjnu70dvbb8oe"]
+
+[ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_fgjej"]
+[ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_jfo25"]
+[ext_resource type="Script" path="res://entities/items/effects/drop_all.gd" id="3_50o6x"]
+[ext_resource type="AudioStream" uid="uid://hcshket606ey" path="res://audio/Hard_Knock.wav" id="3_qf067"]
+[ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="4_6dnxv"]
+[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="5_yr3ia"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4w1m"]
+atlas = ExtResource("2_jfo25")
+region = Rect2(0.206, 128, 16, 16)
+
+[node name="Pumpkin" instance=ExtResource("1_fgjej")]
+ingredient_texture = null
+item_name = "Pumpkin"
+difficulty = 15
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource("AtlasTexture_p4w1m")
+
+[node name="DropAllEffect" type="Node" parent="Effects" index="3"]
+script = ExtResource("3_50o6x")
+trigger = 2
+
+[node name="TouchCatSound" parent="." index="4"]
+stream = ExtResource("3_qf067")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("4_6dnxv")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("5_yr3ia")

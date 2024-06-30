@@ -15,6 +15,11 @@ const PLATFORM_MARGIN = 16
 var tween
 
 
+func _ready() -> void:
+	if Game.cat == null:
+		Game.cat = self
+
+
 func can_cat_be_on_platform(platform: Area2D) -> bool:
 	var platform_rect: Rect2 = platform.get_child(0).shape.get_rect()
 

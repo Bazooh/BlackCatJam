@@ -18,6 +18,7 @@ region = Rect2(2.08165e-12, 112, 16, 16)
 [node name="Chicken" instance=ExtResource("1_5ymu7")]
 ingredient_texture = SubResource("AtlasTexture_q2hq5")
 item_name = "Egg"
+difficulty = 15
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
