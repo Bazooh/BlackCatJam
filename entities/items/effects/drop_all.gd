@@ -6,12 +6,10 @@ func _activate(_entity) -> void:
 		if not is_instance_valid(item) or item == entity:
 			continue
 			
-		if item.has_node("Effects/Drop"):
+		if item.has_node("Effects/Drop") and item.item_name != "Pumpkin":
 			var drop: Drop = item.get_node("Effects/Drop")
-			if (not drop.enabled) or drop.is_dropping:
+			if drop.is_dropping or not drop.enabled:
 				continue
-			if randf() > 0.5:
+			
+			if randf() > 0.7:
 				item.area_entered.emit(Game.cat)
-		
-		
-		

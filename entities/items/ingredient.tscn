@@ -7,6 +7,7 @@
 [node name="Ingredient" instance=ExtResource("1_ddl0e")]
 script = ExtResource("2_k4oml")
 shuffle_difficulty = false
+ingredient_texture = null
 
 [node name="IngredientEffect" type="Node" parent="Effects" index="1"]
 script = ExtResource("2_lj002")
