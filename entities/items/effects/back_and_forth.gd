@@ -54,6 +54,11 @@ func _activate(_triggerer) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	if not Game.level_generator.is_node_ready:
+		await Game.level_generator.ready
+	
+		
 	if is_moving:
 		entity.position.x += speed * delta * sign(entity.scale.x)
 

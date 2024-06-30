@@ -1,21 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://r7xmcow5xxvl"]
+[gd_scene load_steps=6 format=3 uid="uid://do4qa16wnfhh2"]
 
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_vfur7"]
-[ext_resource type="Texture2D" uid="uid://lfk8g4q0kwfo" path="res://art/items/Wand.png" id="2_m8171"]
+[ext_resource type="Texture2D" uid="uid://ufg7esdb230p" path="res://art/items/Books.png" id="2_fvau1"]
 [ext_resource type="Script" path="res://entities/items/effects/change_direction.gd" id="3_4386o"]
-[ext_resource type="AudioStream" uid="uid://cnkbvkvpjsshf" path="res://audio/Wand.wav" id="4_r8qvp"]
+[ext_resource type="AudioStream" uid="uid://dvnojfvjammib" path="res://audio/Soft_Knock.wav" id="4_0k61w"]
+[ext_resource type="Script" path="res://entities/items/effects/wrong_ingredient_effect.gd" id="4_c8bnn"]
 
 [node name="Book" instance=ExtResource("1_vfur7")]
 item_name = "Book"
-difficulty = 2
+difficulty = 1
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(2.08165e-12, -0.5)
 scale = Vector2(0.82, 1)
-texture = ExtResource("2_m8171")
+texture = ExtResource("2_fvau1")
 
 [node name="ChangeDirectionEffect" type="Node" parent="Effects" index="2"]
 script = ExtResource("3_4386o")
 
+[node name="WrongIngredientEffect" type="Node" parent="Effects" index="3"]
+script = ExtResource("4_c8bnn")
+trigger = 1
+
+[node name="AnimationPlayer" parent="." index="3"]
+active = false
+
 [node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("4_r8qvp")
+stream = ExtResource("4_0k61w")

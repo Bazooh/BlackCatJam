@@ -1,7 +1,7 @@
 class_name LevelGenerator extends Node2D
 
 
-const platform_node = preload("res://level/Platform.tscn")
+const platform_node = preload("res://level/platform.tscn")
 const directions = [Vector2i(0, 1), Vector2i(0, -1), Vector2i(1, 0), Vector2i(-1, 0)]
 
 const item_y_offset = -8

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ct7hd11xxxvb8"]
+
+[ext_resource type="Script" path="res://ui/fade.gd" id="1_gxo8d"]
+
+[node name="Fade" type="CanvasModulate"]
+script = ExtResource("1_gxo8d")

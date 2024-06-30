@@ -18,7 +18,7 @@ var spawn_x: float = 0.0
 func _ready():
 	var folder := "res://level/decor/" + decor_folder + "/"
 	for file in DirAccess.get_files_at(folder):
-		var decor: PackedScene = load(folder + file)
+		var decor: PackedScene = load(folder + file.trim_suffix(".remap"))
 		possible_decor.append(decor)
 	
 	generate_decor(0.0)

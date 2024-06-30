@@ -24,6 +24,9 @@ texture = SubResource("AtlasTexture_p4w1m")
 script = ExtResource("3_50o6x")
 trigger = 2
 
+[node name="AnimationPlayer" parent="." index="3"]
+active = false
+
 [node name="TouchCatSound" parent="." index="4"]
 stream = ExtResource("3_qf067")
 

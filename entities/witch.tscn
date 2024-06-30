@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bbebnpomqlmd7" path="res://audio/Lose.wav" id="7_33774"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bffv"]
-size = Vector2(32, 9)
+size = Vector2(26, 9)
 
 [sub_resource type="Gradient" id="Gradient_53hvq"]
 colors = PackedColorArray(0.219608, 0, 0.54902, 0.0784314, 0.611765, 0.682353, 0.105882, 0.156863)
@@ -209,6 +209,7 @@ shape = SubResource("RectangleShape2D_6bffv")
 
 [node name="Guide" type="Sprite2D" parent="."]
 position = Vector2(0, -78)
+scale = Vector2(0.8125, 1)
 texture = SubResource("GradientTexture2D_8pdwv")
 
 [node name="Line2D" type="Line2D" parent="."]

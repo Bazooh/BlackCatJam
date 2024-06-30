@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://berpoqoaqqapv"]
+[gd_scene load_steps=5 format=3 uid="uid://f6yhn0xa1no3"]
 
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_l6263"]
-[ext_resource type="Texture2D" uid="uid://lfk8g4q0kwfo" path="res://art/items/Wand.png" id="2_h1k6s"]
+[ext_resource type="Texture2D" uid="uid://dn1sg4jdepcbh" path="res://art/items/Scroll.png" id="2_rwqik"]
 [ext_resource type="Script" path="res://entities/items/effects/change_recipes.gd" id="3_ign5u"]
 [ext_resource type="AudioStream" uid="uid://cnkbvkvpjsshf" path="res://audio/Wand.wav" id="4_4rbdj"]
 
@@ -12,7 +12,10 @@ difficulty = 3
 [node name="Sprite" parent="." index="0"]
 position = Vector2(2.08165e-12, -0.5)
 scale = Vector2(0.82, 1)
-texture = ExtResource("2_h1k6s")
+texture = ExtResource("2_rwqik")
+
+[node name="Drop" parent="Effects" index="0"]
+enabled = false
 
 [node name="ChangeRecipesEffect" type="Node" parent="Effects" index="2"]
 script = ExtResource("3_ign5u")

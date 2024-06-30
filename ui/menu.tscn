@@ -1,14 +1,113 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh7ervofhoxy6"]
+[gd_scene load_steps=24 format=3 uid="uid://dh7ervofhoxy6"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_gj4qp"]
 [ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="2_38wgt"]
+[ext_resource type="Texture2D" uid="uid://dwpr50xs1m627" path="res://art/BG/Menu.png" id="2_walxf"]
+[ext_resource type="Texture2D" uid="uid://c0xl450mow3u2" path="res://art/cat/Cat_Run.png" id="4_ck20e"]
+[ext_resource type="Script" path="res://ui/menu_cat.gd" id="4_hbt2k"]
+[ext_resource type="Texture2D" uid="uid://3rvh22il7eac" path="res://art/cat/Cat_Sleep.png" id="5_4tdbc"]
+[ext_resource type="Texture2D" uid="uid://b27ks61qqwo4c" path="res://art/cat/Cat.png" id="6_5ej06"]
+[ext_resource type="Texture2D" uid="uid://o1new8tyyjto" path="res://art/witch/Witch_Asleep.png" id="7_ljq8j"]
+[ext_resource type="Texture2D" uid="uid://bblfijax4ib7s" path="res://art/witch/Witch_Awake.png" id="8_3bt7s"]
+[ext_resource type="Script" path="res://ui/menu_witch.gd" id="8_bh0ue"]
+[ext_resource type="Script" path="res://ui/menu_camera.gd" id="11_v5lux"]
+[ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_achmj"]
 
 [sub_resource type="Gradient" id="Gradient_qk3cb"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.270588, 0.156863, 0.235294, 1)
+colors = PackedColorArray(0.270588, 0.156863, 0.235294, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_l8xe2"]
 gradient = SubResource("Gradient_qk3cb")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydftl"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(93, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo4s8"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(124, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvgko"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(155, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o432h"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(0, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkg4x"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(31, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d810m"]
+atlas = ExtResource("4_ck20e")
+region = Rect2(62, 0, 31, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmby3"]
+atlas = ExtResource("6_5ej06")
+region = Rect2(0, 0, 31, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ta1s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydftl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo4s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvgko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o432h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkg4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d810m")
+}],
+"loop": true,
+"name": &"run",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4tdbc")
+}],
+"loop": false,
+"name": &"sleep",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmby3")
+}],
+"loop": true,
+"name": &"start",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b6f18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ljq8j")
+}],
+"loop": false,
+"name": &"sleep",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3bt7s")
+}],
+"loop": false,
+"name": &"start",
+"speed": 5.0
+}]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -19,7 +118,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gj4qp")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
+texture = ExtResource("2_walxf")
+centered = false
+
+[node name="UI" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,32 +131,60 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_l8xe2")
 
-[node name="Label" type="Label" parent="TextureRect"]
+[node name="Label" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 74.0
-offset_top = 30.0
-offset_right = 181.0
-offset_bottom = 53.0
+offset_left = 33.0
+offset_top = 18.0
+offset_right = 231.0
+offset_bottom = 41.0
+theme_override_colors/font_shadow_color = Color(0.133333, 0.12549, 0.203922, 1)
 theme_override_fonts/font = ExtResource("2_38wgt")
 theme_override_font_sizes/font_size = 19
-text = "Title Screen"
+text = "Cauldron Cat-astrophe"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="TextureRect"]
+[node name="Button" type="Button" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = 1.0
-offset_right = 35.0
-offset_bottom = 36.0
+offset_left = 53.0
+offset_top = 23.0
+offset_right = 98.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_38wgt")
 text = "Start"
 
-[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]
+[node name="MenuCat" type="Node2D" parent="."]
+script = ExtResource("4_hbt2k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MenuCat"]
+position = Vector2(124, 56)
+sprite_frames = SubResource("SpriteFrames_ta1s8")
+animation = &"run"
+autoplay = "sleep"
+
+[node name="MenuWitch" type="Sprite2D" parent="."]
+script = ExtResource("8_bh0ue")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MenuWitch"]
+position = Vector2(129, 109)
+sprite_frames = SubResource("SpriteFrames_b6f18")
+animation = &"sleep"
+
+[node name="MenuCamera" type="Camera2D" parent="."]
+position = Vector2(128, 72)
+script = ExtResource("11_v5lux")
+target_x = 384.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_achmj")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]

@@ -73,7 +73,7 @@ func init_items():
 	var to_shuffle: Array[Item] = []
 	
 	for file in DirAccess.get_files_at("res://entities/items/ingredients"):
-		var ingredient_scene: PackedScene = load("res://entities/items/ingredients/" + file)
+		var ingredient_scene: PackedScene = load("res://entities/items/ingredients/" + file.trim_suffix('.remap'))
 		var ingredient: Ingredient = ingredient_scene.instantiate()
 		ingredients.append(ingredient)
 		if ingredient.shuffle_difficulty:
@@ -92,7 +92,7 @@ func init_items():
 		
 	
 	for file in DirAccess.get_files_at("res://entities/items/utility"):
-		var item_scene: PackedScene = load("res://entities/items/utility/" + file)
+		var item_scene: PackedScene = load("res://entities/items/utility/" + file.trim_suffix('.remap'))
 		var item: Item = item_scene.instantiate()
 		utility_items.append(item)
 		name_to_item[item.item_name] = item

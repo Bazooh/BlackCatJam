@@ -2,7 +2,7 @@ class_name SaveData extends Resource
 
 @export var high_score: int = 0
 
-const SAVE_PATH : String = "user://blackCatJam_high.tres"
+const SAVE_PATH : String = "user://cauldron-cat-astrophe-high.tres"
 
 func save():
 	ResourceSaver.save(self, SAVE_PATH)

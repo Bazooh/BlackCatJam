@@ -12,3 +12,5 @@ func _activate(_entity) -> void:
 
 	witch.on_recipe_update.emit(witch.recipe, witch.collected, witch.next_recipe)
 	
+	(entity as Item).destroy()
+	

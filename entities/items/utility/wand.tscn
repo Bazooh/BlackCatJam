@@ -14,6 +14,9 @@ position = Vector2(2.08165e-12, -0.5)
 scale = Vector2(0.82, 1)
 texture = ExtResource("2_uleue")
 
+[node name="Drop" parent="Effects" index="0"]
+enabled = false
+
 [node name="ChangeItems" type="Node" parent="Effects" index="1"]
 script = ExtResource("3_mosji")
 
