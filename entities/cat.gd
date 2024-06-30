@@ -14,7 +14,6 @@ const PLATFORM_MARGIN = 16
 
 var tween
 
-
 func _ready() -> void:
 	if Game.cat == null:
 		Game.cat = self

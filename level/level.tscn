@@ -29,7 +29,6 @@ position = Vector2(42, 56)
 position = Vector2(106, 129)
 speed = 150.0
 stuck_speed = 30.0
-starting_utility_pool_size = 1
 utility_pool_increase_interval = 6
 utility_swap_rate = 3
 utility_pool_increase_offset = 2
