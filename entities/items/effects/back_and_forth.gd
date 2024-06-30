@@ -64,10 +64,3 @@ func _physics_process(delta: float) -> void:
 
 		if not has_platform_below() or is_hitting_edge():
 			change_direction()
-
-
-func _get_configuration_warnings() -> PackedStringArray:
-	var warnings: PackedStringArray = []
-	if not entity.has_node("CheckHoles"):
-		warnings.append("CheckHoles (Area2D) node is missing in the entity.")
-	return warnings
