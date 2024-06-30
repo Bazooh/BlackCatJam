@@ -14,6 +14,7 @@ const n_ingredients: int = 3
 @export var stuck_speed: float = 25.0
 
 @export var max_lives: int = 3
+@export var score_per_recipe : int = 10
 
 @export_group("Difficulty")	
 @export var starting_ingredient_pool_size := 3
@@ -262,7 +263,7 @@ func check_potion() -> void:
 			on_recipe_update.emit(recipe, collected, next_recipe)
 			return
 	
-	score += 1
+	score += score_per_recipe
 	complete_sound.play()
 	on_score_update.emit(score)
 	increase_difficulty()

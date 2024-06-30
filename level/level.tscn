@@ -94,7 +94,8 @@ autoplay = true
 script = ExtResource("14_c75go")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(128, 72)
+anchor_mode = 0
+process_callback = 0
 
 [connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
 [connection signal="on_game_over" from="Witch" to="UI/GameOver" method="_on_witch_on_game_over"]
