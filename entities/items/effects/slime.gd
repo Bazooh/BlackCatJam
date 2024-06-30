@@ -6,5 +6,5 @@ const spawn_y := 145
 
 func _activate(_triggerer) -> void:
 	var slime: Slime = slime_scene.instantiate()
-	get_tree().root.add_child(slime)
+	Game.level.add_child(slime)
 	slime.global_position = Vector2(entity.global_position.x, spawn_y)

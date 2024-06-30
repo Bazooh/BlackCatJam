@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://do4qa16wnfhh2"]
+[gd_scene load_steps=8 format=3 uid="uid://do4qa16wnfhh2"]
 
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_vfur7"]
 [ext_resource type="Texture2D" uid="uid://ufg7esdb230p" path="res://art/items/Books.png" id="2_fvau1"]
 [ext_resource type="Script" path="res://entities/items/effects/change_direction.gd" id="3_4386o"]
-[ext_resource type="AudioStream" uid="uid://dvnojfvjammib" path="res://audio/Soft_Knock.wav" id="4_0k61w"]
 [ext_resource type="Script" path="res://entities/items/effects/wrong_ingredient_effect.gd" id="4_c8bnn"]
+[ext_resource type="AudioStream" uid="uid://vy5i5oivbs7" path="res://audio/Heavy_Knock2.wav" id="5_2admv"]
+[ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="6_wwif1"]
+[ext_resource type="AudioStream" uid="uid://ce7gnhggvt04a" path="res://audio/Heavy_Hit.wav" id="7_mupjt"]
 
 [node name="Book" instance=ExtResource("1_vfur7")]
 item_name = "Book"
@@ -26,4 +28,10 @@ trigger = 1
 active = false
 
 [node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("4_0k61w")
+stream = ExtResource("5_2admv")
+
+[node name="TouchWitchSound" parent="." index="5"]
+stream = ExtResource("6_wwif1")
+
+[node name="TouchGroundSound" parent="." index="6"]
+stream = ExtResource("7_mupjt")

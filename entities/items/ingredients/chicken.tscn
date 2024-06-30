@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cytnid57wfoxx"]
+[gd_scene load_steps=10 format=3 uid="uid://cytnid57wfoxx"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5ymu7"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_35a7h"]
 [ext_resource type="Script" path="res://entities/items/effects/egg.gd" id="3_n1s02"]
 [ext_resource type="AudioStream" uid="uid://b3ltmhqaqkw2v" path="res://audio/Toad_Jump.wav" id="4_f5tmj"]
+[ext_resource type="Script" path="res://entities/items/effects/random_flip.gd" id="4_qj56l"]
 [ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="5_0vcdu"]
 [ext_resource type="AudioStream" uid="uid://ckm2em764jh4j" path="res://audio/Toad_Hit.wav" id="6_xx1be"]
 
@@ -37,6 +38,10 @@ trigger = 4
 [node name="EggEffect" type="Node" parent="Effects" index="3"]
 script = ExtResource("3_n1s02")
 once = false
+
+[node name="RandomFlipEffect" type="Node" parent="Effects" index="4"]
+script = ExtResource("4_qj56l")
+trigger = 3
 
 [node name="AnimationPlayer" parent="." index="3"]
 active = false

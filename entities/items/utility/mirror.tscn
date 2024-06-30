@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_ryv5l"]
 [ext_resource type="Texture2D" uid="uid://uhlqloih1o4e" path="res://art/items/Mirror.png" id="2_pu1d5"]
 [ext_resource type="Script" path="res://entities/items/effects/duplicate_cat.gd" id="3_4b7y1"]
-[ext_resource type="AudioStream" uid="uid://cnkbvkvpjsshf" path="res://audio/Wand.wav" id="4_dqs22"]
+[ext_resource type="AudioStream" uid="uid://cbtfrutatx0kr" path="res://audio/Mirror.wav" id="4_wk2q7"]
 
 [node name="Mirror" instance=ExtResource("1_ryv5l")]
 item_name = "Mirror"
@@ -19,6 +19,7 @@ enabled = false
 
 [node name="DuplicateCatEffect" type="Node" parent="Effects" index="2"]
 script = ExtResource("3_4b7y1")
+new_cat_transparency = 0.4
 
 [node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("4_dqs22")
+stream = ExtResource("4_wk2q7")

@@ -1,7 +1,11 @@
 class_name DropAllEffect extends Effect
 
+@export var wait_time := 0.4
 
 func _activate(_entity) -> void:
+	
+	await get_tree().create_timer(wait_time, false).timeout
+	
 	for item in Game.level_generator.items_node:
 		if not is_instance_valid(item) or item == entity:
 			continue
@@ -11,5 +15,5 @@ func _activate(_entity) -> void:
 			if drop.is_dropping or not drop.enabled:
 				continue
 			
-			if randf() > 0.7:
+			if randf() >= 0.6:
 				item.area_entered.emit(Game.cat)

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmjvmc6ltdaiu" path="res://entities/items/item.tscn" id="1_l6263"]
 [ext_resource type="Texture2D" uid="uid://dn1sg4jdepcbh" path="res://art/items/Scroll.png" id="2_rwqik"]
 [ext_resource type="Script" path="res://entities/items/effects/change_recipes.gd" id="3_ign5u"]
-[ext_resource type="AudioStream" uid="uid://cnkbvkvpjsshf" path="res://audio/Wand.wav" id="4_4rbdj"]
+[ext_resource type="AudioStream" uid="uid://hea4obwrkjxu" path="res://audio/Scroll.wav" id="4_2f18f"]
 
 [node name="Scroll" instance=ExtResource("1_l6263")]
 item_name = "Scroll"
@@ -21,4 +21,4 @@ enabled = false
 script = ExtResource("3_ign5u")
 
 [node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("4_4rbdj")
+stream = ExtResource("4_2f18f")
