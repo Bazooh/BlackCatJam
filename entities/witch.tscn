@@ -228,7 +228,7 @@ position = Vector2(12, -13)
 sprite_frames = SubResource("SpriteFrames_bi1dl")
 animation = &"Move"
 autoplay = "Move"
-frame_progress = 0.554411
+frame_progress = 0.748997
 
 [node name="EffectSprite" type="AnimatedSprite2D" parent="Sprite"]
 unique_name_in_owner = true
