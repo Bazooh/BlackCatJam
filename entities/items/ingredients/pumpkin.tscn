@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjnu70dvbb8oe"]
+[gd_scene load_steps=8 format=3 uid="uid://ctyk6kr40q8ua"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_fgjej"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_jfo25"]
@@ -12,9 +12,10 @@ atlas = ExtResource("2_jfo25")
 region = Rect2(0.206, 128, 16, 16)
 
 [node name="Pumpkin" instance=ExtResource("1_fgjej")]
+shuffle_difficulty = true
 ingredient_texture = null
 item_name = "Pumpkin"
-difficulty = 15
+difficulty = 18
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_p4w1m")

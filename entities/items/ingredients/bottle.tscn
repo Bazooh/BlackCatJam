@@ -11,6 +11,7 @@ atlas = ExtResource("2_306ef")
 region = Rect2(0, 16, 16, 16)
 
 [node name="Bottle" instance=ExtResource("1_kf5bj")]
+ingredient_texture = null
 item_name = "Bottle"
 
 [node name="Sprite" parent="." index="0"]
