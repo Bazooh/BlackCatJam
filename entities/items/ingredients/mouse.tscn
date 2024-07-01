@@ -16,9 +16,8 @@ radius = 2.0
 
 [node name="Mouse" instance=ExtResource("1_i1hv1")]
 shuffle_difficulty = true
-ingredient_texture = null
 item_name = "Mouse"
-difficulty = 9
+difficulty = 10
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")

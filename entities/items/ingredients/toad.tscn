@@ -14,7 +14,7 @@ region = Rect2(2.08165e-12, 64, 16, 16)
 [node name="Toad" instance=ExtResource("1_a6kjo")]
 shuffle_difficulty = true
 item_name = "Toad"
-difficulty = 5
+difficulty = 6
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dh7ervofhoxy6"]
+[gd_scene load_steps=28 format=3 uid="uid://dh7ervofhoxy6"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_gj4qp"]
 [ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="2_38wgt"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" path="res://ui/menu_witch.gd" id="8_bh0ue"]
 [ext_resource type="Script" path="res://ui/menu_camera.gd" id="11_v5lux"]
 [ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_achmj"]
+[ext_resource type="Script" path="res://entities/items/random_sound.gd" id="13_3nlbo"]
+[ext_resource type="AudioStream" uid="uid://b61scb1xk3yg4" path="res://audio/Ebony1.wav" id="14_h2lis"]
+[ext_resource type="AudioStream" uid="uid://b4tm086jmmbmm" path="res://audio/Ebony2.wav" id="15_c8qn6"]
+[ext_resource type="AudioStream" uid="uid://dh53i4aavupvn" path="res://audio/Ebony3.wav" id="16_f24jd"]
 
 [sub_resource type="Gradient" id="Gradient_qk3cb"]
 offsets = PackedFloat32Array(0)
@@ -186,5 +190,9 @@ target_x = 384.0
 stream = ExtResource("12_achmj")
 volume_db = -5.0
 autoplay = true
+
+[node name="Meow" type="AudioStreamPlayer" parent="."]
+script = ExtResource("13_3nlbo")
+sounds = Array[AudioStream]([ExtResource("14_h2lis"), ExtResource("15_c8qn6"), ExtResource("16_f24jd")])
 
 [connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
