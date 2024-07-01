@@ -1,6 +1,9 @@
 class_name ChangeItemsEffect extends Effect
 
 
+const particules_scene: PackedScene = preload("res://art/Effects/wand_particules.tscn")
+
+
 func _activate(_triggerer) -> void:
 	var items_node = []
 	var invalid_items = []
@@ -28,6 +31,10 @@ func _activate(_triggerer) -> void:
 		var new_item: Item = Game.witch.get_random_usable_item_weighted().duplicate()
 
 		new_item.position = _item.position
+
+		var particules: AnimatedSprite2D = particules_scene.instantiate()
+		particules.animation_finished.connect(func(): particules.queue_free())
+		new_item.add_child(particules)
 		
 		Game.level_generator.items_node.append(new_item)
 		
