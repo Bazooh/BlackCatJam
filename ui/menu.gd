@@ -13,10 +13,24 @@ const LEVEL = preload("res://level/level.tscn")
 
 @onready var ui: TextureRect = $UI
 
+@onready var pseudo: LineEdit = %Pseudo
+
+
+func get_player_name() -> String:
+	return (await Authentification.get_player_name()).name
+
+
 func _ready():
 	get_tree().paused = false
+	pseudo.text = await get_player_name()
+
 
 func start():
+	if await get_player_name() == "":
+		return
+	
+	Authentification.change_player_name(pseudo.text)
+
 	menu_cat.start()
 	menu_witch.start()
 	ui.hide()
@@ -26,7 +40,6 @@ func start():
 	
 	menu_camera.transition()
 	menu_cat.run()
-	
 	
 	await get_tree().create_timer(wait_before_fade_time, true).timeout
 	
