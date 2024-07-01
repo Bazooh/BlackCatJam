@@ -52,9 +52,9 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area is Witch:
 		touch_witch.emit(area as Witch)
 		if touch_witch_sound is RandomSound:
-			touch_cat_sound.play_random_sound()
+			touch_witch_sound.play_random_sound()
 		elif touch_witch_sound.stream:
-			touch_cat_sound.play()
+			touch_witch_sound.play()
 
 
 func destroy(play_effect:= false):

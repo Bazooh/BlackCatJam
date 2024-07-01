@@ -23,9 +23,6 @@ z_index = -50
 texture = ExtResource("1_lhha4")
 centered = false
 
-[node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
-position = Vector2(42, 48)
-
 [node name="Witch" parent="." instance=ExtResource("2_b1rdj")]
 position = Vector2(27, 125)
 speed = 150.0
@@ -35,9 +32,11 @@ utility_pool_increase_interval = 6
 utility_swap_rate = 3
 utility_pool_increase_offset = 2
 
+[node name="Cat" parent="." instance=ExtResource("2_xf2dh")]
+position = Vector2(42, 48)
+
 [node name="Platforms" parent="." node_paths=PackedStringArray("witch") instance=ExtResource("4_3e6vs")]
 intro_length = 5
-start_speed = 25.0
 speed_increase_per_difficulty = 2.0
 grid_y_offset = 40
 witch = NodePath("../Witch")
@@ -99,8 +98,8 @@ visible = false
 anchor_mode = 0
 process_callback = 0
 
-[connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
 [connection signal="on_game_over" from="Witch" to="UI/GameOver" method="_on_witch_on_game_over"]
 [connection signal="on_lives_update" from="Witch" to="UI/Lives" method="_on_witch_on_lives_update"]
 [connection signal="on_recipe_update" from="Witch" to="UI/Recipe" method="_on_witch_on_recipe_update"]
 [connection signal="on_score_update" from="Witch" to="UI/Score" method="_on_witch_on_score_update"]
+[connection signal="no_platform" from="Cat" to="Witch" method="_on_cat_no_platform"]
