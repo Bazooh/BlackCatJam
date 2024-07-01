@@ -15,9 +15,7 @@ region = Rect2(2.08165e-12, 80, 16, 16)
 radius = 2.0
 
 [node name="Mouse" instance=ExtResource("1_i1hv1")]
-shuffle_difficulty = true
 item_name = "Mouse"
-difficulty = 10
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")

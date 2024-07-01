@@ -59,7 +59,6 @@ func _physics_process(delta: float) -> void:
 		
 	if not Game.level_generator.is_node_ready:
 		await Game.level_generator.ready
-	
 		
 	if is_moving:
 		entity.position.x += speed * delta * sign(entity.scale.x)
@@ -70,4 +69,3 @@ func _physics_process(delta: float) -> void:
 			if not has_platform_behind():
 				print("signal no platform")
 				no_platform.emit()
-				queue_free()
