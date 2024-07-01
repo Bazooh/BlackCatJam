@@ -263,7 +263,7 @@ func lose_life() -> void:
 
 
 func game_over() -> void:
-	
+	Server.upload_score(score)
 
 	lose_sound.play()
 	on_game_over.emit(score)

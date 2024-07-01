@@ -131,6 +131,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gj4qp")
+wait_time = null
+wait_before_fade_time = null
+transition_time = null
 
 [node name="BG" type="Sprite2D" parent="."]
 texture = ExtResource("2_walxf")

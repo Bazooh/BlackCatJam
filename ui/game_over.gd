@@ -6,7 +6,7 @@ extends TextureRect
 func open_game_over_screen(score: int) -> void:
 	show()
 	
-	var data : SaveData = SaveData.load_or_create()
+	var data := SaveData.load_or_create()
 	
 	if score > data.high_score:
 		data.high_score = score
