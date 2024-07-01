@@ -18,6 +18,7 @@ config/icon="res://art/ui/Icon.svg"
 
 [autoload]
 
+Authentification="*res://leaderboard/authentification.gd"
 Game="*res://game.gd"
 ButtonSound="*res://ui/button_sound.tscn"
 Fade="*res://ui/fade.tscn"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnlfg2aknjrls"]
+
+[ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="1_uhhlt"]
+
+[node name="ScoreLine" type="PanelContainer"]
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Rank" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_uhhlt")
+theme_override_font_sizes/font_size = 14
+text = "##"
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_uhhlt")
+theme_override_font_sizes/font_size = 14
+text = "Name"
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("1_uhhlt")
+theme_override_font_sizes/font_size = 14
+text = "###"
