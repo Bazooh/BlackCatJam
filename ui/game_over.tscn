@@ -25,9 +25,9 @@ script = ExtResource("1_g6vib")
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 66.0
-offset_top = 25.0
+offset_top = 16.0
 offset_right = 183.0
-offset_bottom = 47.0
+offset_bottom = 38.0
 theme_override_fonts/font = ExtResource("2_dwwyd")
 theme_override_font_sizes/font_size = 22
 text = "GAME OVER"
@@ -59,23 +59,32 @@ theme_override_font_sizes/font_size = 16
 text = "Score: 000
 High: 000"
 
-[node name="Restart" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 92.0
-offset_top = 64.0
-offset_right = 158.0
-offset_bottom = 95.0
+offset_left = 76.0
+offset_top = 50.0
+offset_right = 171.0
+offset_bottom = 127.0
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(95, 2.08165e-12)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dwwyd")
 text = "Retry"
 
-[node name="Menu" type="Button" parent="."]
-layout_mode = 0
-offset_left = 92.0
-offset_top = 102.0
-offset_right = 158.0
-offset_bottom = 133.0
+[node name="Menu" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(95, 2.08165e-12)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dwwyd")
 text = "Menu"
 
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[node name="Scoreboard" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(95, 2.08165e-12)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dwwyd")
+text = "Scoreboard
+"
+
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="VBoxContainer/Scoreboard" to="." method="_on_scoreboard_pressed"]

@@ -58,3 +58,7 @@ func load_scene():
 func _on_button_pressed() -> void:
 	ButtonSound.play_sound()
 	start()
+
+
+func _on_leaderboard_pressed() -> void:
+	Leaderboard.show(self)

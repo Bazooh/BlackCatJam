@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://audio/step.gd" id="8_vledg"]
 [ext_resource type="Script" path="res://ui/menu_camera.gd" id="11_v5lux"]
 [ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_achmj"]
-[ext_resource type="PackedScene" uid="uid://s04nnp5cjf31" path="res://audio/meow.tscn" id="13_kmkjd"]
+[ext_resource type="PackedScene" path="res://audio/meow.tscn" id="13_kmkjd"]
 
 [sub_resource type="Gradient" id="Gradient_qk3cb"]
 offsets = PackedFloat32Array(0)
@@ -145,7 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_l8xe2")
 
-[node name="Label" type="Label" parent="UI"]
+[node name="Title" type="Label" parent="UI"]
 layout_mode = 0
 offset_left = 33.0
 offset_top = 18.0
@@ -158,7 +158,7 @@ text = "Cauldron Cat-astrophe"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="UI"]
+[node name="Start" type="Button" parent="UI"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -186,6 +186,16 @@ theme_override_font_sizes/font_size = 14
 placeholder_text = "Pseudo"
 alignment = 1
 max_length = 10
+
+[node name="Leaderboard" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 59.0
+offset_right = 106.0
+offset_bottom = 82.0
+theme_override_fonts/font = ExtResource("2_38wgt")
+text = "Leaderboard
+"
 
 [node name="MenuCat" type="Node2D" parent="."]
 script = ExtResource("4_hbt2k")
@@ -221,4 +231,5 @@ autoplay = true
 
 [node name="Meow" parent="." instance=ExtResource("13_kmkjd")]
 
-[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Start" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Leaderboard" to="." method="_on_leaderboard_pressed"]

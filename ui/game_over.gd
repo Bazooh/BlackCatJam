@@ -1,5 +1,6 @@
 extends TextureRect
 
+
 @onready var scores: Label = $Scores
 @onready var new_high: Label = $NewHigh
 
@@ -42,3 +43,7 @@ func _on_menu_pressed() -> void:
 
 func _on_witch_on_game_over(score: int) -> void:
 	open_game_over_screen(score)
+
+
+func _on_scoreboard_pressed() -> void:
+	Leaderboard.show(self)

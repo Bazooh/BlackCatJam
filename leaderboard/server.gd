@@ -123,6 +123,9 @@ func _on_player_get_name_request_completed(_result, _response_code, _headers, bo
 
 
 func get_leaderboards(n_first: int = 10) -> Dictionary:
+	if Credentials.session_token == "":
+		await auth_completed
+
 	print("Getting leaderboards")
 	var url = "https://api.lootlocker.io/game/leaderboards/" + Credentials.LEADERBOARD_KEY + "/list?count=" + str(n_first)
 	var headers = ["Content-Type: application/json", "x-session-token:" + Credentials.session_token]
@@ -141,6 +144,7 @@ func _on_leaderboard_request_completed(_result, _response_code, _headers, body) 
 	json.parse(body.get_string_from_utf8())
 	
 	print(json.get_data())
+	leaderboard_http.queue_free()
 
 	get_leadboard_completed.emit(json.get_data())
 
@@ -165,7 +169,6 @@ func _on_upload_score_request_completed(_result, _response_code, _headers, body)
 	json.parse(body.get_string_from_utf8())
 	
 	print(json.get_data())
-	
 	submit_score_http.queue_free()
 
 	upload_score_completed.emit(json.get_data())

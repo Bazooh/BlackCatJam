@@ -6,6 +6,8 @@ class_name Leaderboard extends Node
 const score_line_scene: PackedScene = preload("res://leaderboard/score_line.tscn")
 const leaderboard_scene: PackedScene = preload("res://leaderboard/leaderboard.tscn")
 
+@onready var loading: Label = %Loading
+
 
 static func show(scene_to_hide: Node):
 	Game.back_scene = scene_to_hide
@@ -23,9 +25,13 @@ func add_score_line(line):
 
 
 func _ready():
+	loading.show()
+
 	var leaderboard: Dictionary = await Server.get_leaderboards()
 	for line in leaderboard.items:
 		add_score_line(line)
+	
+	loading.hide()
 
 
 func _on_back_pressed():
