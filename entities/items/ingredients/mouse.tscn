@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_i1hv1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_1csoh"]
 [ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_04c8r"]
-[ext_resource type="AudioStream" uid="uid://c2y32dkk7423d" path="res://audio/Mouse_Fall.wav" id="4_o7rv4"]
+[ext_resource type="AudioStream" uid="uid://b7w85b6uqhep8" path="res://audio/Mouse_Knock.wav" id="4_pevst"]
 [ext_resource type="AudioStream" uid="uid://d4kl53pq788jv" path="res://audio/Mouse_Splash.wav" id="5_cdhuw"]
 [ext_resource type="AudioStream" uid="uid://g45cemtvi64s" path="res://audio/Soft_Hit.wav" id="6_jbnfl"]
 
@@ -41,7 +41,7 @@ random_direction = true
 trigger = 3
 
 [node name="TouchCatSound" parent="." index="6"]
-stream = ExtResource("4_o7rv4")
+stream = ExtResource("4_pevst")
 
 [node name="TouchWitchSound" parent="." index="7"]
 stream = ExtResource("5_cdhuw")

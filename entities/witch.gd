@@ -35,12 +35,10 @@ const n_ingredients: int = 3
 @onready var complete_sound: AudioStreamPlayer = $CompleteSound
 @onready var hurt_sound: AudioStreamPlayer = $HurtSound
 @onready var lose_sound: AudioStreamPlayer = $LoseSound
+@onready var meow: RandomSound = $Meow
 
 
 var difficulty: int = 0
-#var difficulty: float:
-	#get: return _difficulty + (difficulty_timer.wait_time - difficulty_timer.time_left) / difficulty_timer.wait_time
-	#set(_x): push_warning("difficulty is read-only (use _difficulty instead)")
 
 var name_to_item := {}
 
@@ -113,21 +111,6 @@ func get_item_based_on_difficulty(_ingredients: Array) -> Item:
 	if possible_items.size() == 0:
 		return null
 	return possible_items.pick_random()
-		
-	#var probabilities: Array = []
-	#for ingredient: Item in _ingredients:
-		#probabilities.append(exp(abs(difficulty - ingredient.difficulty)))
-	#
-	#var sum: float = probabilities.reduce(func(acc, x): return acc + x)
-	#probabilities = probabilities.map(func(x): return x / sum)
-#
-	#var random: float = randf()
-	#var idx: int = 0
-	#while random > probabilities[idx]:
-		#random -= probabilities[idx]
-		#idx += 1
-	#
-	#return _ingredients[idx]
 
 
 func add_usable_ingredient():
@@ -274,6 +257,7 @@ func lose_life() -> void:
 	lives -= 1
 	on_lives_update.emit(lives)
 	hurt_sound.play()
+	meow.play_random_sound()
 	if lives <= 0:
 		game_over()
 

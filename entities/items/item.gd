@@ -78,6 +78,6 @@ func destroy(play_effect:= false):
 	if touch_ground_sound.playing:
 		await touch_ground_sound.finished
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	
 	queue_free()

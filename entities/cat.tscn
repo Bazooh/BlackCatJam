@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddybujrdaso0e"]
+[gd_scene load_steps=11 format=3 uid="uid://ddybujrdaso0e"]
 
 [ext_resource type="Script" path="res://entities/cat.gd" id="1_lfknh"]
 [ext_resource type="Texture2D" uid="uid://df5q2k0k8heum" path="res://art/temp/temp_cat.png" id="2_ab1a4"]
 [ext_resource type="Script" path="res://entities/items/effects/back_and_forth.gd" id="3_c6352"]
 [ext_resource type="SpriteFrames" uid="uid://n7rkr6t3u3bq" path="res://art/cat/cat_frames.tres" id="4_bxmye"]
+[ext_resource type="Script" path="res://audio/step.gd" id="5_1wm3t"]
 [ext_resource type="AudioStream" uid="uid://bl8kb7o3wjfk1" path="res://audio/Jump.wav" id="5_vv5b5"]
 [ext_resource type="AudioStream" uid="uid://ut8s5fdpyq2j" path="res://audio/Turn.wav" id="6_i14y0"]
+[ext_resource type="AudioStream" uid="uid://b5f1t684rwgyr" path="res://audio/Step.wav" id="6_u2q3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvb2g"]
 size = Vector2(10.6667, 10)
@@ -64,6 +66,10 @@ sprite_frames = ExtResource("4_bxmye")
 animation = &"run"
 autoplay = "run"
 frame_progress = 0.718622
+script = ExtResource("5_1wm3t")
+
+[node name="Step" type="AudioStreamPlayer" parent="Sprite"]
+stream = ExtResource("6_u2q3m")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_vv5b5")

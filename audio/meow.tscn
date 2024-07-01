@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://s04nnp5cjf31"]
+
+[ext_resource type="Script" path="res://entities/items/random_sound.gd" id="1_i35hj"]
+[ext_resource type="AudioStream" uid="uid://b61scb1xk3yg4" path="res://audio/Ebony1.wav" id="2_og3ns"]
+[ext_resource type="AudioStream" uid="uid://b4tm086jmmbmm" path="res://audio/Ebony2.wav" id="3_on31j"]
+[ext_resource type="AudioStream" uid="uid://dh53i4aavupvn" path="res://audio/Ebony3.wav" id="4_aww1j"]
+
+[node name="Meow" type="AudioStreamPlayer"]
+script = ExtResource("1_i35hj")
+sounds = Array[AudioStream]([ExtResource("2_og3ns"), ExtResource("3_on31j"), ExtResource("4_aww1j")])
