@@ -1,6 +1,7 @@
 extends Control
 
 const LEVEL = preload("res://level/level.tscn")
+const PLAYER_NAME_FILE = "user://player_name.txt"
 
 @export var wait_time := 1.0
 @export var wait_before_fade_time := 0.75
@@ -18,20 +19,18 @@ const LEVEL = preload("res://level/level.tscn")
 @onready var pseudo: LineEdit = %Pseudo
 
 
-func get_player_name() -> String:
-	return (await Authentification.get_player_name()).name
-
-
 func _ready():
 	get_tree().paused = false
-	# pseudo.text = await get_player_name()
+	if FileAccess.file_exists(PLAYER_NAME_FILE):
+		pseudo.text = FileAccess.open(PLAYER_NAME_FILE, FileAccess.READ).get_as_text()
 
 
 func start():
-	# if await get_player_name() == "":
-	# 	return
+	if pseudo.text == "":
+		return
 	
-	# Authentification.change_player_name(pseudo.text)
+	FileAccess.open(PLAYER_NAME_FILE, FileAccess.WRITE).store_string(pseudo.text)
+	Server.change_player_name(pseudo.text)
 
 	menu_cat.start()
 	menu_witch.start()
@@ -54,6 +53,7 @@ func start():
 
 func load_scene():
 	get_tree().change_scene_to_packed(LEVEL)
+
 
 func _on_button_pressed() -> void:
 	ButtonSound.play_sound()

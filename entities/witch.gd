@@ -263,6 +263,7 @@ func lose_life() -> void:
 
 
 func game_over() -> void:
+	
 
 	lose_sound.play()
 	on_game_over.emit(score)

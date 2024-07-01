@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://nfkkpodv6pjv"]
+[gd_scene load_steps=4 format=3 uid="uid://nfkkpodv6pjv"]
 
+[ext_resource type="Script" path="res://leaderboard/leaderboard.gd" id="1_xjjro"]
 [ext_resource type="PackedScene" uid="uid://bnlfg2aknjrls" path="res://leaderboard/score_line.tscn" id="2_4mu6g"]
 [ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="2_a8ea7"]
 
 [node name="Leaderboard" type="CanvasLayer"]
+script = ExtResource("1_xjjro")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
