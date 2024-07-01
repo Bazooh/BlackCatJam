@@ -9,7 +9,9 @@ const LEVEL = preload("res://level/level.tscn")
 @onready var menu_cat: MenuCat = $MenuCat
 @onready var menu_witch: MenuWitch = $MenuWitch
 @onready var menu_camera: MenuCamera = $MenuCamera
+
 @onready var music: AudioStreamPlayer = $Music
+@onready var meow: RandomSound = $Meow
 
 @onready var ui: TextureRect = $UI
 
@@ -35,6 +37,7 @@ func start():
 	menu_witch.start()
 	ui.hide()
 	music.stop()
+	meow.play_random_sound()
 	
 	await get_tree().create_timer(wait_time, true).timeout
 	

@@ -1,12 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cytnid57wfoxx"]
+[gd_scene load_steps=15 format=3 uid="uid://cytnid57wfoxx"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5ymu7"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_35a7h"]
 [ext_resource type="Script" path="res://entities/items/effects/egg.gd" id="3_n1s02"]
-[ext_resource type="AudioStream" uid="uid://b3ltmhqaqkw2v" path="res://audio/Toad_Jump.wav" id="4_f5tmj"]
 [ext_resource type="Script" path="res://entities/items/effects/random_flip.gd" id="4_qj56l"]
 [ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="5_0vcdu"]
+[ext_resource type="AudioStream" uid="uid://cjeowxc3r8pd5" path="res://audio/Chicken_3.wav" id="5_yin6n"]
+[ext_resource type="Script" path="res://entities/items/random_sound.gd" id="6_d4gpk"]
 [ext_resource type="AudioStream" uid="uid://ckm2em764jh4j" path="res://audio/Toad_Hit.wav" id="6_xx1be"]
+[ext_resource type="AudioStream" uid="uid://drof8ce3ca52m" path="res://audio/Chicken_1.wav" id="7_yvkqt"]
+[ext_resource type="AudioStream" uid="uid://f3gvl7xn3sfe" path="res://audio/Chicken_2.wav" id="8_hf0yg"]
+[ext_resource type="AudioStream" uid="uid://bdg7whmn4yfvg" path="res://audio/Chicken_4.wav" id="9_0iqbl"]
+[ext_resource type="AudioStream" uid="uid://c8wduap6w3wk7" path="res://audio/Chicken_5.wav" id="10_78u2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q2hq5"]
 atlas = ExtResource("2_35a7h")
@@ -20,7 +25,7 @@ region = Rect2(2.08165e-12, 112, 16, 16)
 shuffle_difficulty = true
 ingredient_texture = SubResource("AtlasTexture_q2hq5")
 item_name = "Egg"
-difficulty = 15
+difficulty = 2
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
@@ -33,6 +38,7 @@ trigger = 4
 trigger = 4
 
 [node name="Animation" parent="Effects" index="2"]
+once = false
 trigger = 4
 
 [node name="EggEffect" type="Node" parent="Effects" index="3"]
@@ -43,11 +49,11 @@ once = false
 script = ExtResource("4_qj56l")
 trigger = 3
 
-[node name="AnimationPlayer" parent="." index="3"]
-active = false
-
 [node name="TouchCatSound" parent="." index="4"]
-stream = ExtResource("4_f5tmj")
+stream = ExtResource("5_yin6n")
+volume_db = 4.685
+script = ExtResource("6_d4gpk")
+sounds = Array[AudioStream]([ExtResource("7_yvkqt"), ExtResource("8_hf0yg"), ExtResource("5_yin6n"), ExtResource("9_0iqbl"), ExtResource("10_78u2m")])
 
 [node name="TouchWitchSound" parent="." index="5"]
 stream = ExtResource("5_0vcdu")

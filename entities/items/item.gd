@@ -32,7 +32,9 @@ func _process(_delta) -> void:
 	if position.y >= Game.FLOOR_Y:
 		touch_ground.emit()
 		touched_ground = true
-		if touch_ground_sound.stream:
+		if touch_ground_sound is RandomSound:
+			touch_ground_sound.play_random_sound()
+		elif touch_ground_sound.stream:
 			touch_ground_sound.play()
 
 
@@ -42,13 +44,17 @@ func _on_area_entered(area: Area2D) -> void:
 		
 	if area is Cat:
 		touch_cat.emit(area as Cat)
-		if touch_cat_sound.stream:
+		if touch_cat_sound is RandomSound:
+			touch_cat_sound.play_random_sound()
+		elif touch_cat_sound.stream:
 			touch_cat_sound.play()
 	
 	elif area is Witch:
 		touch_witch.emit(area as Witch)
-		if touch_witch_sound.stream:
-			touch_witch_sound.play()
+		if touch_witch_sound is RandomSound:
+			touch_cat_sound.play_random_sound()
+		elif touch_witch_sound.stream:
+			touch_cat_sound.play()
 
 
 func destroy(play_effect:= false):
@@ -72,6 +78,6 @@ func destroy(play_effect:= false):
 	if touch_ground_sound.playing:
 		await touch_ground_sound.finished
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	
 	queue_free()

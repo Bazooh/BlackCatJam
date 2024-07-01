@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5dr38"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_jf0gt"]
-[ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="4_g686g"]
-[ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="4_ktkek"]
+[ext_resource type="AudioStream" uid="uid://cwqyly025f581" path="res://audio/Egg_Splash.wav" id="3_tg70g"]
+[ext_resource type="AudioStream" uid="uid://bplkmehg27x5o" path="res://audio/Egg_Hit.wav" id="4_iw47g"]
 [ext_resource type="Texture2D" uid="uid://glcv21qlra03" path="res://art/Effects/Break_Effects.png" id="5_i7xg5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
@@ -74,10 +74,10 @@ trigger = 3
 active = false
 
 [node name="TouchWitchSound" parent="." index="5"]
-stream = ExtResource("4_ktkek")
+stream = ExtResource("3_tg70g")
 
 [node name="TouchGroundSound" parent="." index="6"]
-stream = ExtResource("4_g686g")
+stream = ExtResource("4_iw47g")
 
 [node name="BreakEffect" parent="." index="7"]
 sprite_frames = SubResource("SpriteFrames_fkbvo")

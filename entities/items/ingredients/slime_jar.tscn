@@ -65,7 +65,7 @@ animations = [{
 [node name="SlimeJar" instance=ExtResource("1_bbk4m")]
 shuffle_difficulty = true
 item_name = "SlimeJar"
-difficulty = 13
+difficulty = 14
 
 [node name="Sprite" parent="." index="0"]
 texture = SubResource("AtlasTexture_i0cjt")
