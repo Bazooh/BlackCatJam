@@ -18,7 +18,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("1_uhhlt")
 theme_override_font_sizes/font_size = 14
-text = "##"
+text = "#"
 
 [node name="Name" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -34,4 +34,4 @@ layout_mode = 2
 size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("1_uhhlt")
 theme_override_font_sizes/font_size = 14
-text = "###"
+text = "Score"
