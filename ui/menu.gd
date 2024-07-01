@@ -24,14 +24,14 @@ func get_player_name() -> String:
 
 func _ready():
 	get_tree().paused = false
-	pseudo.text = await get_player_name()
+	# pseudo.text = await get_player_name()
 
 
 func start():
-	if await get_player_name() == "":
-		return
+	# if await get_player_name() == "":
+	# 	return
 	
-	Authentification.change_player_name(pseudo.text)
+	# Authentification.change_player_name(pseudo.text)
 
 	menu_cat.start()
 	menu_witch.start()
