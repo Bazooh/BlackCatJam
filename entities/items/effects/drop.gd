@@ -11,7 +11,7 @@ var is_dropping := false
 
 func _ready() -> void:
 	super._ready()
-	entity.touch_ground.connect(entity.destroy)
+	entity.touch_ground.connect(func(): entity.destroy(true))
 
 
 func _activate(_cat) -> void:

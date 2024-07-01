@@ -239,6 +239,7 @@ animation = &"None"
 
 [node name="CorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_57vas")
+volume_db = -3.748
 
 [node name="WrongSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3

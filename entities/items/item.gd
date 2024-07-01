@@ -16,19 +16,22 @@ const floor_offset := 5
 @onready var touch_cat_sound: AudioStreamPlayer = $TouchCatSound
 @onready var touch_witch_sound: AudioStreamPlayer = $TouchWitchSound
 @onready var touch_ground_sound: AudioStreamPlayer = $TouchGroundSound
+@onready var break_effect: AnimatedSprite2D = $BreakEffect
 
 var enabled := true
+var touched_ground := false
 
 func is_out_of_bounds() -> bool:
 	return position.y > get_viewport_rect().size.y - floor_offset
 
 
 func _process(_delta) -> void:
-	if not enabled:
+	if not enabled or touched_ground:
 		return
 		
-	if is_out_of_bounds():
+	if position.y >= Game.FLOOR_Y:
 		touch_ground.emit()
+		touched_ground = true
 		if touch_ground_sound.stream:
 			touch_ground_sound.play()
 
@@ -48,9 +51,20 @@ func _on_area_entered(area: Area2D) -> void:
 			touch_witch_sound.play()
 
 
-func destroy():
+func destroy(play_effect:= false):
 	sprite.hide()
 	enabled = false
+	
+	if play_effect:
+		break_effect.show()
+		break_effect.reparent(Game, true)
+		break_effect.global_position.y = Game.FLOOR_Y
+		break_effect.rotation_degrees = 0
+		break_effect.play("Break")
+		await break_effect.animation_finished
+		break_effect.hide()
+		break_effect.queue_free()
+	
 	if touch_cat_sound.playing:
 		await touch_cat_sound.finished
 	if touch_witch_sound.playing:
@@ -59,4 +73,5 @@ func destroy():
 		await touch_ground_sound.finished
 	
 	await get_tree().create_timer(1).timeout
+	
 	queue_free()

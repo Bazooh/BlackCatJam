@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmjvmc6ltdaiu"]
+[gd_scene load_steps=19 format=3 uid="uid://dmjvmc6ltdaiu"]
 
 [ext_resource type="Script" path="res://entities/items/item.gd" id="1_ul5h1"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_yea6j"]
 [ext_resource type="Script" path="res://entities/items/effects/drop.gd" id="3_kghsp"]
 [ext_resource type="Script" path="res://entities/items/effects/animation.gd" id="4_38l55"]
+[ext_resource type="Texture2D" uid="uid://pqpdg4ixxqum" path="res://art/Effects/Test_Break.png" id="5_12rw0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s7eb"]
 atlas = ExtResource("2_yea6j")
@@ -49,6 +50,63 @@ _data = {
 "fall": SubResource("Animation_ejpfp")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq18i"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ivil"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrhii"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilue1"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htvex"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubv11"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef73p"]
+atlas = ExtResource("5_12rw0")
+region = Rect2(120, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2aivs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq18i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ivil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrhii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilue1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htvex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubv11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef73p")
+}],
+"loop": false,
+"name": &"Break",
+"speed": 16.0
+}]
+
 [node name="Item" type="Area2D"]
 script = ExtResource("1_ul5h1")
 
@@ -82,5 +140,11 @@ process_mode = 3
 
 [node name="TouchGroundSound" type="AudioStreamPlayer" parent="."]
 process_mode = 3
+
+[node name="BreakEffect" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_2aivs")
+animation = &"Break"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

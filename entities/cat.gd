@@ -20,7 +20,6 @@ func _ready() -> void:
 
 
 func can_cat_be_on_platform(platform: Area2D) -> bool:
-	return true
 	var platform_rect: Rect2 = platform.get_child(0).shape.get_rect()
 
 	return \
@@ -31,7 +30,7 @@ func can_cat_be_on_platform(platform: Area2D) -> bool:
 func can_go_up() -> bool:
 	var areas: Array = $CheckHolesUp.get_overlapping_areas()
 	for platform: Area2D in areas:
-		if platform.is_in_group("Platform") and can_cat_be_on_platform(platform):
+		if platform.is_in_group("Platform"):
 			return true
 
 	return false
@@ -40,7 +39,7 @@ func can_go_up() -> bool:
 func can_go_down() -> bool:
 	var areas: Array = $CheckHolesDown.get_overlapping_areas()
 	for platform: Area2D in areas:
-		if platform.is_in_group("Platform") and can_cat_be_on_platform(platform):
+		if platform.is_in_group("Platform"):
 			return true
 
 	return false
