@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dh7ervofhoxy6"]
+[gd_scene load_steps=32 format=3 uid="uid://dh7ervofhoxy6"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_gj4qp"]
 [ext_resource type="FontFile" uid="uid://c44bcpdqjyvor" path="res://ui/alagard.ttf" id="2_38wgt"]
@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://audio/step.gd" id="8_vledg"]
 [ext_resource type="Script" path="res://ui/menu_camera.gd" id="11_v5lux"]
 [ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_achmj"]
-[ext_resource type="PackedScene" path="res://audio/meow.tscn" id="13_kmkjd"]
+[ext_resource type="PackedScene" uid="uid://s04nnp5cjf31" path="res://audio/meow.tscn" id="13_kmkjd"]
 
 [sub_resource type="Gradient" id="Gradient_qk3cb"]
 offsets = PackedFloat32Array(0)
@@ -123,6 +123,43 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_3hjhb"]
+resource_name = "shake"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Pseudo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 50), Vector2(157, 50), Vector2(160, 50), Vector2(163, 50), Vector2(160, 50)]
+}
+
+[sub_resource type="Animation" id="Animation_x7gev"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/Pseudo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 50)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g27uv"]
+_data = {
+"RESET": SubResource("Animation_x7gev"),
+"shake": SubResource("Animation_3hjhb")
+}
+
 [node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -166,9 +203,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 53.0
-offset_top = 23.0
+offset_top = 7.0
 offset_right = 98.0
-offset_bottom = 46.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_38wgt")
@@ -177,22 +214,23 @@ text = "Start"
 [node name="Pseudo" type="LineEdit" parent="UI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 149.0
-offset_top = 62.0
-offset_right = 228.0
-offset_bottom = 84.0
+offset_left = 160.0
+offset_top = 50.0
+offset_right = 246.0
+offset_bottom = 72.0
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_38wgt")
 theme_override_font_sizes/font_size = 14
-placeholder_text = "Pseudo"
+placeholder_text = "Enter Name"
 alignment = 1
 max_length = 10
 
 [node name="Leaderboard" type="Button" parent="UI"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 59.0
-offset_right = 106.0
-offset_bottom = 82.0
+offset_left = 154.0
+offset_top = 109.0
+offset_right = 253.0
+offset_bottom = 132.0
 theme_override_fonts/font = ExtResource("2_38wgt")
 text = "Leaderboard
 "
@@ -201,7 +239,7 @@ text = "Leaderboard
 script = ExtResource("4_hbt2k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MenuCat"]
-position = Vector2(124, 56)
+position = Vector2(61, 56)
 sprite_frames = SubResource("SpriteFrames_ta1s8")
 animation = &"run"
 autoplay = "sleep"
@@ -230,6 +268,11 @@ volume_db = -5.0
 autoplay = true
 
 [node name="Meow" parent="." instance=ExtResource("13_kmkjd")]
+
+[node name="Shake" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g27uv")
+}
 
 [connection signal="pressed" from="UI/Start" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Leaderboard" to="." method="_on_leaderboard_pressed"]
