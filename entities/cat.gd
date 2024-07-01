@@ -54,7 +54,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("down") and can_go_down():
 		move_platforms(1)
 		
-
+	
 func move_platforms(direction: int):
 	position.y += PLATFORM_MARGIN * sign(direction)
 	sprite.position.y -= PLATFORM_MARGIN * sign(direction)

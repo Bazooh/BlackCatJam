@@ -18,14 +18,17 @@ const item_y_offset = -8
 @export var n_chunks: int = 6
 @export var start_height: int = 3
 @export var max_height: int = 4
+
 var height: int:
 	get: return min(start_height + floori(float(witch.difficulty) / 8), max_height)
 	set(_x): push_warning("height is read-only")
 
 @export var start_speed: float = 20.0
 @export var speed_increase_per_difficulty: float = 5.0
+@export var max_speed: float = 70.0
+
 var speed: float:
-	get: return start_speed + speed_increase_per_difficulty * witch.difficulty
+	get: return min(start_speed + speed_increase_per_difficulty * witch.difficulty, max_speed)
 	set(_x): push_warning("speed is read-only")
 
 @export var item_offset: float = 20
