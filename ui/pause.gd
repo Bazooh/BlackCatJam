@@ -1,6 +1,7 @@
-extends TextureRect
+class_name Pause extends TextureRect
 
 var paused := false
+@export var show := true
 
 func _input(_event: InputEvent):
 	if Input.is_action_just_pressed("pause"):
@@ -13,7 +14,7 @@ func toggle_pause():
 	ButtonSound.play_sound()
 	paused = !paused
 	get_tree().paused = paused
-	visible = paused
+	visible = paused and show
 
 func return_to_menu():
 	get_tree().paused = false

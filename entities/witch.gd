@@ -29,6 +29,7 @@ const n_ingredients: int = 3
 
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var effect_sprite: AnimatedSprite2D = %EffectSprite
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @onready var correct_sound: AudioStreamPlayer = $CorrectSound
 @onready var wrong_sound: AudioStreamPlayer = $WrongSound
@@ -195,10 +196,12 @@ func _ready():
 	on_score_update.emit(score)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float):
 	var move_speed := stuck_speed if stuck else speed
 	position.x += move_speed * delta * Input.get_axis("left", "right")
 	position.x = clamp(position.x, min_x, max_x)
+	sprite.global_position.x = roundi(global_position.x)
+	collision_shape_2d.global_position.x = roundi(global_position.x) - (collision_shape_2d.shape as RectangleShape2D).size.x / 2
 
 
 func create_recipe() -> Array[String]:

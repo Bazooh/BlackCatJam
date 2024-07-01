@@ -2,7 +2,6 @@ class_name MenuCat extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var speed: float = 100.0
-@onready var step: AudioStreamPlayer = $Step
 
 var is_moving := false
 

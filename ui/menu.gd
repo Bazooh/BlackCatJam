@@ -38,15 +38,15 @@ func start():
 	music.stop()
 	meow.play_random_sound()
 	
-	await get_tree().create_timer(wait_time, true).timeout
+	await get_tree().create_timer(wait_time, false).timeout
 	
 	menu_camera.transition()
 	menu_cat.run()
 	
-	await get_tree().create_timer(wait_before_fade_time, true).timeout
+	await get_tree().create_timer(wait_before_fade_time, false).timeout
 	
 	Fade.fade_out()
-	await get_tree().create_timer(transition_time, true).timeout
+	await get_tree().create_timer(transition_time, false).timeout
 	
 	load_scene()
 	
