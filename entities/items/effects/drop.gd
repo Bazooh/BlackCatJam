@@ -1,6 +1,7 @@
 class_name Drop extends Effect
 
 @export var enabled := true
+@export var play_effect := true
 @export var speed := Vector2(0.0, 0.0)
 @export var gravity: float = 500.0
 
@@ -11,7 +12,7 @@ var is_dropping := false
 
 func _ready() -> void:
 	super._ready()
-	entity.touch_ground.connect(func(): entity.destroy(true))
+	entity.touch_ground.connect(func(): entity.destroy(play_effect))
 
 
 func _activate(_cat) -> void:

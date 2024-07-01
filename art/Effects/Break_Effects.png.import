@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pqpdg4ixxqum"
-path="res://.godot/imported/Test_Break.png-cc815a0eb54bdb126d3686efac29c69f.ctex"
+uid="uid://glcv21qlra03"
+path="res://.godot/imported/Break_Effects.png-d9d87d3e529f02726103112949552c67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Effects/Test_Break.png"
-dest_files=["res://.godot/imported/Test_Break.png-cc815a0eb54bdb126d3686efac29c69f.ctex"]
+source_file="res://art/Effects/Break_Effects.png"
+dest_files=["res://.godot/imported/Break_Effects.png-d9d87d3e529f02726103112949552c67.ctex"]
 
 [params]
 

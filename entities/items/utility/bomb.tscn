@@ -13,6 +13,9 @@ difficulty = 2
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_d34mo")
 
+[node name="Drop" parent="Effects" index="0"]
+play_effect = false
+
 [node name="Bomb" type="Node" parent="Effects" index="1"]
 script = ExtResource("2_ub6yp")
 trigger = 2

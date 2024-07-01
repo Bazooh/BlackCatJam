@@ -60,7 +60,7 @@ func destroy(play_effect:= false):
 		break_effect.reparent(Game, true)
 		break_effect.global_position.y = Game.FLOOR_Y
 		break_effect.rotation_degrees = 0
-		break_effect.play("Break")
+		break_effect.play("break")
 		await break_effect.animation_finished
 		break_effect.hide()
 		break_effect.queue_free()

@@ -1,17 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://d35b68j76br4u"]
+[gd_scene load_steps=15 format=3 uid="uid://d35b68j76br4u"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_qjpsr"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_vxdr4"]
 [ext_resource type="AudioStream" uid="uid://dvnojfvjammib" path="res://audio/Soft_Knock.wav" id="3_egehj"]
 [ext_resource type="AudioStream" uid="uid://0h6opd6uej26" path="res://audio/Soft_Splash.wav" id="4_p7hjk"]
 [ext_resource type="AudioStream" uid="uid://g45cemtvi64s" path="res://audio/Soft_Hit.wav" id="5_3juws"]
+[ext_resource type="Texture2D" uid="uid://glcv21qlra03" path="res://art/Effects/Break_Effects.png" id="6_mxjr5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_vxdr4")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_seeg8"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(0, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5ieh"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(28, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcbeq"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(56, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq1mx"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(84, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11utx"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(112, 28, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tapt1"]
+atlas = ExtResource("6_mxjr5")
+region = Rect2(140, 28, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xq7l4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seeg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5ieh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcbeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq1mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11utx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tapt1")
+}],
+"loop": false,
+"name": &"break",
+"speed": 24.0
+}]
+
 [node name="Pear" instance=ExtResource("1_qjpsr")]
-ingredient_texture = null
 item_name = "Pear"
 
 [node name="Sprite" parent="." index="0"]
@@ -25,3 +75,7 @@ stream = ExtResource("4_p7hjk")
 
 [node name="TouchGroundSound" parent="." index="6"]
 stream = ExtResource("5_3juws")
+
+[node name="BreakEffect" parent="." index="7"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_xq7l4")
