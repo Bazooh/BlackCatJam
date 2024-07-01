@@ -1,16 +1,66 @@
-[gd_scene load_steps=6 format=3 uid="uid://8qk3tqcpc17v"]
+[gd_scene load_steps=14 format=3 uid="uid://8qk3tqcpc17v"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_5dr38"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_jf0gt"]
 [ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="4_g686g"]
 [ext_resource type="AudioStream" uid="uid://sk2q77ay7beh" path="res://audio/Heavy_Splash.wav" id="4_ktkek"]
+[ext_resource type="Texture2D" uid="uid://glcv21qlra03" path="res://art/Effects/Break_Effects.png" id="5_i7xg5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_jf0gt")
 region = Rect2(0, 96, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf0iw"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(0, 168, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n6th"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(28, 168, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73mk2"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(56, 168, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6103u"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(84, 168, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6y7y3"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(112, 168, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gae2"]
+atlas = ExtResource("5_i7xg5")
+region = Rect2(140, 168, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkbvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf0iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n6th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73mk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6103u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6y7y3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gae2")
+}],
+"loop": false,
+"name": &"break",
+"speed": 24.0
+}]
+
 [node name="Egg" instance=ExtResource("1_5dr38")]
-ingredient_texture = null
 item_name = "Egg"
 
 [node name="Sprite" parent="." index="0"]
@@ -28,3 +78,6 @@ stream = ExtResource("4_ktkek")
 
 [node name="TouchGroundSound" parent="." index="6"]
 stream = ExtResource("4_g686g")
+
+[node name="BreakEffect" parent="." index="7"]
+sprite_frames = SubResource("SpriteFrames_fkbvo")

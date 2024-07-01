@@ -5,4 +5,3 @@ func _ready():
 	Fade.fade_in()
 
 	Game.camera = $Camera2D
-	

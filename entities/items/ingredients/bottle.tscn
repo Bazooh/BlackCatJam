@@ -1,17 +1,67 @@
-[gd_scene load_steps=7 format=3 uid="uid://dia2iuqo4bthw"]
+[gd_scene load_steps=15 format=3 uid="uid://dia2iuqo4bthw"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_kf5bj"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_306ef"]
 [ext_resource type="AudioStream" uid="uid://hcshket606ey" path="res://audio/Hard_Knock.wav" id="3_3joxx"]
 [ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="4_g5r60"]
 [ext_resource type="AudioStream" uid="uid://xxwfuhfugfnk" path="res://audio/Shatter.wav" id="5_t6ir8"]
+[ext_resource type="Texture2D" uid="uid://glcv21qlra03" path="res://art/Effects/Break_Effects.png" id="6_ml8h5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p4w1m"]
 atlas = ExtResource("2_306ef")
 region = Rect2(0, 16, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_36dv6"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(0, 84, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48tbv"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(28, 84, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weuc2"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(56, 84, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q15ff"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(84, 84, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0dep"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(112, 84, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2hah"]
+atlas = ExtResource("6_ml8h5")
+region = Rect2(140, 84, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lj7f4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36dv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48tbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weuc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q15ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0dep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2hah")
+}],
+"loop": false,
+"name": &"break",
+"speed": 24.0
+}]
+
 [node name="Bottle" instance=ExtResource("1_kf5bj")]
-ingredient_texture = null
 item_name = "Bottle"
 
 [node name="Sprite" parent="." index="0"]
@@ -25,3 +75,6 @@ stream = ExtResource("4_g5r60")
 
 [node name="TouchGroundSound" parent="." index="6"]
 stream = ExtResource("5_t6ir8")
+
+[node name="BreakEffect" parent="." index="7"]
+sprite_frames = SubResource("SpriteFrames_lj7f4")

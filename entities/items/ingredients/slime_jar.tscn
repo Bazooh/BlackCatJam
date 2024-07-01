@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg7k5ovs5oen6"]
+[gd_scene load_steps=16 format=3 uid="uid://bg7k5ovs5oen6"]
 
 [ext_resource type="PackedScene" uid="uid://dxim7lnrsikvr" path="res://entities/items/ingredient.tscn" id="1_bbk4m"]
 [ext_resource type="Texture2D" uid="uid://dhd4e4hp1ss21" path="res://art/items/Ingredients.png" id="2_m03ad"]
@@ -6,10 +6,61 @@
 [ext_resource type="AudioStream" uid="uid://ceyjh51iskn0" path="res://audio/Hard_Knock2.wav" id="4_yxaat"]
 [ext_resource type="AudioStream" uid="uid://g42ueqq566kx" path="res://audio/Hard_Splash.wav" id="5_at0en"]
 [ext_resource type="AudioStream" uid="uid://cappwta2nlcx4" path="res://audio/Slime_Shatter.wav" id="6_48xca"]
+[ext_resource type="Texture2D" uid="uid://glcv21qlra03" path="res://art/Effects/Break_Effects.png" id="7_udkrg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i0cjt"]
 atlas = ExtResource("2_m03ad")
 region = Rect2(2.08165e-12, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwu4h"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(0, 112, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cp3o"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(28, 112, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vumhs"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(56, 112, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu830"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(84, 112, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1e86"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(112, 112, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3xem"]
+atlas = ExtResource("7_udkrg")
+region = Rect2(140, 112, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlpnb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwu4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cp3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vumhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu830")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1e86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3xem")
+}],
+"loop": false,
+"name": &"break",
+"speed": 24.0
+}]
 
 [node name="SlimeJar" instance=ExtResource("1_bbk4m")]
 shuffle_difficulty = true
@@ -31,3 +82,6 @@ stream = ExtResource("5_at0en")
 
 [node name="TouchGroundSound" parent="." index="6"]
 stream = ExtResource("6_48xca")
+
+[node name="BreakEffect" parent="." index="7"]
+sprite_frames = SubResource("SpriteFrames_dlpnb")
