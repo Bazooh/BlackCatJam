@@ -30,6 +30,7 @@ position = Vector2(42, 48)
 position = Vector2(27, 125)
 speed = 150.0
 stuck_speed = 30.0
+score_per_recipe = 1
 utility_pool_increase_interval = 6
 utility_swap_rate = 3
 utility_pool_increase_offset = 2
@@ -67,7 +68,7 @@ offset_left = -58.0
 offset_right = 0.0
 grow_horizontal = 0
 script = ExtResource("10_ijkxw")
-digits = 3
+digits = 2
 
 [node name="GameOver" parent="UI" instance=ExtResource("7_nc0dy")]
 visible = false
@@ -94,6 +95,7 @@ autoplay = true
 script = ExtResource("14_c75go")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 anchor_mode = 0
 process_callback = 0
 
