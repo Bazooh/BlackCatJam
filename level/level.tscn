@@ -76,7 +76,6 @@ layout_mode = 1
 
 [node name="Pause" parent="UI" instance=ExtResource("8_xqhhv")]
 layout_mode = 1
-show = false
 
 [node name="DecorGenerator" type="Node2D" parent="."]
 

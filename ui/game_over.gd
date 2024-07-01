@@ -46,4 +46,5 @@ func _on_witch_on_game_over(score: int) -> void:
 
 
 func _on_scoreboard_pressed() -> void:
+	ButtonSound.play_sound()
 	Leaderboard.show(self)

@@ -17,6 +17,7 @@ const PLAYER_NAME_FILE = "user://player_name.txt"
 @onready var ui: TextureRect = $UI
 
 @onready var pseudo: LineEdit = %Pseudo
+@onready var shake: AnimationPlayer = $Shake
 
 
 func _ready():
@@ -27,6 +28,7 @@ func _ready():
 
 func start():
 	if pseudo.text == "":
+		shake.play("shake")
 		return
 	
 	FileAccess.open(PLAYER_NAME_FILE, FileAccess.WRITE).store_string(pseudo.text)
@@ -61,4 +63,5 @@ func _on_button_pressed() -> void:
 
 
 func _on_leaderboard_pressed() -> void:
+	ButtonSound.play_sound()
 	Leaderboard.show(self)

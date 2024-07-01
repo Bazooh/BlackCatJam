@@ -36,4 +36,5 @@ func _ready():
 
 func _on_back_pressed():
 	Game.back_scene.visible = true
+	ButtonSound.play_sound()
 	queue_free()
