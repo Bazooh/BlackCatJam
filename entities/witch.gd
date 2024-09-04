@@ -186,7 +186,8 @@ func get_random_usable_item_weighted() -> Item:
 func set_stuck(value: bool) -> void:
 	stuck = value
 	sprite.animation = "Stuck" if stuck else "Move"
-	
+
+
 func _ready():
 	Game.witch = self
 	init_items()

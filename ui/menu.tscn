@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://audio/step.gd" id="8_vledg"]
 [ext_resource type="Script" path="res://ui/menu_camera.gd" id="11_v5lux"]
 [ext_resource type="AudioStream" uid="uid://bgehqikk08ivq" path="res://audio/BGM_Intro.mp3" id="12_achmj"]
-[ext_resource type="PackedScene" uid="uid://s04nnp5cjf31" path="res://audio/meow.tscn" id="13_kmkjd"]
+[ext_resource type="PackedScene" path="res://audio/meow.tscn" id="13_kmkjd"]
 
 [sub_resource type="Gradient" id="Gradient_qk3cb"]
 offsets = PackedFloat32Array(0)

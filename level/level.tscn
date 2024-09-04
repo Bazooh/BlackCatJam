@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nalu1nrl7o5b"]
+[gd_scene load_steps=29 format=3 uid="uid://nalu1nrl7o5b"]
 
 [ext_resource type="Texture2D" uid="uid://bhiyt42ads85e" path="res://art/BG/BG.png" id="1_lhha4"]
 [ext_resource type="Script" path="res://level/level.gd" id="1_qepe3"]
@@ -8,12 +8,55 @@
 [ext_resource type="PackedScene" uid="uid://7vqh7xmpflq7" path="res://ui/recipe.tscn" id="5_pieq3"]
 [ext_resource type="PackedScene" uid="uid://bidto5x2w5glf" path="res://ui/lives.tscn" id="6_4f633"]
 [ext_resource type="PackedScene" uid="uid://clggs6ymegb8h" path="res://ui/game_over.tscn" id="7_nc0dy"]
-[ext_resource type="PackedScene" uid="uid://dc5nk4o0sndt5" path="res://ui/pause.tscn" id="8_xqhhv"]
-[ext_resource type="PackedScene" uid="uid://caxbfilv8f53l" path="res://ui/score.tscn" id="9_pk0c4"]
+[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="8_xqhhv"]
+[ext_resource type="PackedScene" path="res://ui/score.tscn" id="9_pk0c4"]
 [ext_resource type="Script" path="res://ui/score.gd" id="10_ijkxw"]
+[ext_resource type="Texture2D" uid="uid://b1731n64jplwt" path="res://art/ui/mobile_ui_transparent.png" id="11_jbdl3"]
 [ext_resource type="Script" path="res://level/Background.gd" id="12_dk6bs"]
+[ext_resource type="Script" path="res://ui/mobile_buttons.gd" id="12_o5nyi"]
+[ext_resource type="Texture2D" uid="uid://c8f11okxcvgro" path="res://art/ui/mobile_ui.png" id="12_yri4a"]
 [ext_resource type="AudioStream" uid="uid://cobobw4h561r7" path="res://audio/BGM.mp3" id="13_2201o"]
 [ext_resource type="Script" path="res://level/BGM.gd" id="14_c75go"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7jxq"]
+atlas = ExtResource("11_jbdl3")
+region = Rect2(253, 179, 25, 25)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_paihb"]
+load_path = "res://.godot/imported/mobile_ui.png-689231d580f11d3e84831b91772e6047.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yd0gc"]
+atlas = SubResource("CompressedTexture2D_paihb")
+region = Rect2(253, 179, 25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv8iw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ie14w"]
+atlas = ExtResource("11_jbdl3")
+region = Rect2(276, 179, 25, 25)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_en77h"]
+load_path = "res://.godot/imported/mobile_ui.png-689231d580f11d3e84831b91772e6047.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5c60"]
+atlas = SubResource("CompressedTexture2D_en77h")
+region = Rect2(276, 179, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p7ms"]
+atlas = ExtResource("11_jbdl3")
+region = Rect2(303, 179, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8ou8"]
+atlas = ExtResource("12_yri4a")
+region = Rect2(303, 179, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh281"]
+atlas = ExtResource("11_jbdl3")
+region = Rect2(226, 179, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1667"]
+atlas = ExtResource("12_yri4a")
+region = Rect2(226, 179, 24, 24)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_qepe3")
@@ -68,6 +111,42 @@ offset_right = 0.0
 grow_horizontal = 0
 script = ExtResource("10_ijkxw")
 digits = 2
+
+[node name="MobileButtons" type="Node2D" parent="UI"]
+unique_name_in_owner = true
+script = ExtResource("12_o5nyi")
+
+[node name="Right" type="TouchScreenButton" parent="UI/MobileButtons"]
+position = Vector2(33, 111)
+texture_normal = SubResource("AtlasTexture_u7jxq")
+texture_pressed = SubResource("AtlasTexture_yd0gc")
+shape = SubResource("RectangleShape2D_rv8iw")
+action = "right"
+visibility_mode = 1
+
+[node name="Left" type="TouchScreenButton" parent="UI/MobileButtons"]
+position = Vector2(4, 111)
+texture_normal = SubResource("AtlasTexture_ie14w")
+texture_pressed = SubResource("AtlasTexture_n5c60")
+shape = SubResource("RectangleShape2D_rv8iw")
+action = "left"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="UI/MobileButtons"]
+position = Vector2(227, 114)
+texture_normal = SubResource("AtlasTexture_0p7ms")
+texture_pressed = SubResource("AtlasTexture_k8ou8")
+shape = SubResource("RectangleShape2D_rv8iw")
+action = "down"
+visibility_mode = 1
+
+[node name="Up" type="TouchScreenButton" parent="UI/MobileButtons"]
+position = Vector2(227, 88)
+texture_normal = SubResource("AtlasTexture_dh281")
+texture_pressed = SubResource("AtlasTexture_c1667")
+shape = SubResource("RectangleShape2D_rv8iw")
+action = "up"
+visibility_mode = 1
 
 [node name="GameOver" parent="UI" instance=ExtResource("7_nc0dy")]
 visible = false
