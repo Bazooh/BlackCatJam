@@ -63,9 +63,8 @@ trigger = 3
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("4_bxmye")
-animation = &"run"
+animation = &"down"
 autoplay = "run"
-frame_progress = 0.718622
 script = ExtResource("5_1wm3t")
 
 [node name="Step" type="AudioStreamPlayer" parent="Sprite"]

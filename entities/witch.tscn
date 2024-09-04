@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://b56dmghqpetjg" path="res://audio/Complete.wav" id="5_a4ij6"]
 [ext_resource type="AudioStream" uid="uid://bwu8i8k5hu652" path="res://audio/Hurt.wav" id="6_pm615"]
 [ext_resource type="AudioStream" uid="uid://bbebnpomqlmd7" path="res://audio/Lose.wav" id="7_33774"]
-[ext_resource type="PackedScene" uid="uid://s04nnp5cjf31" path="res://audio/meow.tscn" id="9_m33uv"]
+[ext_resource type="PackedScene" path="res://audio/meow.tscn" id="9_m33uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bffv"]
 size = Vector2(26, 9)

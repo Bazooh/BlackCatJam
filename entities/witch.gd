@@ -17,15 +17,16 @@ const n_ingredients: int = 3
 @export var score_per_recipe : int = 10
 
 @export_group("Difficulty")	
-@export var starting_ingredient_pool_size := 3
-@export var ingredient_pool_increase_interval := 8
-@export var ingredient_pool_increase_offset := 6
-@export var ingredient_swap_rate := 1
-@export var starting_utility_pool_size := 0
-@export var utility_pool_increase_interval := 7
-@export var utility_swap_rate := 2
-@export var utility_pool_increase_offset := 3
-@export var utility_chance := 0.33
+@export var starting_ingredient_pool_size: int = 3
+@export var ingredient_pool_increase_interval: int = 8
+@export var ingredient_pool_increase_offset: int = 6
+@export var ingredient_swap_rate: int = 1
+@export var starting_utility_pool_size: int = 0
+@export var utility_pool_increase_interval: int = 7
+@export var utility_swap_rate: int = 2
+@export var utility_pool_increase_offset: int = 3
+@export var utility_chance: float = 0.33
+@export var imune_time: float = 1.0
 
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var effect_sprite: AnimatedSprite2D = %EffectSprite
@@ -67,6 +68,7 @@ var ingredient_pool_size := 0
 var utility_pool_size := 0
 
 var stuck := false
+var imune := false
 
 func init_items():
 	
@@ -257,13 +259,30 @@ func check_potion() -> void:
 	update_recipe()
 
 
+func imune_animation() -> void:
+	var timer: SceneTreeTimer = get_tree().create_timer(imune_time, false)
+	while timer.time_left > 0:
+		sprite.self_modulate.a = 1.0 - sprite.self_modulate.a
+		await get_tree().create_timer(0.1, false).timeout
+	sprite.self_modulate.a = 1.0
+
+
 func lose_life() -> void:
+	if imune:
+		return
+
 	lives -= 1
 	on_lives_update.emit(lives)
 	hurt_sound.play()
 	meow.play_random_sound()
+
 	if lives <= 0:
 		game_over()
+		return
+	
+	imune = true
+	await imune_animation()
+	imune = false
 
 
 func game_over() -> void:
