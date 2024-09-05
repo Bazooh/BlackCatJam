@@ -197,6 +197,7 @@ func _ready():
 	update_recipe()
 	on_lives_update.emit(lives)
 	on_score_update.emit(score)
+	MobileAds.initialize()
 
 
 func _physics_process(delta: float):
@@ -290,6 +291,14 @@ func game_over() -> void:
 
 	lose_sound.play()
 	on_game_over.emit(score)
+
+	const unit_id = "ca-app-pub-3365705683268616~8470037135"
+
+	var ad_load_callback := InterstitialAdLoadCallback.new()
+	ad_load_callback.on_ad_failed_to_load = func(error: LoadAdError): print("Ad failed to load: ", error.message)
+	ad_load_callback.on_ad_loaded = func(ad: InterstitialAd): ad.show()
+
+	InterstitialAdLoader.new().load(unit_id, AdRequest.new(), ad_load_callback)
 
 
 func _on_cat_no_platform() -> void:
